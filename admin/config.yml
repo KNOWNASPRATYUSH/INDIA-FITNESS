@@ -1,11 +1,8 @@
 backend:
-  name: github
-  # Replace with your actual GitHub repository (e.g., yourusername/Figma-Portfolio)
-  repo: yourusername/INDIAN-FITNESS
+  name: git-gateway
   branch: main
   
-# Enable local development backend so you don't have to push to GitHub to test
-local_backend: true
+# local_backend: true
 
 # This configures where uploaded images go
 media_folder: "assets/images"
