@@ -239,21 +239,24 @@ document.addEventListener('DOMContentLoaded', () => {
         contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             
-            // Gather data
-            const name = document.getElementById('contactName').value;
-            const email = document.getElementById('contactEmail').value;
-            const phone = document.getElementById('contactPhone').value;
-            const message = document.getElementById('contactMessage').value;
-            
-            const originalText = contactSubmitBtn.innerText;
-            contactSubmitBtn.innerText = 'Sending...';
-            contactSubmitBtn.disabled = true;
+            const formData = new FormData(contactForm);
+            // Append explicit IDs if they don't have name attributes
+            formData.append('name', document.getElementById('contactName').value);
+            formData.append('email', document.getElementById('contactEmail').value);
+            formData.append('phone', document.getElementById('contactPhone').value);
+            formData.append('message', document.getElementById('contactMessage').value);
+
+            const object = Object.fromEntries(formData);
+            const json = JSON.stringify(object);
 
             try {
-                const response = await fetch('/api/contact', {
+                const response = await fetch('https://api.web3forms.com/submit', {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ name, email, phone, message })
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: json
                 });
 
                 const data = await response.json();
@@ -262,11 +265,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     alert('Thank you! Your message has been sent to India Fitness.');
                     contactForm.reset();
                 } else {
-                    alert('Oops! Something went wrong: ' + data.message);
+                    alert('Oops! ' + data.message);
                 }
             } catch (error) {
                 alert('Connection error. Please try again later.');
-                console.error('Contact Form Error:', error);
+                console.error('Web3Forms Error:', error);
             } finally {
                 contactSubmitBtn.innerText = originalText;
                 contactSubmitBtn.disabled = false;
