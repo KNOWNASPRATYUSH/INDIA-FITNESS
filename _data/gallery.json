@@ -1,0 +1,20 @@
+{
+  "items": [
+    {
+      "caption": "Treadmill Area",
+      "image": "assets/images/treadmill_area.jpg"
+    },
+    {
+      "caption": "Weight Training",
+      "image": "assets/images/weight_training.jpg"
+    },
+    {
+      "caption": "Awards",
+      "image": "assets/images/award_ceremony.jpg"
+    },
+    {
+      "caption": "Athlete Highlight",
+      "image": "assets/images/gallery_muscles.png"
+    }
+  ]
+}

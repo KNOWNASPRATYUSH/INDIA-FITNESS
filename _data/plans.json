@@ -1,0 +1,44 @@
+{
+  "plans": [
+    {
+      "title": "Monthly Plan",
+      "type": "Basic",
+      "price": "₹1100",
+      "duration": "/ month",
+      "bonus": "",
+      "features": ["Gym access + equipment", "Steam Bath", "BMI Check", "Diet Chart"],
+      "button_text": "Join Now",
+      "theme": "tilt-card"
+    },
+    {
+      "title": "Quarterly Plan",
+      "type": "Standard",
+      "price": "₹3500",
+      "duration": "/ 3 months",
+      "bonus": "+15 days bonus",
+      "features": ["Steam Bath", "BMI Check", "Diet Chart", "Free Kit"],
+      "button_text": "Join Now",
+      "theme": "featured tilt-card"
+    },
+    {
+      "title": "Half-Yearly Plan",
+      "type": "Premium",
+      "price": "₹6000",
+      "duration": "/ 6 months",
+      "bonus": "+20 days bonus",
+      "features": ["Steam Bath", "BMI Check", "Diet Chart", "Free Kit"],
+      "button_text": "Join Now",
+      "theme": "tilt-card"
+    },
+    {
+      "title": "Yearly Plan",
+      "type": "Black",
+      "price": "₹11000",
+      "duration": "/ year",
+      "bonus": "+1 month bonus",
+      "features": ["★ Includes all benefits", "Full VIP Treatment", "Recovery Access"],
+      "button_text": "Join Now",
+      "theme": "black-plan tilt-card"
+    }
+  ]
+}

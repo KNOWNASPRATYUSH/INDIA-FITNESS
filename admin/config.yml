@@ -1,0 +1,65 @@
+backend:
+  name: github
+  # Replace with your actual GitHub repository (e.g., yourusername/Figma-Portfolio)
+  repo: yourusername/INDIAN-FITNESS
+  branch: main
+  
+# Enable local development backend so you don't have to push to GitHub to test
+local_backend: true
+
+# This configures where uploaded images go
+media_folder: "assets/images"
+public_folder: "assets/images"
+
+collections:
+  - name: "team"
+    label: "Team / Trainers"
+    files:
+      - file: "_data/trainers.json"
+        label: "Trainers"
+        name: "trainers_data"
+        fields:
+          - label: "Trainers List"
+            name: "trainers"
+            widget: "list"
+            fields:
+              - {label: "Name", name: "name", widget: "string"}
+              - {label: "Role", name: "role", widget: "string"}
+              - {label: "Experience", name: "exp", widget: "string"}
+              - {label: "Specializations", name: "specializations", widget: "list"}
+              - {label: "Bio", name: "bio", widget: "text"}
+              - {label: "Image", name: "image", widget: "image"}
+              
+  - name: "gallery"
+    label: "Gallery"
+    files:
+      - file: "_data/gallery.json"
+        label: "Gallery Items"
+        name: "gallery_data"
+        fields:
+          - label: "Gallery List"
+            name: "items"
+            widget: "list"
+            fields:
+              - {label: "Caption", name: "caption", widget: "string"}
+              - {label: "Image", name: "image", widget: "image"}
+
+  - name: "plans"
+    label: "Membership Plans"
+    files:
+      - file: "_data/plans.json"
+        label: "Plans Data"
+        name: "plans_data"
+        fields:
+          - label: "Plans List"
+            name: "plans"
+            widget: "list"
+            fields:
+              - {label: "Title", name: "title", widget: "string"}
+              - {label: "Type (e.g. Basic)", name: "type", widget: "string"}
+              - {label: "Price", name: "price", widget: "string"}
+              - {label: "Duration", name: "duration", widget: "string"}
+              - {label: "Bonus Tag (Optional)", name: "bonus", widget: "string", required: false}
+              - {label: "Features", name: "features", widget: "list", field: {label: "Feature", name: "feature", widget: "string"}}
+              - {label: "Button Text", name: "button_text", widget: "string"}
+              - {label: "CSS Theme Classes", name: "theme", widget: "string", hint: "e.g., 'tilt-card', 'featured tilt-card', or 'black-plan tilt-card'"}
