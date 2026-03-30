@@ -728,7 +728,45 @@ nav {
     border-radius: 10px;
 }
 
-/* Location */
+/* Contact & Location */
+.contact-form-container {
+    background: var(--surface-color);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    transition: var(--transition-fast);
+}
+
+.contact-form-container:hover {
+    box-shadow: 0 10px 40px rgba(230, 57, 70, 0.1);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 15px;
+    background: var(--bg-color);
+    border: 1px solid #333;
+    border-radius: 6px;
+    color: var(--text-primary);
+    font-size: 1rem;
+    font-family: 'Inter', sans-serif;
+    transition: var(--transition-fast);
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 10px rgba(230, 57, 70, 0.2);
+}
+
+textarea.form-control {
+    resize: vertical;
+}
+
 .map-container {
     height: 400px;
     border-radius: 12px;
