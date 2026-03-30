@@ -262,8 +262,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 const data = await response.json();
                 
                 if(response.ok) {
-                    alert('Thank you! Your message has been sent to India Fitness.');
+                    contactSubmitBtn.innerText = 'MESSAGE SENT ✓';
+                    contactSubmitBtn.classList.add('btn-success');
                     contactForm.reset();
+                    
+                    setTimeout(() => {
+                        contactSubmitBtn.innerText = originalText;
+                        contactSubmitBtn.classList.remove('btn-success');
+                    }, 3000);
                 } else {
                     alert('Oops! ' + data.message);
                 }
@@ -271,8 +277,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 alert('Connection error. Please try again later.');
                 console.error('Web3Forms Error:', error);
             } finally {
-                contactSubmitBtn.innerText = originalText;
-                contactSubmitBtn.disabled = false;
+                if(!contactSubmitBtn.classList.contains('btn-success')) {
+                    contactSubmitBtn.innerText = originalText;
+                    contactSubmitBtn.disabled = false;
+                }
             }
         });
     }

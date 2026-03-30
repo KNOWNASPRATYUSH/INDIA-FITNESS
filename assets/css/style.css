@@ -233,6 +233,14 @@ nav {
     color: white;
 }
 
+.btn-success {
+    background: #27ae60 !important;
+    color: white !important;
+    box-shadow: 0 0 10px rgba(39, 174, 96, 0.4) !important;
+    cursor: default;
+    transform: none !important;
+}
+
 .btn-primary:hover {
     background: var(--accent-red-dark);
     transform: translateY(-3px);
