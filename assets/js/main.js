@@ -231,4 +231,47 @@ document.addEventListener('DOMContentLoaded', () => {
         fadeObserver.observe(el);
     });
 
+    // 8. Contact Form Handling (Vercel Backend API)
+    const contactForm = document.getElementById('contactForm');
+    const contactSubmitBtn = document.getElementById('contactSubmit');
+    
+    if(contactForm) {
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            // Gather data
+            const name = document.getElementById('contactName').value;
+            const email = document.getElementById('contactEmail').value;
+            const phone = document.getElementById('contactPhone').value;
+            const message = document.getElementById('contactMessage').value;
+            
+            const originalText = contactSubmitBtn.innerText;
+            contactSubmitBtn.innerText = 'Sending...';
+            contactSubmitBtn.disabled = true;
+
+            try {
+                const response = await fetch('/api/contact', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, email, phone, message })
+                });
+
+                const data = await response.json();
+                
+                if(response.ok) {
+                    alert('Thank you! Your message has been sent to India Fitness.');
+                    contactForm.reset();
+                } else {
+                    alert('Oops! Something went wrong: ' + data.message);
+                }
+            } catch (error) {
+                alert('Connection error. Please try again later.');
+                console.error('Contact Form Error:', error);
+            } finally {
+                contactSubmitBtn.innerText = originalText;
+                contactSubmitBtn.disabled = false;
+            }
+        });
+    }
+
 });

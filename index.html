@@ -333,20 +333,20 @@
             <div class="container grid-two">
                 <div class="contact-form-container" data-aos="fade-right">
                     <h2 class="section-title">GET IN TOUCH</h2>
-                    <form class="contact-form">
+                    <form class="contact-form" id="contactForm">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Your Name" required>
+                            <input type="text" id="contactName" class="form-control" placeholder="Your Name" required>
                         </div>
                         <div class="form-group">
-                            <input type="email" class="form-control" placeholder="Your Email" required>
+                            <input type="email" id="contactEmail" class="form-control" placeholder="Your Email" required>
                         </div>
                         <div class="form-group">
-                            <input type="tel" class="form-control" placeholder="Phone Number" required>
+                            <input type="tel" id="contactPhone" class="form-control" placeholder="Phone Number" required>
                         </div>
                         <div class="form-group">
-                            <textarea class="form-control" rows="4" placeholder="Your Message" required></textarea>
+                            <textarea id="contactMessage" class="form-control" rows="4" placeholder="Your Message" required></textarea>
                         </div>
-                        <button type="button" class="btn btn-primary magnetic" onclick="alert('Demo: Form Submitted!')">Send Message</button>
+                        <button type="submit" id="contactSubmit" class="btn btn-primary magnetic">Send Message</button>
                     </form>
                 </div>
                 <div class="location-info" data-aos="fade-left">
