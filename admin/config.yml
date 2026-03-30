@@ -2,6 +2,7 @@ backend:
   name: github
   repo: cartnovaco-netizen/INDIA-FITNESS
   branch: main
+  base_url: /api
 # local_backend: true
 
 # This configures where uploaded images go
