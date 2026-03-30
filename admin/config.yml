@@ -1,7 +1,7 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: cartnovaco-netizen/INDIA-FITNESS
   branch: main
-
 # local_backend: true
 
 # This configures where uploaded images go
