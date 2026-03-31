@@ -56,12 +56,20 @@ module.exports = async function handler(req, res) {
             provider: 'github'
           };
           
+          // 1. Storage Injection (Most reliable for same-domain on Vercel)
+          try {
+            console.log("Setting storage tokens...");
+            localStorage.setItem("decap-cms-user", JSON.stringify(userObj));
+            localStorage.setItem("netlify-cms-user", JSON.stringify(userObj));
+          } catch (e) {
+            console.error("Storage failed:", e);
+          }
+
           if (window.opener) {
-            // Target the same origin
             const targetOrigin = window.location.origin;
 
-            // Decap CMS specifically waits for this string/object combination
             try {
+              // Standard Decap handshakes
               window.opener.postMessage({
                 source: 'netlify-cms-auth',
                 payload: userObj
@@ -72,12 +80,12 @@ module.exports = async function handler(req, res) {
               console.error("PostMessage failed:", e);
             }
 
-            // Close exactly 1 second after sending
+            // Close with a slight delay to allow message processing
             setTimeout(function() {
               window.close();
             }, 1000);
           } else {
-            document.body.innerHTML += '<p style="color:red;">Error: Opener window lost. Please try again.</p>';
+            document.body.innerHTML += '<p style="color:red;">Error: Opener window lost. Session saved to memory, please refresh the admin page.</p>';
           }
         })();
       </script>
