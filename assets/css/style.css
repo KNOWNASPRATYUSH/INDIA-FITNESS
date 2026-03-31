@@ -371,12 +371,13 @@ nav {
 }
 
 .highlight-accent {
-    color: var(--primary-color);
+    color: #ff3e3e;
     font-weight: 900;
     margin-left: 5px;
-    text-shadow: 0 0 10px rgba(230, 57, 70, 0.4);
+    text-shadow: 
+        0 0 5px rgba(255, 62, 62, 0.4),
+        0 0 15px rgba(255, 62, 62, 0.2);
     display: inline-block;
-    vertical-align: middle;
 }
 
 .scroll-down {
