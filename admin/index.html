@@ -194,29 +194,78 @@
                 
                 let fieldsHtml = ``;
                 if (currentSection === 'trainers') {
+                    const specs = item.specializations || [];
                     fieldsHtml = `
-                        <div class="field"><label>Name</label><input value="${item.name}" onchange="updateItem(${idx}, 'name', this.value)"></div>
-                        <div class="field"><label>Role</label><input value="${item.role}" onchange="updateItem(${idx}, 'role', this.value)"></div>
-                        <div class="field"><label>Experience</label><input value="${item.exp}" onchange="updateItem(${idx}, 'exp', this.value)"></div>
-                        <div class="field"><label>Bio</label><textarea onchange="updateItem(${idx}, 'bio', this.value)">${item.bio}</textarea></div>
+                        <div style="display: flex; gap: 20px;">
+                            <div style="flex: 1;">
+                                <div class="field"><label>Name</label><input value="${item.name}" onchange="updateItem(${idx}, 'name', this.value)"></div>
+                                <div class="field"><label>Role</label><input value="${item.role}" onchange="updateItem(${idx}, 'role', this.value)"></div>
+                                <div class="field"><label>Experience</label><input value="${item.exp}" onchange="updateItem(${idx}, 'exp', this.value)"></div>
+                                <div class="field"><label>Direct Image Path</label><input value="${item.image}" onchange="updateItem(${idx}, 'image', this.value); render();"></div>
+                            </div>
+                            <div style="width: 150px;">
+                                <label>Preview</label>
+                                <img src="/${item.image}" style="width: 100%; height: 150px; object-fit: cover; border-radius: 8px; border: 1px solid #333;" onerror="this.src='https://via.placeholder.com/150?text=No+Image'">
+                            </div>
+                        </div>
+                        <div class="field"><label>Bio</label><textarea style="height: 80px;" onchange="updateItem(${idx}, 'bio', this.value)">${item.bio}</textarea></div>
+                        <div class="field">
+                            <label>Specializations</label>
+                            <div id="specs-${idx}" style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px;">
+                                ${specs.map((s, sIdx) => `
+                                    <div class="badge" style="display: flex; align-items: center; gap: 5px;">
+                                        ${s} <i class="fas fa-times" style="cursor:pointer;" onclick="removeSubItem(${idx}, 'specializations', ${sIdx})"></i>
+                                    </div>
+                                `).join('')}
+                            </div>
+                            <div style="display: flex; gap: 10px;">
+                                <input id="new-spec-${idx}" placeholder="Add new spec..." style="padding: 8px; font-size: 12px; flex: 1;">
+                                <button class="btn btn-primary" style="padding: 5px 15px;" onclick="addSubItem(${idx}, 'specializations', document.getElementById('new-spec-${idx}').value)">Add</button>
+                            </div>
+                        </div>
                     `;
                 } else if (currentSection === 'gallery') {
                     fieldsHtml = `
-                        <div class="field"><label>Caption</label><input value="${item.caption}" onchange="updateItem(${idx}, 'caption', this.value)"></div>
-                        <div class="field"><label>Image Path</label><input value="${item.image}" onchange="updateItem(${idx}, 'image', this.value)"></div>
+                        <div style="display: flex; gap: 20px;">
+                            <div style="flex: 1;">
+                                <div class="field"><label>Caption</label><input value="${item.caption}" onchange="updateItem(${idx}, 'caption', this.value)"></div>
+                                <div class="field"><label>Image Path</label><input value="${item.image}" onchange="updateItem(${idx}, 'image', this.value); render();"></div>
+                            </div>
+                            <div style="width: 200px;">
+                                <img src="/${item.image}" style="width: 100%; height: 120px; object-fit: cover; border-radius: 8px; border:1px solid #333;" onerror="this.src='https://via.placeholder.com/200?text=No+Photo'">
+                            </div>
+                        </div>
                     `;
                 } else if (currentSection === 'plans') {
+                    const features = item.features || [];
                     fieldsHtml = `
-                        <div class="field"><label>Title</label><input value="${item.title}" onchange="updateItem(${idx}, 'title', this.value)"></div>
-                        <div class="field"><label>Price</label><input value="${item.price}" onchange="updateItem(${idx}, 'price', this.value)"></div>
-                        <div class="field"><label>Bonus Tag</label><input value="${item.bonus}" onchange="updateItem(${idx}, 'bonus', this.value)"></div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                            <div class="field"><label>Plan Title</label><input value="${item.title}" onchange="updateItem(${idx}, 'title', this.value)"></div>
+                            <div class="field"><label>Price (e.g. ₹1100)</label><input value="${item.price}" onchange="updateItem(${idx}, 'price', this.value)"></div>
+                            <div class="field"><label>Monthly tag (e.g. / month)</label><input value="${item.duration}" onchange="updateItem(${idx}, 'duration', this.value)"></div>
+                            <div class="field"><label>Bonus Text (Optional)</label><input value="${item.bonus}" onchange="updateItem(${idx}, 'bonus', this.value)"></div>
+                        </div>
+                        <div class="field">
+                            <label>Plan Features</label>
+                            <div style="display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 10px;">
+                                ${features.map((f, fIdx) => `
+                                    <div class="badge" style="background: #333; padding: 5px 10px; display: flex; align-items: center; gap: 8px;">
+                                        ${f} <i class="fas fa-trash" style="font-size: 10px; color: #ff4444; cursor:pointer;" onclick="removeSubItem(${idx}, 'features', ${fIdx})"></i>
+                                    </div>
+                                `).join('')}
+                            </div>
+                            <div style="display: flex; gap: 10px;">
+                                <input id="new-feat-${idx}" placeholder="New feature..." style="flex:1;">
+                                <button class="btn btn-save" style="padding: 10px; background: #444; color: white;" onclick="addSubItem(${idx}, 'features', document.getElementById('new-feat-${idx}').value)">Add Feature</button>
+                            </div>
+                        </div>
                     `;
                 }
 
                 card.innerHTML = `
                     <div class="card-header">
-                        <span>#${idx + 1} ${item.name || item.caption || item.title}</span>
-                        <button class="remove-btn" onclick="removeItem(${idx})">Delete</button>
+                        <span style="font-weight: bold; color: var(--primary)">${currentSection.toUpperCase()} #${idx + 1}</span>
+                        <button class="remove-btn" onclick="removeItem(${idx})"><i class="fas fa-trash-alt"></i> Delete Item</button>
                     </div>
                     ${fieldsHtml}
                 `;
@@ -232,6 +281,17 @@
 
         function updateItem(idx, key, val) {
             sectionToList()[idx][key] = val;
+        }
+
+        function addSubItem(idx, key, val) {
+            if (!val) return;
+            sectionToList()[idx][key].push(val);
+            render();
+        }
+
+        function removeSubItem(idx, key, subIdx) {
+            sectionToList()[idx][key].splice(subIdx, 1);
+            render();
         }
 
         function addNewItem() {
