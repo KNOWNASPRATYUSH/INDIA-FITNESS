@@ -56,46 +56,29 @@ module.exports = async function handler(req, res) {
             provider: 'github'
           };
           
-          function sendAuth() {
-            var origin = window.location.origin; // Same origin
-            
-            // 1. Storage Injection (Most reliable for same-domain)
-            try {
-              localStorage.setItem("decap-cms-user", JSON.stringify(userObj));
-              localStorage.setItem("netlify-cms-user", JSON.stringify(userObj));
-            } catch (e) { console.error(e); }
+          if (window.opener) {
+            // Target the same origin
+            const targetOrigin = window.location.origin;
 
-            // 2. PostMessage (Standard Decap requirement)
-            if (window.opener) {
-              try {
-                // Decap CMS 3.1+ expects this specific object structure
-                window.opener.postMessage({
-                  source: 'netlify-cms-auth',
-                  payload: userObj
-                }, origin);
-                
-                // Legacy string fallback
-                window.opener.postMessage('authorization:github:success:' + JSON.stringify(userObj), origin);
-              } catch (e) { console.error(e); }
+            // Decap CMS specifically waits for this string/object combination
+            try {
+              window.opener.postMessage({
+                source: 'netlify-cms-auth',
+                payload: userObj
+              }, targetOrigin);
+              
+              window.opener.postMessage('authorization:github:success:' + JSON.stringify(userObj), targetOrigin);
+            } catch (e) {
+              console.error("PostMessage failed:", e);
             }
+
+            // Close exactly 1 second after sending
+            setTimeout(function() {
+              window.close();
+            }, 1000);
+          } else {
+            document.body.innerHTML += '<p style="color:red;">Error: Opener window lost. Please try again.</p>';
           }
-
-          // Execute
-          sendAuth();
-
-          // After sending, we wait 1 second then force the parent to refresh 
-          // to pick up the localStorage we just set.
-          setTimeout(function() {
-            try {
-              if (window.opener && !window.opener.closed) {
-                // If it hasn't redirected yet, force it
-                if (window.opener.location.href.indexOf('admin') !== -1) {
-                   window.opener.location.reload();
-                }
-              }
-            } catch (e) {}
-            window.close();
-          }, 1500);
         })();
       </script>
     </body>
