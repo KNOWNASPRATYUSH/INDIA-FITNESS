@@ -949,6 +949,13 @@ textarea.form-control {
     }
 }
 
+/* Phone Input Styles */
+.iti { width: 100% !important; margin-bottom: 20px; }
+.iti__country-list { background-color: #1a1a1a; border: 1px solid #333; color: white; }
+.iti__country:hover { background-color: #333; }
+.iti__dial-code { color: #888; }
+.iti__selected-flag { background-color: rgba(255,255,255,0.05); border-radius: 6px 0 0 6px; }
+
 @media (max-width: 600px) {
     .hero-content h1 {
         font-size: 2.5rem;

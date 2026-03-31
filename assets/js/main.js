@@ -210,7 +210,18 @@ document.addEventListener('DOMContentLoaded', () => {
     // 8. Contact Form Handling (Vercel Backend API)
     const contactForm = document.getElementById('contactForm');
     const contactSubmitBtn = document.getElementById('contactSubmit');
+    const phoneInput = document.getElementById('contactPhone');
     
+    let iti;
+    if (phoneInput) {
+        iti = window.intlTelInput(phoneInput, {
+            initialCountry: "in",
+            separateDialCode: true,
+            utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.js",
+            preferredCountries: ["in", "us", "gb"]
+        });
+    }
+
     if(contactForm) {
         contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -239,7 +250,9 @@ document.addEventListener('DOMContentLoaded', () => {
             // Append explicit IDs if they don't have name attributes
             formData.append('name', document.getElementById('contactName').value);
             formData.append('email', document.getElementById('contactEmail').value);
-            formData.append('phone', document.getElementById('contactPhone').value);
+            // Get full international phone number
+            const fullPhone = iti ? iti.getNumber() : document.getElementById('contactPhone').value;
+            formData.append('phone', fullPhone);
             formData.append('message', document.getElementById('contactMessage').value);
 
             const object = Object.fromEntries(formData);
