@@ -1,11 +1,9 @@
-# Decap CMS Configuration for India Fitness
 backend:
   name: github
   repo: cartnovaco-netizen/INDIA-FITNESS
   branch: main
-  base_url: https://github.com
+  base_url: https://india-fitness.vercel.app
   auth_endpoint: api/auth
-  use_graphql: false
 
 # Media folder configuration
 media_folder: "assets/images"
