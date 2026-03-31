@@ -13,6 +13,7 @@ module.exports = async function handler(req, res) {
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
+        'User-Agent': 'INDIA-FITNESS-Auth'
       },
       body: JSON.stringify({
         client_id,
@@ -21,7 +22,13 @@ module.exports = async function handler(req, res) {
       })
     });
     
-    const data = await response.json();
+    const text = await response.text();
+    let data;
+    try {
+      data = JSON.parse(text);
+    } catch (e) {
+      return res.status(500).send(`GitHub returned a non-JSON response (Status: ${response.status}). This usually means GitHub blocked the Vercel server. Response snippet: ` + text.substring(0, 500));
+    }
     
     if (data.error) {
       return res.status(500).send("GitHub Error: " + data.error_description);
