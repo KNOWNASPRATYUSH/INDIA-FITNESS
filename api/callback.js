@@ -33,19 +33,59 @@ module.exports = async function handler(req, res) {
     const html = `
     <!DOCTYPE html>
     <html>
+    <head>
+      <title>Authenticating...</title>
+      <style>body { font-family: sans-serif; text-align: center; padding-top: 50px; }</style>
+    </head>
     <body>
+      <h3>Login Successful!</h3>
+      <p>Redirecting back to the Admin Panel...</p>
       <script>
-        const receiveMessage = (message) => {
-          if (message.data === "authorizing:github") {
-            window.opener.postMessage(
-              'authorization:github:success:{"token":"${token}","provider":"github"}',
-              message.origin
-            );
-            window.removeEventListener("message", receiveMessage, false);
+        (function() {
+          function sendAuth() {
+            var message = 'authorization:github:success:{"token":"${token}","provider":"github"}';
+            var origin = (window.opener && window.opener.location.origin) || "*";
+            if (window.opener) {
+              window.opener.postMessage(message, origin);
+            }
+            if (window.parent && window.parent !== window) {
+              window.parent.postMessage(message, origin);
+            }
           }
-        };
-        window.addEventListener("message", receiveMessage, false);
-        window.opener.postMessage("authorizing:github", "*");
+
+          // Send immediately
+          try {
+            sendAuth();
+          } catch(err) {
+            console.error(err);
+          }
+
+          // Also setup the ping-pong listener for Decap CMS
+          function receiveMessage(e) {
+            if (typeof e.data === "string" && e.data.indexOf("authorizing:github") !== -1) {
+              try { sendAuth(); } catch(err) {}
+            }
+          }
+          window.addEventListener("message", receiveMessage, false);
+          
+          // Poll to ensure it ping-pongs
+          var attempts = 0;
+          var interval = setInterval(function() {
+             if (window.opener) {
+               window.opener.postMessage("authorizing:github", "*");
+             }
+             attempts++;
+             if (attempts > 5) {
+               clearInterval(interval);
+               window.close();
+             }
+          }, 300);
+
+          // Auto-close safety fallback
+          setTimeout(function() {
+            window.close();
+          }, 2000);
+        })();
       </script>
     </body>
     </html>
