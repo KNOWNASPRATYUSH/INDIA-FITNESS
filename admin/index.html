@@ -57,8 +57,14 @@
 
             // Catch the message from the popup
             window.addEventListener('message', (e) => {
-              debugLog("Received message from origin: " + e.origin);
-              debugLog("Message Data: " + JSON.stringify(e.data).substring(0, 50));
+              debugLog("Received message: " + JSON.stringify(e.data).substring(0, 50));
+              
+              // If we see the success string, and it didn't trigger, force a refresh
+              const data = e.data;
+              if (data === "authorization:github:success" || (typeof data === "string" && data.indexOf("success") !== -1)) {
+                 debugLog("Auth Success detected! Refreshing in 1s...");
+                 setTimeout(() => window.location.reload(), 1000);
+              }
             }, false);
 
             // Start CMS
