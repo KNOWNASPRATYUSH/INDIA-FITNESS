@@ -216,6 +216,26 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             
             const formData = new FormData(contactForm);
+            
+            // 1. Honeypot Check (Bot Protection)
+            const hpField = document.getElementById('hp_field').value;
+            if (hpField) {
+                console.warn("Bot detected via honeypot.");
+                return; // Silent fail for bots
+            }
+
+            // 2. Client-side Rate Limiting
+            const lastSub = localStorage.getItem('last_sub');
+            const now = Date.now();
+            if (lastSub && (now - lastSub < 10000)) { // 10 second cool down
+                alert("Please wait a moment before sending another message.");
+                return;
+            }
+
+            const originalText = contactSubmitBtn.innerText;
+            contactSubmitBtn.innerText = 'SENDING...';
+            contactSubmitBtn.disabled = true;
+
             // Append explicit IDs if they don't have name attributes
             formData.append('name', document.getElementById('contactName').value);
             formData.append('email', document.getElementById('contactEmail').value);
@@ -238,6 +258,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const data = await response.json();
                 
                 if(response.ok) {
+                    localStorage.setItem('last_sub', Date.now());
                     contactSubmitBtn.innerText = 'MESSAGE SENT ✓';
                     contactSubmitBtn.classList.add('btn-success');
                     contactForm.reset();

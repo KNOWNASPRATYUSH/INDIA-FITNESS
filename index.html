@@ -307,6 +307,13 @@
                             <textarea id="contactMessage" class="form-control" rows="4" placeholder="Your Message"
                                 required></textarea>
                         </div>
+
+                        <!-- Honeypot Field (Anti-Bot) -->
+                        <div style="display:none;">
+                            <label>Keep this field blank</label>
+                            <input type="text" name="hp_field" id="hp_field">
+                        </div>
+
                         <button type="submit" id="contactSubmit" class="btn btn-primary">Send Message</button>
                     </form>
                 </div>
