@@ -4,56 +4,40 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>India Fitness | Admin</title>
-    <!-- Use the standard decap-cms distribution -->
-    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-    <script src="https://unpkg.com/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+    <script>
+      // Crucial: Tell Decap NOT to auto-run
+      window.CMS_MANUAL_INIT = true;
+    </script>
   </head>
   <body>
+    <!-- Scripts at the bottom for reliability -->
+    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+    <script src="https://unpkg.com/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
     <script>
-      (function() {
-        window.CMS_MANUAL_INIT = true;
-
-        async function initCMS() {
-          let attempts = 0;
-          const maxAttempts = 10;
-          
-          while (!window.CMS && attempts < maxAttempts) {
-            console.log("Waiting for CMS object...");
-            await new Promise(r => setTimeout(r, 200));
-            attempts++;
-          }
-
-          if (!window.CMS) {
-            document.body.innerHTML = '<h2 style="color:red;text-align:center;">CMS library failed to load. Check your internet connection.</h2>';
-            return;
-          }
-
-          try {
-            const response = await fetch('/admin/config.yml');
-            const yamlText = await response.text();
-            const config = jsyaml.load(yamlText);
-
-            if (config && config.backend) {
-              config.backend.base_url = window.location.origin + '/api';
-            }
-
-            window.CMS.init({ config });
-            console.log("CMS Initialized successfully.");
-          } catch (err) {
-            console.error("CMS Init Failed:", err);
-            document.body.innerHTML = `<div style="text-align:center;padding:50px;font-family:sans-serif;">
-              <h2 style="color:red;">Admin Panel Error</h2>
-              <p>${err.message}</p>
-            </div>`;
-          }
+      window.onload = async function() {
+        if (!window.CMS) {
+          console.error("CMS not found on window");
+          document.body.innerHTML = '<h2 style="color:red;text-align:center;margin-top:50px;">Admin Panel failed to load. Please refresh.</h2>';
+          return;
         }
 
-        if (window.location.protocol !== 'file:') {
-          initCMS();
-        } else {
-          document.body.innerHTML = "<h1>Run on a web server, not file://</h1>";
+        try {
+          const res = await fetch('/admin/config.yml');
+          const text = await res.text();
+          const config = jsyaml.load(text);
+
+          // Force absolute API URL
+          if (config.backend) {
+            config.backend.base_url = window.location.origin + '/api';
+          }
+
+          window.CMS.init({ config });
+          console.log("Admin Panel Ready");
+        } catch (e) {
+          console.error("Init Error:", e);
+          document.body.innerHTML = '<h2 style="color:red;text-align:center;margin-top:50px;">Error Loading Config: ' + e.message + '</h2>';
         }
-      })();
+      };
     </script>
   </body>
 </html>
