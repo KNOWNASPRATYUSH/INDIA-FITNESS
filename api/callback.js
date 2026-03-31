@@ -35,6 +35,9 @@ module.exports = async function handler(req, res) {
     }
     
     const token = data.access_token;
+    if (!token) {
+       return res.status(500).send(`Authentication failed. GitHub did not return an access token. Data: ` + JSON.stringify(data));
+    }
     
     // Decap CMS requires a postMessage response
     const html = `
@@ -42,11 +45,16 @@ module.exports = async function handler(req, res) {
     <html>
     <head>
       <title>Authenticating...</title>
-      <style>body { font-family: sans-serif; text-align: center; padding-top: 50px; }</style>
+      <style>
+        body { font-family: -apple-system, sans-serif; text-align: center; padding: 50px; background: #111; color: white; }
+        .success-box { border: 2px solid #00ff88; padding: 20px; border-radius: 12px; display: inline-block; }
+      </style>
     </head>
-    <body>
-      <h3>Login Successful!</h3>
-      <p>Redirecting back to the Admin Panel...</p>
+    <body onboarding-state="success">
+      <div class="success-box">
+        <h3>Login Successful!</h3>
+        <p>Closing this window and unlocking the Admin Panel...</p>
+      </div>
       <script>
         (function() {
           const token = '${token}';
@@ -56,36 +64,23 @@ module.exports = async function handler(req, res) {
             provider: 'github'
           };
           
-          // 1. Storage Injection (Most reliable for same-domain on Vercel)
-          try {
-            console.log("Setting storage tokens...");
-            localStorage.setItem("decap-cms-user", JSON.stringify(userObj));
-            localStorage.setItem("netlify-cms-user", JSON.stringify(userObj));
-          } catch (e) {
-            console.error("Storage failed:", e);
-          }
-
           if (window.opener) {
-            const targetOrigin = window.location.origin;
-
+            const origin = window.location.origin;
             try {
-              // Standard Decap handshakes
               window.opener.postMessage({
                 source: 'netlify-cms-auth',
                 payload: userObj
-              }, targetOrigin);
+              }, origin);
               
-              window.opener.postMessage('authorization:github:success:' + JSON.stringify(userObj), targetOrigin);
-            } catch (e) {
-              console.error("PostMessage failed:", e);
-            }
+              window.opener.postMessage('authorization:github:success:' + JSON.stringify(userObj), origin);
+            } catch (e) { console.error(e); }
 
-            // Close with a slight delay to allow message processing
             setTimeout(function() {
               window.close();
             }, 1000);
           } else {
-            document.body.innerHTML += '<p style="color:red;">Error: Opener window lost. Session saved to memory, please refresh the admin page.</p>';
+             // If manual refresh is needed
+             document.body.innerHTML += '<p style="color:#ffaa00;">No parent window found. Please refresh the Admin tab manually.</p>';
           }
         })();
       </script>
@@ -96,6 +91,6 @@ module.exports = async function handler(req, res) {
     res.setHeader('Content-Type', 'text/html');
     res.send(html);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).send("Server Error: " + error.message);
   }
 }
