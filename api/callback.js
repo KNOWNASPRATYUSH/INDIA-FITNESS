@@ -64,6 +64,8 @@ module.exports = async function handler(req, res) {
             provider: 'github'
           };
           
+          Object.freeze(userObj); // Lock the object for extra safety
+          
           if (window.opener) {
             const origin = window.location.origin;
             try {

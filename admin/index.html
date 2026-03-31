@@ -179,7 +179,7 @@
             currentSection = section;
             document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
             event.currentTarget.classList.add('active');
-            document.getElementById('section-title').innerText = 'Manage ' + section.charAt(0).toUpperCase() + section.slice(1);
+            document.getElementById('section-title').textContent = 'Manage ' + section.charAt(0).toUpperCase() + section.slice(1);
             render();
         }
 
