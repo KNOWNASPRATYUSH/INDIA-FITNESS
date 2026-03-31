@@ -9,7 +9,7 @@
         "Bodybuilding",
         "Weight Loss"
       ],
-      "bio": "âLeading India Fitness with expertise and dedication, helping members achieve real results.â",
+      "bio": "Leading India Fitness with expertise and dedication, helping members achieve real results.",
       "image": "assets/images/trainer_vivek_real.jpg"
     },
     {
@@ -20,7 +20,7 @@
         "Fat Loss",
         "Cardio Training"
       ],
-      "bio": "âFocused on helping members stay consistent and achieve their fitness goals.â",
+      "bio": "Focused on helping members stay consistent and achieve their fitness goals.",
       "image": "assets/images/trainer_rocky.jpg"
     },
     {
@@ -31,7 +31,7 @@
         "Weight Training",
         "Strength Building"
       ],
-      "bio": "âHelping members kickstart their day with effective workouts and disciplined training routines.â",
+      "bio": "Helping members kickstart their day with effective workouts and disciplined training routines.",
       "image": "assets/images/trainer_morning.jpg"
     }
   ]
