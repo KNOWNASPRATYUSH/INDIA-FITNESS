@@ -3,50 +3,43 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Content Manager</title>
-    <script>
-      window.CMS_MANUAL_INIT = true;
-    </script>
-  </head>
-  <body>
+    <title>India Fitness | Content Manager</title>
     <script src="https://unpkg.com/decap-cms@^3.1.2/dist/decap-cms.js"></script>
     <script src="https://unpkg.com/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+  </head>
+  <body>
     <script>
-      if (window.location.protocol === 'file:') {
-        document.body.innerHTML = `
-          <div style="font-family: sans-serif; padding: 40px; text-align: center; background: #ffebee; color: #c62828; height: 100vh;">
-            <h1 style="font-size: 32px; margin-bottom: 20px;">🚨 Stop! You cannot open the Admin Panel from your F:/ Drive 🚨</h1>
-            <p style="font-size: 18px; line-height: 1.6;">
-              Browsers block the CMS from reading <strong>config.yml</strong> when you double-click the HTML file directly (because of the <code>file:///</code> address).
-            </p>
-            <p style="font-size: 18px; line-height: 1.6; font-weight: bold; margin-top: 20px;">
-              To fix this, you MUST view this page on your actual live website URL<br> (e.g., https://your-website.com/admin/)
-            </p>
-          </div>
-        `;
-      } else {
+      (function() {
+        // Prevent Decap from auto-initializing
+        window.CMS_MANUAL_INIT = true;
+
+        if (window.location.protocol === 'file:') {
+          document.body.innerHTML = '<div style="font-family:sans-serif;padding:40px;text-align:center;background:#ffebee;color:#c62828;height:100vh;"><h1>🚨 Local File Error 🚨</h1><p>Open this on your live URL.</p></div>';
+          return;
+        }
+
         fetch('/admin/config.yml')
-          .then(res => {
-            if (!res.ok) throw new Error("HTTP Error " + res.status + " fetching config.yml");
-            return res.text();
-          })
+          .then(res => res.text())
           .then(text => {
             const config = jsyaml.load(text);
-            if (!config) throw new Error("Config parsed as empty");
-            if (!config.backend) throw new Error("No backend property found in config.yml");
             
-            // Decap CMS crashes if base_url is relative. We inject the absolute URL dynamically.
+            // Set the absolute URL for the OAuth proxy
             config.backend.base_url = window.location.origin + '/api';
+            
+            // Initialize Decap CMS
             CMS.init({ config });
+
+            // Safety Hack: If we just came back from a login and it didn't trigger, 
+            // check if the token is in localStorage and force it.
+            const user = localStorage.getItem('decap-cms-user');
+            if (user) {
+              console.log("User token found in memory.");
+            }
           })
           .catch(err => {
-            console.error("Failed to load CMS Config:", err);
-            document.body.innerHTML = '<div style="text-align:center; margin-top:50px; font-family:sans-serif;">' +
-              '<h2 style="color:red;">Failed to initialize CMS.</h2>' + 
-              '<p style="color:#555; background:#f0f0f0; display:inline-block; padding:15px; border-radius:8px;"><b>Error:</b> ' + err.message + '</p>' +
-              '</div>';
+            console.error("CMS Load Error:", err);
           });
-      }
+      })();
     </script>
   </body>
 </html>
