@@ -174,13 +174,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }).addTo(map);
 
     const gymIcon = L.icon({
-        iconUrl: 'https://cdn-icons-png.flaticon.com/512/684/684908.png', // Simple map pin
-        iconSize: [38, 38],
-        iconAnchor: [19, 38],
-        popupAnchor: [0, -38]
+        iconUrl: 'assets/images/dumbbell_pin.png',
+        iconSize: [50, 50],
+        iconAnchor: [25, 50],
+        popupAnchor: [0, -50]
     });
 
-    L.marker([25.5825166, 85.1282286]).addTo(map)
+    L.marker([25.5825166, 85.1282286], { icon: gymIcon }).addTo(map)
         .bindPopup('<b>India Fitness</b><br>Sipara, Patna.<br><a href="https://www.google.com/maps/dir/?api=1&destination=25.5825166,85.1282286" target="_blank" style="color: #e63946; font-weight: bold; text-decoration: underline;">Get Directions</a>')
         .openPopup();
 
