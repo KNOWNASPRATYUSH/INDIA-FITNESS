@@ -791,6 +791,10 @@ nav {
     object-fit: cover;
 }
 
+.review-customer-img img.anjali-crop {
+    object-position: top;
+}
+
 .stars {
     color: #ffb703;
     margin-bottom: 20px;
