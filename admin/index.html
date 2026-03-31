@@ -4,10 +4,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Content Manager</title>
-    <link href="/admin/config.yml" type="text/yaml" rel="cms-config-url">
+    <script>
+      window.CMS_MANUAL_INIT = true;
+    </script>
   </head>
   <body>
     <script src="https://unpkg.com/decap-cms@^3.1.2/dist/decap-cms.js"></script>
+    <script src="https://unpkg.com/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
     <script>
       if (window.location.protocol === 'file:') {
         document.body.innerHTML = `
@@ -19,11 +22,21 @@
             <p style="font-size: 18px; line-height: 1.6; font-weight: bold; margin-top: 20px;">
               To fix this, you MUST view this page on your actual live website URL<br> (e.g., https://your-website.com/admin/)
             </p>
-            <p style="font-size: 16px; margin-top: 30px; color: #555;">
-              Or, run a local web server (like VS Code Live Server).
-            </p>
           </div>
         `;
+      } else {
+        fetch('config.yml')
+          .then(res => res.text())
+          .then(text => {
+            const config = jsyaml.load(text);
+            // Decap CMS crashes if base_url is relative. We inject the absolute URL dynamically.
+            config.backend.base_url = window.location.origin + '/api';
+            CMS.init({ config });
+          })
+          .catch(err => {
+            console.error("Failed to load CMS Config:", err);
+            document.body.innerHTML = '<h2 style="color:red; text-align:center; margin-top:50px;">Failed to initialize CMS. Check console logs.</h2>';
+          });
       }
     </script>
   </body>
