@@ -4,24 +4,34 @@
       "name": "Vivek Raj",
       "role": "Head Coach / Manager",
       "exp": "5+ Years Experience",
-      "specializations": ["Strength Training", "Bodybuilding"],
-      "bio": "“Leading India Fitness with expertise and dedication, helping members achieve real results.”",
+      "specializations": [
+        "Strength Training",
+        "Bodybuilding",
+        "Weight Loss"
+      ],
+      "bio": "âLeading India Fitness with expertise and dedication, helping members achieve real results.â",
       "image": "assets/images/trainer_vivek_real.jpg"
     },
     {
       "name": "Rocky Raj",
       "role": "Evening Coach",
       "exp": "3+ Years Experience",
-      "specializations": ["Fat Loss", "Cardio Training"],
-      "bio": "“Focused on helping members stay consistent and achieve their fitness goals.”",
+      "specializations": [
+        "Fat Loss",
+        "Cardio Training"
+      ],
+      "bio": "âFocused on helping members stay consistent and achieve their fitness goals.â",
       "image": "assets/images/trainer_rocky.jpg"
     },
     {
       "name": "Morning Coach",
       "role": "Morning Coach",
       "exp": "3+ Years Experience",
-      "specializations": ["Weight Training", "Strength Building"],
-      "bio": "“Helping members kickstart their day with effective workouts and disciplined training routines.”",
+      "specializations": [
+        "Weight Training",
+        "Strength Building"
+      ],
+      "bio": "âHelping members kickstart their day with effective workouts and disciplined training routines.â",
       "image": "assets/images/trainer_morning.jpg"
     }
   ]
