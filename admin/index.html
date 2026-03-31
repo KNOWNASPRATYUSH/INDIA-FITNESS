@@ -25,17 +25,26 @@
           </div>
         `;
       } else {
-        fetch('config.yml')
-          .then(res => res.text())
+        fetch('/admin/config.yml')
+          .then(res => {
+            if (!res.ok) throw new Error("HTTP Error " + res.status + " fetching config.yml");
+            return res.text();
+          })
           .then(text => {
             const config = jsyaml.load(text);
+            if (!config) throw new Error("Config parsed as empty");
+            if (!config.backend) throw new Error("No backend property found in config.yml");
+            
             // Decap CMS crashes if base_url is relative. We inject the absolute URL dynamically.
             config.backend.base_url = window.location.origin + '/api';
             CMS.init({ config });
           })
           .catch(err => {
             console.error("Failed to load CMS Config:", err);
-            document.body.innerHTML = '<h2 style="color:red; text-align:center; margin-top:50px;">Failed to initialize CMS. Check console logs.</h2>';
+            document.body.innerHTML = '<div style="text-align:center; margin-top:50px; font-family:sans-serif;">' +
+              '<h2 style="color:red;">Failed to initialize CMS.</h2>' + 
+              '<p style="color:#555; background:#f0f0f0; display:inline-block; padding:15px; border-radius:8px;"><b>Error:</b> ' + err.message + '</p>' +
+              '</div>';
           });
       }
     </script>
