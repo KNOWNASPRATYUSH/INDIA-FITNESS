@@ -1,15 +1,25 @@
+# Decap CMS Configuration for India Fitness
 backend:
   name: github
   repo: cartnovaco-netizen/INDIA-FITNESS
   branch: main
+  base_url: https://github.com
+  auth_endpoint: api/auth
+  use_graphql: false
 
-# This configures where uploaded images go
+# Media folder configuration
 media_folder: "assets/images"
 public_folder: "assets/images"
 
+# Site URL
+site_url: https://india-fitness.vercel.app
+
+# Collections for editing
 collections:
   - name: "team"
     label: "Team / Trainers"
+    folder: "_data"
+    create: false
     files:
       - file: "_data/trainers.json"
         label: "Trainers"
@@ -20,15 +30,17 @@ collections:
             name: "trainers"
             widget: "list"
             fields:
-              - {label: "Name", name: "name", widget: "string"}
-              - {label: "Role", name: "role", widget: "string"}
-              - {label: "Experience", name: "exp", widget: "string"}
-              - {label: "Specializations", name: "specializations", widget: "list"}
-              - {label: "Bio", name: "bio", widget: "text"}
-              - {label: "Image", name: "image", widget: "image"}
-              
+              - {label: "Name", name: "name", widget: "string", required: true}
+              - {label: "Role", name: "role", widget: "string", required: true}
+              - {label: "Experience", name: "exp", widget: "string", required: true}
+              - {label: "Specializations", name: "specializations", widget: "list", field: {label: "Spec", name: "spec", widget: "string"}}
+              - {label: "Bio", name: "bio", widget: "text", required: true}
+              - {label: "Image", name: "image", widget: "image", required: true}
+
   - name: "gallery"
     label: "Gallery"
+    folder: "_data"
+    create: false
     files:
       - file: "_data/gallery.json"
         label: "Gallery Items"
@@ -39,11 +51,13 @@ collections:
             name: "items"
             widget: "list"
             fields:
-              - {label: "Caption", name: "caption", widget: "string"}
-              - {label: "Image", name: "image", widget: "image"}
+              - {label: "Caption", name: "caption", widget: "string", required: true}
+              - {label: "Image", name: "image", widget: "image", required: true}
 
   - name: "plans"
     label: "Membership Plans"
+    folder: "_data"
+    create: false
     files:
       - file: "_data/plans.json"
         label: "Plans Data"
@@ -54,11 +68,11 @@ collections:
             name: "plans"
             widget: "list"
             fields:
-              - {label: "Title", name: "title", widget: "string"}
-              - {label: "Type (e.g. Basic)", name: "type", widget: "string"}
-              - {label: "Price", name: "price", widget: "string"}
-              - {label: "Duration", name: "duration", widget: "string"}
-              - {label: "Bonus Tag (Optional)", name: "bonus", widget: "string", required: false}
+              - {label: "Title", name: "title", widget: "string", required: true}
+              - {label: "Type", name: "type", widget: "string", required: true}
+              - {label: "Price", name: "price", widget: "string", required: true}
+              - {label: "Duration", name: "duration", widget: "string", required: true}
+              - {label: "Bonus Tag", name: "bonus", widget: "string", required: false}
               - {label: "Features", name: "features", widget: "list", field: {label: "Feature", name: "feature", widget: "string"}}
-              - {label: "Button Text", name: "button_text", widget: "string"}
-              - {label: "CSS Theme Classes", name: "theme", widget: "string", hint: "e.g., 'tilt-card', 'featured tilt-card', or 'black-plan tilt-card'"}
+              - {label: "Button Text", name: "button_text", widget: "string", required: true}
+              - {label: "Theme Classes", name: "theme", widget: "string", required: true}
