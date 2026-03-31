@@ -3,42 +3,48 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>India Fitness | Content Manager</title>
-    <script src="https://unpkg.com/decap-cms@^3.1.2/dist/decap-cms.js"></script>
+    <title>India Fitness | Admin</title>
+    <!-- Use the standard decap-cms distribution -->
+    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
     <script src="https://unpkg.com/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
   </head>
   <body>
     <script>
       (function() {
-        // Prevent Decap from auto-initializing
+        // We MUST set this BEFORE the script is fully parsed/executing if possible, 
+        // but here we use it to control the manual boot.
         window.CMS_MANUAL_INIT = true;
 
-        if (window.location.protocol === 'file:') {
-          document.body.innerHTML = '<div style="font-family:sans-serif;padding:40px;text-align:center;background:#ffebee;color:#c62828;height:100vh;"><h1>🚨 Local File Error 🚨</h1><p>Open this on your live URL.</p></div>';
-          return;
+        async function initCMS() {
+          try {
+            const response = await fetch('/admin/config.yml');
+            const yamlText = await response.text();
+            const config = jsyaml.load(yamlText);
+
+            // Dynamically point to our Vercel API for login
+            if (config.backend) {
+              config.backend.base_url = window.location.origin + '/api';
+            }
+
+            // Initialize with our modified config
+            window.CMS.init({ config });
+            
+            console.log("CMS Initialized with base_url:", config.backend.base_url);
+          } catch (err) {
+            console.error("CMS Manual Init Failed:", err);
+            document.body.innerHTML = `<div style="text-align:center;padding:50px;font-family:sans-serif;">
+              <h2 style="color:red;">Admin Panel Error</h2>
+              <p>${err.message}</p>
+            </div>`;
+          }
         }
 
-        fetch('/admin/config.yml')
-          .then(res => res.text())
-          .then(text => {
-            const config = jsyaml.load(text);
-            
-            // Set the absolute URL for the OAuth proxy
-            config.backend.base_url = window.location.origin + '/api';
-            
-            // Initialize Decap CMS
-            CMS.init({ config });
-
-            // Safety Hack: If we just came back from a login and it didn't trigger, 
-            // check if the token is in localStorage and force it.
-            const user = localStorage.getItem('decap-cms-user');
-            if (user) {
-              console.log("User token found in memory.");
-            }
-          })
-          .catch(err => {
-            console.error("CMS Load Error:", err);
-          });
+        // Start the process
+        if (window.location.protocol !== 'file:') {
+          initCMS();
+        } else {
+          document.body.innerHTML = "<h1>Run on a web server, not file://</h1>";
+        }
       })();
     </script>
   </body>
