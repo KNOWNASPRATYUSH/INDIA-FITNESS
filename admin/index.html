@@ -27,40 +27,40 @@
       }
     </script>
     <script>
-      window.onload = async function() {
-        if (!window.CMS) {
-          document.body.innerHTML = '<h2 style="color:red;text-align:center;margin-top:50px;">Admin Panel failed to load. Clear your cache and refresh.</h2>';
-          return;
-        }
+      (function() {
+        window.CMS_MANUAL_INIT = true;
 
-        try {
-          const res = await fetch('/admin/config.yml');
-          const yamlText = await res.text();
-          const config = jsyaml.load(yamlText);
-
-          // Force absolute API URL
-          if (config.backend) {
-            config.backend.base_url = window.location.origin + '/api';
-            config.backend.name = 'github';
-            config.backend.repo = 'cartnovaco-netizen/INDIA-FITNESS';
+        async function init() {
+          if (!window.CMS || !window.jsyaml) {
+            console.log("Waiting for libraries...");
+            setTimeout(init, 100);
+            return;
           }
 
-          // Initialize
-          window.CMS.init({ config });
-          
-          // Debugging helper
-          console.log("CMS Initialized. Checking auth memory...");
-          const stored = localStorage.getItem('decap-cms-user') || localStorage.getItem('netlify-cms-user');
-          if (stored) {
-             console.log("Active Session Detected.");
-          } else {
-             console.log("No active session found.");
+          try {
+            const res = await fetch('/admin/config.yml');
+            const yamlText = await res.text();
+            const config = jsyaml.load(yamlText);
+
+            if (config.backend) {
+              config.backend.base_url = window.location.origin + '/api';
+              config.backend.name = 'github';
+              config.backend.repo = 'cartnovaco-netizen/INDIA-FITNESS';
+            }
+
+            // Start CMS
+            window.CMS.init({ config });
+            
+            // Helpful debug for browser console
+            console.log("India Fitness Admin Ready.");
+          } catch (e) {
+            console.error("CMS Init Error:", e);
           }
-        } catch (e) {
-          console.error("Init Error:", e);
-          document.body.innerHTML = '<h2 style="color:red;text-align:center;margin-top:50px;">Config Error: ' + e.message + '</h2>';
         }
-      };
+
+        // Run as soon as possible
+        init();
+      })();
     </script>
   </body>
 </html>
