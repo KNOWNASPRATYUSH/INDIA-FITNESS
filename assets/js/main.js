@@ -16,9 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
         body.style.overflow = 'visible';
     }, 2500);
 
-    // 2. Header Scroll & Progress Bar
+    // 2. Header Scroll & Sticky Effect
     const header = document.getElementById('main-header');
-    const progressBar = document.getElementById('scroll-progress');
     
     window.addEventListener('scroll', () => {
         // Sticky Header
@@ -27,12 +26,6 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             header.classList.remove('scrolled');
         }
-
-        // Progress Bar
-        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        const scrolled = (winScroll / height) * 100;
-        progressBar.style.width = scrolled + "%";
     });
 
     // 3. Hero Parallax & Magnetic Buttons
