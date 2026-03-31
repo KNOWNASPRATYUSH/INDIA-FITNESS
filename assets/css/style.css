@@ -371,13 +371,24 @@ nav {
 }
 
 .highlight-accent {
-    color: #ff3e3e;
-    font-weight: 900;
-    margin-left: 5px;
-    text-shadow: 
-        0 0 5px rgba(255, 62, 62, 0.4),
-        0 0 15px rgba(255, 62, 62, 0.2);
     display: inline-block;
+    background: linear-gradient(135deg, #e63946 0%, #b91c1c 100%);
+    color: white;
+    padding: 4px 14px;
+    border-radius: 4px;
+    font-weight: 900;
+    margin-left: 8px;
+    transform: skewX(-10deg);
+    box-shadow: 0 4px 15px rgba(230, 57, 70, 0.4);
+    animation: pulseGlow 2s infinite ease-in-out;
+    position: relative;
+    font-size: 0.95em;
+    letter-spacing: 0.5px;
+}
+
+@keyframes pulseGlow {
+    0%, 100% { box-shadow: 0 4px 15px rgba(230, 57, 70, 0.4); transform: skewX(-10deg) scale(1); }
+    50% { box-shadow: 0 4px 25px rgba(230, 57, 70, 0.7); transform: skewX(-10deg) scale(1.05); }
 }
 
 .scroll-down {
