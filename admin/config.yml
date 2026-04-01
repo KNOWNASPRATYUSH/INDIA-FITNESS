@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: cartnovaco-netizen/INDIA-FITNESS
+  repo: KNOWNASPRATYUSH/INDIA-FITNESS
   branch: main
   base_url: https://india-fitness.vercel.app
   auth_endpoint: auth

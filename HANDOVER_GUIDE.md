@@ -31,4 +31,4 @@ The buyer is inheriting a "Hardened" security system:
 - **Lead Generation**: Leads from the Home and Pricing sections go directly to the owner's WhatsApp and Email (via Web3Forms).
 
 ---
-**Prepared by PRATYUSH for INDIA FITNESS Handover**
+**Prepared by KNOWNASPRATYUSH for INDIA FITNESS Handover**

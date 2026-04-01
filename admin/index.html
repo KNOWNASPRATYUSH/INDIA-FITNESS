@@ -153,7 +153,7 @@
             try {
                 // Fetch direct from GitHub API to ensure fresh data
                 const headers = { 'Authorization': `token ${token}` };
-                const base = 'https://api.github.com/repos/cartnovaco-netizen/INDIA-FITNESS/contents/_data';
+                const base = 'https://api.github.com/repos/KNOWNASPRATYUSH/INDIA-FITNESS/contents/_data';
                 
                 const [tRes, gRes, pRes] = await Promise.all([
                     fetch(`${base}/trainers.json`, { headers }),
@@ -311,7 +311,7 @@
                     const fileName = `upload_${Date.now()}_${file.name.replace(/\s/g, '_')}`;
                     const path = `assets/images/${fileName}`;
 
-                    const res = await fetch(`https://api.github.com/repos/cartnovaco-netizen/INDIA-FITNESS/contents/${path}`, {
+                    const res = await fetch(`https://api.github.com/repos/KNOWNASPRATYUSH/INDIA-FITNESS/contents/${path}`, {
                         method: 'PUT',
                         headers: {
                             'Authorization': `token ${token}`,
@@ -383,7 +383,7 @@
                 const wrapKey = currentSection === 'trainers' ? 'trainers' : currentSection === 'gallery' ? 'items' : 'plans';
                 
                 // 1. Get SHA
-                const getRes = await fetch(`https://api.github.com/repos/cartnovaco-netizen/INDIA-FITNESS/contents/_data/${filename}`, { headers });
+                const getRes = await fetch(`https://api.github.com/repos/KNOWNASPRATYUSH/INDIA-FITNESS/contents/_data/${filename}`, { headers });
                 const existingFile = await getRes.json();
                 
                 // 2. Prepare content with sanitization
@@ -407,7 +407,7 @@
                 const newContent = btoa(unescape(encodeURIComponent(JSON.stringify(contentObj, null, 2))));
 
                 // 3. Update
-                const updateRes = await fetch(`https://api.github.com/repos/cartnovaco-netizen/INDIA-FITNESS/contents/_data/${filename}`, {
+                const updateRes = await fetch(`https://api.github.com/repos/KNOWNASPRATYUSH/INDIA-FITNESS/contents/_data/${filename}`, {
                     method: 'PUT',
                     headers,
                     body: JSON.stringify({
