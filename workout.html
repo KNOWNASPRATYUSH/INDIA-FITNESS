@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workout Generator | India Fitness - Patna</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/images/logo_real_2.png">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/workout.css">
+</head>
+
+<body class="dark-theme">
+
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div class="logo-loader">
+            <img src="assets/images/logo.png" alt="India Fitness Logo" id="loader-logo">
+            <div class="loader-glow"></div>
+        </div>
+    </div>
+
+    <!-- Header / Nav -->
+    <header id="main-header">
+        <nav class="container">
+            <div class="logo">
+                <a href="/">
+                    <img src="assets/images/logo.png" alt="India Fitness">
+                    <span>INDIA FITNESS</span>
+                </a>
+            </div>
+            
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="workout.html" class="accent-red">Workout Plan</a></li>
+                <li><a href="bmi.html">BMI Calculator</a></li>
+                <li><a href="/plans">Membership</a></li>
+                <li><a href="/#about">About Us</a></li>
+                <li><a href="/#contact">Contact</a></li>
+            </ul>
+
+            <div class="header-actions">
+                <a href="https://wa.me/918544007735" target="_blank" class="cta-nav mobile-hide">Join Now</a>
+                <div class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="section workout-hero">
+            <div class="container text-center">
+                <h2 class="subheading" data-aos="fade-up">TAILORED FOR YOU</h2>
+                <h1 class="section-title" data-aos="fade-up" data-aos-delay="100">WORKOUT GENERATOR</h1>
+                <p class="section-subtitle" data-aos="fade-up" data-aos-delay="200">Get a professional workout split based on your goals, time, and equipment.</p>
+            </div>
+        </section>
+
+        <!-- Generator Form -->
+        <section class="section bg-light-dark">
+            <div class="container">
+                <div id="workout-wizard" class="wizard-container" data-aos="zoom-in">
+                    <form id="workoutForm" class="workout-form">
+                        <div class="wizard-grid">
+                            <!-- Goal -->
+                            <div class="form-group">
+                                <label><i class="fas fa-bullseye"></i> Your Fitness Goal</label>
+                                <select id="goal" required>
+                                    <option value="muscle">Build Muscle (Hypertrophy)</option>
+                                    <option value="strength">Increase Strength</option>
+                                    <option value="fatloss">Fat Loss / Lean Body</option>
+                                    <option value="fitness">General Fitness</option>
+                                </select>
+                            </div>
+
+                            <!-- Frequency -->
+                            <div class="form-group">
+                                <label><i class="fas fa-calendar-alt"></i> Training Days Per Week</label>
+                                <select id="days" required>
+                                    <option value="3">3 Days (Full Body / Split)</option>
+                                    <option value="4">4 Days (Upper/Lower Split)</option>
+                                    <option value="5">5 Days (Push/Pull/Legs+)</option>
+                                    <option value="6">6 Days (PPL Split)</option>
+                                </select>
+                            </div>
+
+                            <!-- Time -->
+                            <div class="form-group">
+                                <label><i class="fas fa-clock"></i> Available Time (Per Session)</label>
+                                <select id="time" required>
+                                    <option value="30">30 Minutes (HIIT/Focused)</option>
+                                    <option value="45">45 Minutes (Standard)</option>
+                                    <option value="60">60 Minutes (High Volume)</option>
+                                    <option value="90">90+ Minutes (Elite Training)</option>
+                                </select>
+                            </div>
+
+                            <!-- Equipment -->
+                            <div class="form-group">
+                                <label><i class="fas fa-dumbbell"></i> Available Equipment</label>
+                                <select id="equipment" required>
+                                    <option value="full">Full Gym Access</option>
+                                    <option value="basic">Home Gym (Dumbbells/Bench)</option>
+                                    <option value="bodyweight">Bodyweight Only</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100 magnetic">GENERATE MY PLAN</button>
+                    </form>
+                </div>
+
+                <!-- Plan Result area -->
+                <div id="workout-result" class="result-container" style="display: none;">
+                    <div class="plan-header-result">
+                        <div class="plan-meta">
+                            <h2 id="plan-title">Muscle Building Split</h2>
+                            <p id="plan-desc">A high-volume split designed for maximum hypertrophy.</p>
+                        </div>
+                        <button id="print-plan" class="btn btn-outline"><i class="fas fa-print"></i> Print</button>
+                    </div>
+
+                    <div id="days-container" class="days-grid">
+                        <!-- Days will be injected here -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer id="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="assets/images/logo.png" alt="India Fitness Logo">
+                    <h3>INDIA FITNESS</h3>
+                </div>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/profile.php?id=61566035104339" target="_blank"><i
+                            class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/india__fitness__/" target="_blank"><i
+                            class="fab fa-instagram"></i></a>
+                    <a href="https://wa.me/918544007735" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 INDIA FITNESS. ALL RIGHTS RESERVED.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/workout.js"></script>
+</body>
+
+</html>

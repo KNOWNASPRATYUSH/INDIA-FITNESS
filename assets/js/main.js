@@ -83,24 +83,43 @@ document.addEventListener('DOMContentLoaded', () => {
 
     sectionTitles.forEach(title => titleObserver.observe(title));
 
-    // 6. Mobile Menu Toggle
+    // 6. Side Drawer Navigation Logic
     const menuToggle = document.querySelector('.menu-toggle');
     const navLinks = document.querySelector('.nav-links');
     
-    menuToggle.addEventListener('click', () => {
+    // Create overlay if it doesn't exist
+    let overlay = document.querySelector('.menu-overlay');
+    if (!overlay) {
+        overlay = document.createElement('div');
+        overlay.classList.add('menu-overlay');
+        document.body.appendChild(overlay);
+    }
+    
+    const toggleMenu = () => {
         navLinks.classList.toggle('active');
-        if(navLinks.classList.contains('active')) {
-            navLinks.style.display = 'flex';
-            navLinks.style.flexDirection = 'column';
-            navLinks.style.position = 'absolute';
-            navLinks.style.top = '100%';
-            navLinks.style.left = '0';
-            navLinks.style.width = '100%';
-            navLinks.style.background = 'rgba(10, 10, 10, 0.95)';
-            navLinks.style.padding = '20px';
+        overlay.classList.toggle('active');
+        body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : 'visible';
+        
+        // Change icon to X when open
+        const icon = menuToggle.querySelector('i');
+        if (navLinks.classList.contains('active')) {
+            icon.classList.remove('fa-bars');
+            icon.classList.add('fa-times');
         } else {
-            navLinks.style.display = 'none';
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
         }
+    };
+
+    menuToggle.addEventListener('click', toggleMenu);
+    overlay.addEventListener('click', toggleMenu);
+    
+    // Close menu when a link is clicked
+    const links = navLinks.querySelectorAll('a');
+    links.forEach(link => {
+        link.addEventListener('click', () => {
+            if (navLinks.classList.contains('active')) toggleMenu();
+        });
     });
 
     // 7. Counter Animation (Intersection Observer)
