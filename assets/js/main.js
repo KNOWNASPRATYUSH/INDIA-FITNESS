@@ -280,13 +280,18 @@ document.addEventListener('DOMContentLoaded', () => {
                     contactForm.reset();
                 } else {
                     const err = await response.json();
-                    console.error('Submission failed:', err.message);
-                    contactSubmitBtn.innerText = (err.message || 'FIX ERRORS').toUpperCase();
-                    // If it's too long, truncate it
-                    if (contactSubmitBtn.innerText.length > 20) {
-                        contactSubmitBtn.innerText = 'CONFIG ERROR';
+                    let msg = (err.message || 'ERROR').toUpperCase();
+                    
+                    if (msg.includes('WEB3FORMS_ACCESS_KEY')) {
+                        msg = 'KEY MISSING';
+                    } else if (msg.length > 15) {
+                        msg = 'SERVER ERROR';
                     }
+                    
+                    contactSubmitBtn.innerText = msg;
+                    console.error('Submission failed:', err.message);
                 }
+
 
 
             } catch (error) {
