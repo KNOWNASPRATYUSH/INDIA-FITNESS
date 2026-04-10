@@ -279,16 +279,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     contactSubmitBtn.classList.add('btn-success');
                     contactForm.reset();
                 } else {
-                    const err = await response.json();
-                    let msg = (err.message || 'ERROR').toUpperCase();
-                    
-                    if (msg.includes('WEB3FORMS_ACCESS_KEY')) {
-                        msg = 'KEY MISSING';
+                    let msg = 'ERROR';
+                    try {
+                        const err = await response.json();
+                        msg = (err.message || 'ERROR').toUpperCase();
+                        if (msg.includes('ACCESS_KEY')) msg = 'KEY MISSING';
+                    } catch (e) {
+                        msg = 'BAD RESPONSE';
                     }
-                    
                     contactSubmitBtn.innerText = msg;
-                    console.error('Submission failed:', err.message);
                 }
+
 
 
 
