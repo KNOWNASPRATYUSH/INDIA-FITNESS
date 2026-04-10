@@ -91,6 +91,48 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (navLinks.classList.contains('active')) toggleMenu();
             });
         });
+
+        // 4.1 Global Plan Loader for Drawer Summary
+        const savedPlan = localStorage.getItem('indiaFitnessWorkoutPlan');
+        if (savedPlan) {
+            try {
+                const data = JSON.parse(savedPlan);
+                const summaryContainer = document.getElementById('drawer-summary-container');
+                const drawerGoal = document.getElementById('drawer-goal');
+                const drawerDaysList = document.getElementById('drawer-days-list');
+                const drawerViewFull = document.getElementById('drawer-view-full');
+
+                if (summaryContainer && drawerGoal && drawerDaysList) {
+                    summaryContainer.style.display = 'block';
+                    drawerGoal.innerText = data.inputs.goal.charAt(0).toUpperCase() + data.inputs.goal.slice(1);
+                    
+                    drawerDaysList.innerHTML = '';
+                    data.plan.forEach(day => {
+                        if (day.exercises.length > 0) {
+                            const li = document.createElement('li');
+                            li.innerHTML = `${day.day} <span>${day.muscle}</span>`;
+                            drawerDaysList.appendChild(li);
+                        }
+                    });
+
+                    if (drawerViewFull) {
+                        drawerViewFull.addEventListener('click', () => {
+                            if (window.location.pathname.includes('workout.html')) {
+                                const resultArea = document.getElementById('workout-result');
+                                if (resultArea) {
+                                    resultArea.style.display = 'block';
+                                    window.scrollTo({ top: resultArea.offsetTop - 100, behavior: 'smooth' });
+                                }
+                            } else {
+                                window.location.href = 'workout.html#workout-result';
+                            }
+                        });
+                    }
+                }
+            } catch (e) {
+                console.error("Error loading global plan", e);
+            }
+        }
     }
 
     // 5. Staggered Text Reveal
@@ -198,6 +240,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // 10. Contact Form
+    // 10. Contact Form
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
         const phoneInput = document.getElementById('contactPhone');
@@ -239,6 +282,26 @@ document.addEventListener('DOMContentLoaded', () => {
                     contactSubmitBtn.disabled = false;
                 }, 3000);
             }
+        });
+    }
+
+    // 11. Magnetic Button Effect
+    const magneticBtns = document.querySelectorAll('.magnetic');
+    if (magneticBtns.length > 0) {
+        magneticBtns.forEach(btn => {
+            btn.addEventListener('mousemove', (e) => {
+                const rect = btn.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                
+                // Strength of the magnetic pull
+                const strength = 15;
+                btn.style.transform = `translate(${x / strength}px, ${y / strength}px) scale(1.05)`;
+            });
+
+            btn.addEventListener('mouseleave', () => {
+                btn.style.transform = 'translate(0, 0) scale(1)';
+            });
         });
     }
 

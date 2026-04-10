@@ -49,8 +49,22 @@
                 <li><a href="workout.html">Workout Plan</a></li>
                 <li><a href="bmi.html">BMI Calculator</a></li>
                 <li><a href="#about">About Us</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
                 <li class="mobile-only"><a href="https://wa.me/918544007735" target="_blank" class="accent-red">Join Now</a></li>
+                <!-- Dynamic Workout Summary -->
+                <li id="drawer-summary-container" style="display: none;">
+                    <div class="drawer-summary">
+                        <div class="summary-header">
+                            <h4>CURRENT PLAN</h4>
+                            <span id="drawer-goal">Muscle</span>
+                        </div>
+                        <ul id="drawer-days-list"></ul>
+                        <div class="drawer-summary-actions">
+                            <button id="drawer-view-full" class="btn-summary">VIEW FULL PLAN</button>
+                            <button id="drawer-reset-plan" class="btn-summary reset">RESET PLAN</button>
+                        </div>
+                    </div>
+                </li>
             </ul>
 
             <div class="header-actions">

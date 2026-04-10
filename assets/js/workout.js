@@ -216,6 +216,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const planTitle = document.getElementById('plan-title');
     const planDesc = document.getElementById('plan-desc');
     const printBtn = document.getElementById('print-plan');
+    const resetBtn = document.getElementById('drawer-reset-plan');
+
+    // Load existing plan from localStorage
+    const savedPlan = localStorage.getItem('indiaFitnessWorkoutPlan');
+    if (savedPlan) {
+        try {
+            const data = JSON.parse(savedPlan);
+            // We need to pass the selected options to generatePlan for equipment/time adaptation
+            // or just save the final generated HTML/Data. 
+            // Better to save the raw inputs and regenerate or save the final data.
+            // Let's save the final processed plan data.
+            renderPlan(data.plan, data.goalData, data.inputs);
+        } catch (e) {
+            console.error("Error loading saved plan", e);
+        }
+    }
 
     if(form) {
         form.addEventListener('submit', (e) => {
@@ -251,21 +267,37 @@ document.addEventListener('DOMContentLoaded', () => {
 
             setTimeout(() => {
                 aiLoading.style.display = 'none';
-                generatePlan(goal, days, time, equip);
+                const inputs = { goal, days, time, equip };
+                generatePlan(goal, days, time, equip, true); // true means save to storage
             }, 3500);
         });
     }
 
-    function generatePlan(goal, days, time, equip) {
+    function generatePlan(goal, days, time, equip, shouldSave = false) {
         // Selection Logic
         const goalData = workoutData[goal] || workoutData.muscle;
         let originalPlan = goalData.plans[days] || goalData.plans["4"] || goalData.plans["3"] || fallbackPlan;
+        
+        const inputs = { goal, days, time, equip };
+        renderPlan(originalPlan, goalData, inputs);
+
+        if (shouldSave) {
+            localStorage.setItem('indiaFitnessWorkoutPlan', JSON.stringify({
+                plan: originalPlan,
+                goalData: goalData,
+                inputs: inputs
+            }));
+        }
+    }
+
+    function renderPlan(originalPlan, goalData, inputs) {
+        const { goal, days, time, equip } = inputs;
 
         // UI Updates
-        planTitle.innerText = goalData.title;
-        planDesc.innerText = goalData.desc + ` Optimized for ${time} min per session.`;
+        if (planTitle) planTitle.innerText = goalData.title;
+        if (planDesc) planDesc.innerText = goalData.desc + ` Optimized for ${time} min per session.`;
         
-        daysContainer.innerHTML = '';
+        if (daysContainer) daysContainer.innerHTML = '';
         
         originalPlan.forEach(dayInfo => {
             if(dayInfo.exercises.length === 0) return;
@@ -365,6 +397,36 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
         daysContainer.appendChild(dietCard);
 
+        // Update Drawer Summary
+        const drawerSummaryContainer = document.getElementById('drawer-summary-container');
+        const drawerGoal = document.getElementById('drawer-goal');
+        const drawerDaysList = document.getElementById('drawer-days-list');
+        const drawerViewFull = document.getElementById('drawer-view-full');
+
+        if (drawerSummaryContainer) {
+            drawerSummaryContainer.style.display = 'block';
+            drawerGoal.innerText = goal.charAt(0).toUpperCase() + goal.slice(1);
+            
+            drawerDaysList.innerHTML = '';
+            originalPlan.forEach(day => {
+                if (day.exercises.length > 0) {
+                    const li = document.createElement('li');
+                    li.innerHTML = `${day.day} <span>${day.muscle}</span>`;
+                    drawerDaysList.appendChild(li);
+                }
+            });
+
+            drawerViewFull.onclick = () => {
+                resultArea.style.display = 'block';
+                window.scrollTo({ top: resultArea.offsetTop - 100, behavior: 'smooth' });
+                // If on mobile, close the menu
+                const navLinks = document.querySelector('.nav-links');
+                if (navLinks.classList.contains('active')) {
+                    document.querySelector('.menu-toggle').click();
+                }
+            };
+        }
+
         // Toggle visibility
         wizard.style.display = 'none';
         resultArea.style.display = 'block';
@@ -375,6 +437,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if(printBtn) {
         printBtn.addEventListener('click', () => window.print());
+    }
+
+    if(resetBtn) {
+        resetBtn.addEventListener('click', () => {
+            if(confirm('Are you sure you want to reset your current plan?')) {
+                localStorage.removeItem('indiaFitnessWorkoutPlan');
+                location.reload();
+            }
+        });
     }
 });
 
