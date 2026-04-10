@@ -4,8 +4,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Membership Plans | India Fitness - Top Gym in Patna</title>
-    <meta name="description" content="Choose your fitness journey with India Fitness. Transparent pricing for monthly, quarterly, and annual gym memberships in Patna.">
+    <title>Membership Plans | India Fitness - Top Gym in Sipara, Kurhul & Ampatchak</title>
+    <meta name="description" content="View membership plans for India Fitness. Affordable monthly, quarterly, and annual gym packages in Sipara, Kurhul, and Ampatchak, Patna. Join the elite fitness community today.">
+    <meta name="keywords" content="Gym plans Patna, India Fitness Pricing, Gym Sipara price, Membership Kurhul, Fitness Ampatchak, Affordable gym Patna">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://indiafitnesspatna.com/plans.html">
+    <meta property="og:title" content="Membership Plans | India Fitness Patna">
+    <meta property="og:description" content="Join Patna's most elite gym in Sipara, Kurhul, or Ampatchak. Explore our flexible membership plans.">
+    <meta property="og:image" content="assets/images/weight_training.jpg">
+
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#e63946">
+    <link rel="apple-touch-icon" href="assets/images/logo_real_2.png">
+
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
     <!-- Font Awesome -->
@@ -14,6 +28,15 @@
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <!-- Custom CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js');
+            });
+        }
+    </script>
+
 </head>
 
 <body class="dark-theme">
@@ -21,9 +44,10 @@
     <!-- Loading Screen -->
     <div id="loading-screen">
         <div class="logo-loader">
-            <img src="assets/images/logo.png" alt="India Fitness Logo" id="loader-logo">
+            <img src="assets/images/logo.png" alt="India Fitness Elite Club Loading" id="loader-logo">
             <div class="loader-glow"></div>
         </div>
+
     </div>
 
     <div class="bg-orbs">

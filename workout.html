@@ -4,7 +4,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Workout Generator | India Fitness - Patna</title>
+    <title>AI Workout Generator | India Fitness - Custom Plans in Patna</title>
+    <meta name="description" content="Generate your personalized 7-day gym workout plan instantly with India Fitness. Tailored for muscle gain or weight loss for members in Sipara, Kurhul, and Ampatchak, Patna.">
+    <meta name="keywords" content="Workout generator Patna, Training plan Sipara, Gym workout Kurhul, Best fitness plan Ampatchak, India Fitness Workout">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://indiafitnesspatna.com/workout.html">
+    <meta property="og:title" content="AI Workout Generator | India Fitness Patna">
+    <meta property="og:description" content="Get your custom 7-day training plan for free from Patna's most elite gym. Optimized for your specific fitness goals.">
+    <meta property="og:image" content="assets/images/gallery_muscles.png">
+
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#e63946">
+    <link rel="apple-touch-icon" href="assets/images/logo_real_2.png">
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,6 +33,14 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/workout.css">
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js');
+            });
+        }
+    </script>
 </head>
 
 <body class="dark-theme">

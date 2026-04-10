@@ -4,20 +4,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BMI Calculator | India Fitness - Patna</title>
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Inter:wght@400;500;600&display=swap"
-        rel="stylesheet">
-    <!-- FontAwesome -->
+    <title>BMI Calculator | India Fitness - Health Tools in Patna</title>
+    <meta name="description" content="Calculate your BMI for free with India Fitness Patna. Understand your health and fitness levels at our elite gym serving Sipara, Kurhul, and Ampatchak.">
+    <meta name="keywords" content="BMI calculator Patna, Fitness tools Sipara, Health checkup Kurhul, India Fitness BMI, Best gym calculators Patna">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://indiafitnesspatna.com/bmi.html">
+    <meta property="og:title" content="BMI Calculator | India Fitness Patna">
+    <meta property="og:description" content="Measure your body mass index with Patna's leading fitness hub. Start your transformation journey in Sipara today.">
+    <meta property="og:image" content="assets/images/logo_real_2.png">
+
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#e63946">
+    <link rel="apple-touch-icon" href="assets/images/logo_real_2.png">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="assets/images/logo_real_2.png">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/bmi.css">
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js');
+            });
+        }
+    </script>
 </head>
 
 <body class="dark-theme">

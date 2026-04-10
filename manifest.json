@@ -1,0 +1,22 @@
+{
+  "name": "India Fitness",
+  "short_name": "India Fitness",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#0d0d0d",
+  "theme_color": "#e63946",
+  "description": "Patna's Elite Gym in Sipara, Kurhul, and Ampatchak.",
+  "icons": [
+    {
+      "src": "assets/images/logo_real_2.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/images/logo_real_2.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

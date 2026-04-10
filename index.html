@@ -4,7 +4,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>India Fitness | #1 Gym in Sipara, Patna</title>
+    <title>India Fitness | #1 Elite Gym in Sipara, Kurhul & Ampatchak, Patna</title>
+    <meta name="description" content="Experience Patna's most elite fitness destination. India Fitness offers state-of-the-art equipment, expert trainers, and personalized workout plans in Sipara, Kurhul, and Ampatchak.">
+    <meta name="keywords" content="Gym in Sipara, Gym in Patna, India Fitness Patna, Fitness center Sipara, Gym in Kurhul, Gym in Ampatchak, Best gym in Patna, Workout plans Patna">
+    <meta name="author" content="India Fitness">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://indiafitnesspatna.com/">
+    <meta property="og:title" content="India Fitness | #1 Elite Gym in Sipara, Patna">
+    <meta property="og:description" content="Transform your body at Patna's premier fitness hub. Now serving Sipara, Kurhul, and Ampatchak.">
+    <meta property="og:image" content="assets/images/gym_interior.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://indiafitnesspatna.com/">
+    <meta property="twitter:title" content="India Fitness | #1 Elite Gym in Sipara, Patna">
+    <meta property="twitter:description" content="Transform your body at Patna's premier fitness hub. Now serving Sipara, Kurhul, and Ampatchak.">
+    <meta property="twitter:image" content="assets/images/gym_interior.jpg">
+
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#e63946">
+    <link rel="apple-touch-icon" href="assets/images/logo_real_2.png">
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,10 +42,19 @@
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="assets/images/logo_real_2.png">
     <!-- intl-tel-input (Country Codes) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/css/intlTelInput.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/intl-tel-input/17.0.19/css/intlTelInput.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/finder-quiz.css">
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js');
+            });
+        }
+    </script>
+
 </head>
 
 
@@ -30,10 +62,11 @@
 
     <!-- Loading Screen -->
     <div id="loading-screen">
-        <div class="logo-loader">
-            <img src="assets/images/logo.png" alt="India Fitness Logo" id="loader-logo">
-            <div class="loader-glow"></div>
-        </div>
+            <div class="logo-loader">
+                <img src="assets/images/logo.png" alt="India Fitness Premium Gym Branding" id="loader-logo">
+                <div class="loader-glow"></div>
+            </div>
+
     </div>
 
     <!-- Header / Nav -->
@@ -41,9 +74,10 @@
         <nav class="container">
             <div class="logo">
                 <a href="index.html">
-                    <img src="assets/images/logo.png" alt="India Fitness">
+                    <img src="assets/images/logo.png" alt="India Fitness - Top Gym in Patna Gaya Road">
                     <span>INDIA FITNESS</span>
                 </a>
+
             </div>
             
             <div class="header-actions">
