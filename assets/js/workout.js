@@ -29,275 +29,117 @@ const compoundExercises = [
 
 const workoutData = {
     muscle: {
-        title: "Hypertrophy Mastery Split",
+        title: "Hypertrophy Mastery",
         desc: "Designed to maximize muscle fiber recruitment and volume for growth.",
-        plans: {
-            "3": [
-                { day: "Day 1", muscle: "Full Body A", exercises: [
-                    { name: "Bench Press", sets: "3x10", desc: "Compound chest movement" },
-                    { name: "Squats", sets: "3x10", desc: "Primary leg builder" },
-                    { name: "Rows", sets: "3x10", desc: "Back thickness" },
-                    { name: "Overhead Press", sets: "2x12", desc: "Shoulder stability" }
-                ]},
-                { day: "Day 2", muscle: "Rest", exercises: [] },
-                { day: "Day 3", muscle: "Full Body B", exercises: [
-                    { name: "Incline Press", sets: "3x12", desc: "Upper chest focus" },
-                    { name: "Deadlifts", sets: "3x8", desc: "Posterior chain" },
-                    { name: "Lat Pulldowns", sets: "3x12", desc: "Back width" },
-                    { name: "Leg Press", sets: "3x15", desc: "Quad fatigue" }
-                ]},
-                { day: "Day 4", muscle: "Rest", exercises: [] },
-                { day: "Day 5", muscle: "Full Body C", exercises: [
-                    { name: "Pull-ups", sets: "3xMax", desc: "Upper body pulling" },
-                    { name: "Dumbbell Press", sets: "3x12", desc: "Chest isolation" },
-                    { name: "Lunges", sets: "3x12", desc: "Unilateral leg work" },
-                    { name: "Plank", sets: "3x60s", desc: "Core stability" }
-                ]}
-            ],
-            "4": [
-                { day: "Day 1", muscle: "Upper Power", exercises: [
-                    { name: "Bench Press", sets: "4x8", desc: "Heavier loads for chest" },
-                    { name: "Rows", sets: "4x8", desc: "Power pulling" },
-                    { name: "Overhead Press", sets: "3x10", desc: "Vertical pressing" },
-                    { name: "Pull-ups", sets: "3xMax", desc: "Vertical pulling" }
-                ]},
-                { day: "Day 2", muscle: "Lower Power", exercises: [
-                    { name: "Squats", sets: "4x8", desc: "Quadriceps focus" },
-                    { name: "Deadlifts", sets: "3x8", desc: "Hinge pattern" },
-                    { name: "Leg Curls", sets: "3x12", desc: "Hamstrings" },
-                    { name: "Calf Raises", sets: "4x15", desc: "Lower leg" }
-                ]},
-                { day: "Day 3", muscle: "Rest", exercises: [] },
-                { day: "Day 4", muscle: "Upper Hypertrophy", exercises: [
-                    { name: "Incline Press", sets: "3x12", desc: "Upper chest pump" },
-                    { name: "Lat Pulldowns", sets: "3x12", desc: "Back width" },
-                    { name: "Hammer Curls", sets: "3x12", desc: "Arm thickness" },
-                    { name: "Tricep Pushdowns", sets: "3x15", desc: "Tricep volume" }
-                ]},
-                { day: "Day 5", muscle: "Lower Hypertrophy", exercises: [
-                    { name: "Leg Press", sets: "3x15", desc: "Constant tension" },
-                    { name: "Lunges", sets: "3x12", desc: "Glute/Quad focus" },
-                    { name: "Leg Extensions", sets: "3x15", desc: "Quad isolation" },
-                    { name: "Plank", sets: "3x60s", desc: "Core" }
-                ]}
-            ],
-            "5": [
-                { day: "Day 1", muscle: "Chest", exercises: [
-                    { name: "Bench Press", sets: "4x10", desc: "" },
-                    { name: "Incline Press", sets: "3x12", desc: "" },
-                    { name: "Cable Flyes", sets: "3x15", desc: "" }
-                ]},
-                { day: "Day 2", muscle: "Back", exercises: [
-                    { name: "Deadlifts", sets: "3x8", desc: "" },
-                    { name: "Rows", sets: "4x10", desc: "" },
-                    { name: "Lat Pulldowns", sets: "3x12", desc: "" }
-                ]},
-                { day: "Day 3", muscle: "Shoulders", exercises: [
-                    { name: "Overhead Press", sets: "4x10", desc: "" },
-                    { name: "Lateral Raises", sets: "4x15", desc: "" }
-                ]},
-                { day: "Day 4", muscle: "Legs", exercises: [
-                    { name: "Squats", sets: "4x10", desc: "" },
-                    { name: "Leg Press", sets: "3x15", desc: "" },
-                    { name: "Leg Curls", sets: "3x12", desc: "" }
-                ]},
-                { day: "Day 5", muscle: "Arms", exercises: [
-                    { name: "Hammer Curls", sets: "3x12", desc: "" },
-                    { name: "Tricep Pushdowns", sets: "3x12", desc: "" }
-                ]}
-            ],
-            "6": [
-                { day: "Day 1", muscle: "Push A", exercises: [
-                    { name: "Bench Press", sets: "4x8", desc: "" },
-                    { name: "Overhead Press", sets: "3x10", desc: "" },
-                    { name: "Cable Flyes", sets: "3x15", desc: "" }
-                ]},
-                { day: "Day 2", muscle: "Pull A", exercises: [
-                    { name: "Deadlifts", sets: "3x8", desc: "" },
-                    { name: "Pull-ups", sets: "3xMax", desc: "" },
-                    { name: "Rows", sets: "3x12", desc: "" }
-                ]},
-                { day: "Day 3", muscle: "Legs A", exercises: [
-                    { name: "Squats", sets: "4x8", desc: "" },
-                    { name: "Leg Curls", sets: "3x12", desc: "" },
-                    { name: "Calf Raises", sets: "4x20", desc: "" }
-                ]},
-                { day: "Day 4", muscle: "Push B", exercises: [
-                    { name: "Incline Press", sets: "3x12", desc: "" },
-                    { name: "Lateral Raises", sets: "4x15", desc: "" },
-                    { name: "Tricep Pushdowns", sets: "3x12", desc: "" }
-                ]},
-                { day: "Day 5", muscle: "Pull B", exercises: [
-                    { name: "Lat Pulldowns", sets: "3x12", desc: "" },
-                    { name: "Face Pulls", sets: "3x15", desc: "" },
-                    { name: "Hammer Curls", sets: "3x12", desc: "" }
-                ]},
-                { day: "Day 6", muscle: "Legs B", exercises: [
-                    { name: "Leg Press", sets: "3x15", desc: "" },
-                    { name: "Lunges", sets: "3x12", desc: "" },
-                    { name: "Plank", sets: "3x60s", desc: "" }
-                ]}
-            ]
+        splits: {
+            "1": { // Isolation (1 Body Part)
+                "5": [
+                    { day: "Day 1", muscle: "Chest Focus", exercises: [{ name: "Bench Press", sets: "4x10" }, { name: "Incline Press", sets: "3x12" }, { name: "Cable Flyes", sets: "3x15" }] },
+                    { day: "Day 2", muscle: "Back Focus", exercises: [{ name: "Deadlifts", sets: "3x8" }, { name: "Rows", sets: "4x10" }, { name: "Lat Pulldowns", sets: "3x12" }] },
+                    { day: "Day 3", muscle: "Shoulders Focus", exercises: [{ name: "Overhead Press", sets: "4x10" }, { name: "Lateral Raises", sets: "4x15" }] },
+                    { day: "Day 4", muscle: "Legs Focus", exercises: [{ name: "Squats", sets: "4x10" }, { name: "Leg Press", sets: "3x15" }, { name: "Leg Curls", sets: "3x12" }] },
+                    { day: "Day 5", muscle: "Arms Focus", exercises: [{ name: "Hammer Curls", sets: "3x12" }, { name: "Tricep Pushdowns", sets: "3x12" }] }
+                ],
+                "6": [
+                    { day: "Day 1", muscle: "Chest Focus", exercises: [{ name: "Bench Press", sets: "4x8" }, { name: "Cable Flyes", sets: "4x12" }] },
+                    { day: "Day 2", muscle: "Back Focus", exercises: [{ name: "Rows", sets: "4x8" }, { name: "Lat Pulldowns", sets: "4x12" }] },
+                    { day: "Day 3", muscle: "Legs Focus", exercises: [{ name: "Squats", sets: "4x8" }, { name: "Leg Curls", sets: "4x12" }] },
+                    { day: "Day 4", muscle: "Shoulders Focus", exercises: [{ name: "Overhead Press", sets: "4x10" }, { name: "Lateral Raises", sets: "4x15" }] },
+                    { day: "Day 5", muscle: "Arms Focus", exercises: [{ name: "Hammer Curls", sets: "3x12" }, { name: "Tricep Pushdowns", sets: "3x12" }] },
+                    { day: "Day 6", muscle: "Core/Calves", exercises: [{ name: "Calf Raises", sets: "5x15" }, { name: "Plank", sets: "4x60s" }] }
+                ]
+            },
+            "2": { // Standard (2 Body Parts)
+                "3": [
+                    { day: "Day 1", muscle: "Chest & Back", exercises: [{ name: "Bench Press", sets: "3x10" }, { name: "Rows", sets: "3x10" }, { name: "Incline Press", sets: "3x12" }] },
+                    { day: "Day 2", muscle: "Legs & Shoulders", exercises: [{ name: "Squats", sets: "3x10" }, { name: "Overhead Press", sets: "3x10" }, { name: "Leg Press", sets: "3x15" }] },
+                    { day: "Day 3", muscle: "Arms & Core", exercises: [{ name: "Hammer Curls", sets: "3x12" }, { name: "Tricep Pushdowns", sets: "3x12" }, { name: "Plank", sets: "3x60s" }] }
+                ],
+                "4": [
+                    { day: "Day 1", muscle: "Chest & Triceps", exercises: [{ name: "Bench Press", sets: "4x8" }, { name: "Incline Press", sets: "3x12" }, { name: "Tricep Pushdowns", sets: "3x12" }] },
+                    { day: "Day 2", muscle: "Back & Biceps", exercises: [{ name: "Deadlifts", sets: "3x8" }, { name: "Rows", sets: "3x10" }, { name: "Hammer Curls", sets: "3x12" }] },
+                    { day: "Day 3", muscle: "Legs & Core", exercises: [{ name: "Squats", sets: "4x10" }, { name: "Leg Press", sets: "3x15" }, { name: "Plank", sets: "3x60s" }] },
+                    { day: "Day 4", muscle: "Shoulders & Abs", exercises: [{ name: "Overhead Press", sets: "4x10" }, { name: "Lateral Raises", sets: "4x15" }] }
+                ],
+                "5": [
+                    { day: "Day 1", muscle: "Chest & Triceps", exercises: [{ name: "Bench Press", sets: "4x10" }, { name: "Incline Press", sets: "3x12" }, { name: "Tricep Pushdowns", sets: "3x12" }] },
+                    { day: "Day 2", muscle: "Back & Biceps", exercises: [{ name: "Deadlifts", sets: "3x8" }, { name: "Rows", sets: "4x10" }, { name: "Hammer Curls", sets: "3x12" }] },
+                    { day: "Day 3", muscle: "Shoulders & Core", exercises: [{ name: "Overhead Press", sets: "4x10" }, { name: "Lateral Raises", sets: "4x15" }, { name: "Plank", sets: "3x60s" }] },
+                    { day: "Day 4", muscle: "Legs Focus", exercises: [{ name: "Squats", sets: "4x10" }, { name: "Leg Curls", sets: "4x12" }] },
+                    { day: "Day 5", muscle: "Upper Body Burn", exercises: [{ name: "Pushups", sets: "3xMax" }, { name: "Pull-ups", sets: "3xMax" }] }
+                ],
+                "6": [
+                    { day: "Day 1", muscle: "Chest & Triceps", exercises: [{ name: "Bench Press", sets: "4x8" }, { name: "Cable Flyes", sets: "3x15" }, { name: "Tricep Pushdowns", sets: "3x12" }] },
+                    { day: "Day 2", muscle: "Back & Biceps", exercises: [{ name: "Rows", sets: "4x8" }, { name: "Lat Pulldowns", sets: "3x12" }, { name: "Hammer Curls", sets: "3x12" }] },
+                    { day: "Day 3", muscle: "Legs & Shoulders", exercises: [{ name: "Squats", sets: "4x8" }, { name: "Overhead Press", sets: "3x10" }, { name: "Leg Curls", sets: "3x12" }] },
+                    { day: "Day 4", muscle: "Chest & Triceps", exercises: [{ name: "Incline Press", sets: "3x12" }, { name: "Pushups", sets: "3xMax" }, { name: "Dumbbell Press", sets: "3x12" }] },
+                    { day: "Day 5", muscle: "Back & Biceps", exercises: [{ name: "Deadlifts", sets: "3x8" }, { name: "Pull-ups", sets: "3xMax" }, { name: "Face Pulls", sets: "3x15" }] },
+                    { day: "Day 6", muscle: "Legs & Core", exercises: [{ name: "Leg Press", sets: "3x15" }, { name: "Calf Raises", sets: "4x15" }, { name: "Plank", sets: "3x60s" }] }
+                ]
+            },
+            "3": { // Full Body (3+ Parts)
+                "3": [
+                    { day: "Day 1", muscle: "Full Body A", exercises: [{ name: "Bench Press", sets: "3x10" }, { name: "Squats", sets: "3x10" }, { name: "Rows", sets: "3x10" }] },
+                    { day: "Day 2", muscle: "Full Body B", exercises: [{ name: "Incline Press", sets: "3x12" }, { name: "Deadlifts", sets: "3x8" }, { name: "Lat Pulldowns", sets: "3x12" }] },
+                    { day: "Day 3", muscle: "Full Body C", exercises: [{ name: "Overhead Press", sets: "3x12" }, { name: "Leg Press", sets: "3x15" }, { name: "Pull-ups", sets: "3xMax" }] }
+                ]
+            }
         }
     },
     strength: {
-        title: "Power & Strength Split",
+        title: "Power & Strength",
         desc: "Focused on compound movements and nervous system adaptation for maximum output.",
-        plans: {
-            "3": [
-                { day: "Day 1", muscle: "Squat Priority", exercises: [
-                    { name: "Squats", sets: "5x5", desc: "Heavy core lift" },
-                    { name: "Bench Press", sets: "3x8", desc: "Support push" },
-                    { name: "Rows", sets: "3x8", desc: "Stability pull" }
-                ]},
-                { day: "Day 2", muscle: "Rest", exercises: [] },
-                { day: "Day 3", muscle: "Bench Priority", exercises: [
-                    { name: "Bench Press", sets: "5x5", desc: "Heavy push" },
-                    { name: "Overhead Press", sets: "3x8", desc: "Support shoulder" },
-                    { name: "Lat Pulldowns", sets: "3x8", desc: "Pulling" }
-                ]},
-                { day: "Day 4", muscle: "Rest", exercises: [] },
-                { day: "Day 5", muscle: "Deadlift Priority", exercises: [
-                    { name: "Deadlifts", sets: "5x5", desc: "Heavy hinge" },
-                    { name: "Squats", sets: "3x8", desc: "Support legs" },
-                    { name: "Rows", sets: "3x8", desc: "Back power" }
-                ]}
-            ],
-            "4": [
-                { day: "Day 1", muscle: "Max Effort Upper", exercises: [
-                    { name: "Bench Press", sets: "5x5", desc: "" },
-                    { name: "Rows", sets: "3x8", desc: "" }
-                ]},
-                { day: "Day 2", muscle: "Max Effort Lower", exercises: [
-                    { name: "Squats", sets: "5x5", desc: "" },
-                    { name: "Deadlifts", sets: "5x3", desc: "" }
-                ]},
-                { day: "Day 3", muscle: "Rest", exercises: [] },
-                { day: "Day 4", muscle: "Dynamic Upper", exercises: [
-                    { name: "Overhead Press", sets: "5x5", desc: "" },
-                    { name: "Pull-ups", sets: "3x8", desc: "" }
-                ]},
-                { day: "Day 5", muscle: "Dynamic Lower", exercises: [
-                    { name: "Deadlifts", sets: "5x5", desc: "" },
-                    { name: "Leg Press", sets: "3x10", desc: "" }
-                ]}
-            ],
-            "5": [
-                { day: "Day 1", muscle: "Heavy Squat", exercises: [
-                    { name: "Squats", sets: "5x5", desc: "" },
-                    { name: "Leg Press", sets: "3x10", desc: "" }
-                ]},
-                { day: "Day 2", muscle: "Heavy Bench", exercises: [
-                    { name: "Bench Press", sets: "5x5", desc: "" },
-                    { name: "Incline Press", sets: "3x8", desc: "" }
-                ]},
-                { day: "Day 3", muscle: "Rest", exercises: [] },
-                { day: "Day 4", muscle: "Heavy Deadlift", exercises: [
-                    { name: "Deadlifts", sets: "5x3", desc: "" },
-                    { name: "Rows", sets: "3x8", desc: "" }
-                ]},
-                { day: "Day 5", muscle: "Heavy Overhead", exercises: [
-                    { name: "Overhead Press", sets: "5x5", desc: "" },
-                    { name: "Pull-ups", sets: "3xMax", desc: "" }
-                ]},
-                { day: "Day 6", muscle: "Accessories", exercises: [
-                    { name: "Hammer Curls", sets: "3x12", desc: "" },
-                    { name: "Tricep Pushdowns", sets: "3x12", desc: "" },
-                    { name: "Plank", sets: "3x60s", desc: "" }
-                ]}
-            ],
-            "6": [
-                { day: "Day 1", muscle: "Power Push", exercises: [
-                    { name: "Bench Press", sets: "5x5", desc: "" },
-                    { name: "Overhead Press", sets: "3x8", desc: "" }
-                ]},
-                { day: "Day 2", muscle: "Power Pull", exercises: [
-                    { name: "Deadlifts", sets: "5x3", desc: "" },
-                    { name: "Rows", sets: "3x8", desc: "" }
-                ]},
-                { day: "Day 3", muscle: "Power Legs", exercises: [
-                    { name: "Squats", sets: "5x5", desc: "" },
-                    { name: "Leg Press", sets: "3x10", desc: "" }
-                ]},
-                { day: "Day 4", muscle: "Hypertrophy Push", exercises: [
-                    { name: "Incline Press", sets: "3x12", desc: "" },
-                    { name: "Cable Flyes", sets: "3x15", desc: "" }
-                ]},
-                { day: "Day 5", muscle: "Hypertrophy Pull", exercises: [
-                    { name: "Lat Pulldowns", sets: "3x12", desc: "" },
-                    { name: "Hammer Curls", sets: "3x12", desc: "" }
-                ]},
-                { day: "Day 6", muscle: "Hypertrophy Legs", exercises: [
-                    { name: "Lunges", sets: "3x12", desc: "" },
-                    { name: "Leg Curls", sets: "3x12", desc: "" }
-                ]}
-            ]
+        splits: {
+            "1": { "5": [{ day: "Day 1", muscle: "Squat Day", exercises: [{ name: "Squats", sets: "5x5" }] } /* Fallback */ ] },
+            "2": {
+                "3": [
+                    { day: "Day 1", muscle: "Squat & Push", exercises: [{ name: "Squats", sets: "5x5" }, { name: "Bench Press", sets: "3x8" }] },
+                    { day: "Day 2", muscle: "Bench & Pull", exercises: [{ name: "Bench Press", sets: "5x5" }, { name: "Rows", sets: "3x8" }] },
+                    { day: "Day 3", muscle: "Deadlift & Press", exercises: [{ name: "Deadlifts", sets: "5x3" }, { name: "Overhead Press", sets: "3x8" }] }
+                ],
+                "4": [
+                    { day: "Day 1", muscle: "Max Effort Upper", exercises: [{ name: "Bench Press", sets: "5x5" }, { name: "Rows", sets: "3x8" }] },
+                    { day: "Day 2", muscle: "Max Effort Lower", exercises: [{ name: "Squats", sets: "5x5" }, { name: "Deadlifts", sets: "5x3" }] },
+                    { day: "Day 3", muscle: "Dynamic Upper", exercises: [{ name: "Overhead Press", sets: "5x5" }, { name: "Pull-ups", sets: "3x8" }] },
+                    { day: "Day 4", muscle: "Dynamic Lower", exercises: [{ name: "Deadlifts", sets: "5x5" }, { name: "Leg Press", sets: "3x10" }] }
+                ]
+            },
+            "3": {
+                "3": [
+                    { day: "Day 1", muscle: "Full Body Strength A", exercises: [{ name: "Squats", sets: "5x5" }, { name: "Bench Press", sets: "5x5" }, { name: "Rows", sets: "3x8" }] },
+                    { day: "Day 2", muscle: "Full Body Strength B", exercises: [{ name: "Deadlifts", sets: "5x3" }, { name: "Overhead Press", sets: "5x5" }, { name: "Pull-ups", sets: "3x8" }] },
+                    { day: "Day 3", muscle: "Full Body Strength C", exercises: [{ name: "Squats", sets: "3x8" }, { name: "Incline Press", sets: "3x8" }, { name: "Leg Press", sets: "3x10" }] }
+                ]
+            }
         }
     },
     fatloss: {
-        title: "Metabolic Shred Split",
-        desc: "High-intensity circuits to keep your heart rate up and calories burning long after you leave.",
-        plans: {
-            "3": [
-                { day: "Day 1", muscle: "Full Body Circuit A", exercises: [
-                    { name: "Squats", sets: "3x15", desc: "" },
-                    { name: "Pushups", sets: "3x15", desc: "" },
-                    { name: "Mountain Climbers", sets: "3x45s", desc: "" }
-                ]},
-                { day: "Day 2", muscle: "Full Body Circuit B", exercises: [
-                    { name: "Burpees", sets: "3x12", desc: "" },
-                    { name: "Lunges", sets: "3x15", desc: "" },
-                    { name: "Plank", sets: "3x60s", desc: "" }
-                ]},
-                { day: "Day 3", muscle: "Full Body Circuit C", exercises: [
-                    { name: "Rows", sets: "3x12", desc: "" },
-                    { name: "Overhead Press", sets: "3x12", desc: "" },
-                    { name: "Jumping Jacks", sets: "3x60s", desc: "" }
-                ]}
-            ],
-            "4": [
-                { day: "Day 1", muscle: "Upper Body Circuit", exercises: [
-                    { name: "Pushups", sets: "4x15", desc: "" },
-                    { name: "Rows", sets: "4x12", desc: "" },
-                    { name: "Burpees", sets: "4x10", desc: "" }
-                ]},
-                { day: "Day 2", muscle: "Lower Body Circuit", exercises: [
-                    { name: "Squats", sets: "4x20", desc: "" },
-                    { name: "Lunges", sets: "4x12", desc: "" },
-                    { name: "Mountain Climbers", sets: "4x45s", desc: "" }
-                ]},
-                { day: "Day 3", muscle: "Core & Cardio", exercises: [
-                    { name: "Plank", sets: "3x60s", desc: "" },
-                    { name: "Bicycle Crunches", sets: "3x20", desc: "" },
-                    { name: "Jumping Jacks", sets: "3x60s", desc: "" }
-                ]},
-                { day: "Day 4", muscle: "Full Body Burn", exercises: [
-                    { name: "Deadlifts", sets: "3x12", desc: "" },
-                    { name: "Overhead Press", sets: "3x12", desc: "" },
-                    { name: "Pushups", sets: "3xMax", desc: "" }
-                ]}
-            ],
-            "5": [
-                { day: "Day 1", muscle: "Chest & Back Circuit", exercises: [
-                    { name: "Bench Press", sets: "4x12", desc: "" },
-                    { name: "Rows", sets: "4x12", desc: "" }
-                ]},
-                { day: "Day 2", muscle: "Legs Circuit", exercises: [
-                    { name: "Squats", sets: "4x15", desc: "" },
-                    { name: "Leg Curls", sets: "4x15", desc: "" }
-                ]},
-                { day: "Day 3", muscle: "Conditioning A", exercises: [
-                    { name: "Burpees", sets: "5x10", desc: "" },
-                    { name: "Mountain Climbers", sets: "5x45s", desc: "" }
-                ]},
-                { day: "Day 4", muscle: "Shoulders & Arms", exercises: [
-                    { name: "Overhead Press", sets: "4x12", desc: "" },
-                    { name: "Hammer Curls", sets: "4x12", desc: "" }
-                ]},
-                { day: "Day 5", muscle: "Conditioning B", exercises: [
-                    { name: "Jumping Jacks", sets: "5x60s", desc: "" },
-                    { name: "Plank", sets: "5x60s", desc: "" }
-                ]}
+        title: "Metabolic Shred",
+        desc: "High-intensity circuits to keep your heart rate up and calories burning.",
+        splits: {
+            "2": {
+                "3": [
+                    { day: "Day 1", muscle: "Push & Quads", exercises: [{ name: "Pushups", sets: "3x15" }, { name: "Squats", sets: "3x15" }, { name: "Mountain Climbers", sets: "3x45s" }] },
+                    { day: "Day 2", muscle: "Pull & Hams", exercises: [{ name: "Rows", sets: "3x12" }, { name: "Lunges", sets: "3x15" }, { name: "Plank", sets: "3x60s" }] },
+                    { day: "Day 3", muscle: "Shoulders & Core", exercises: [{ name: "Overhead Press", sets: "3x12" }, { name: "Bicycle Crunches", sets: "3x20" }, { name: "Burpees", sets: "3x12" }] }
+                ],
+                "4": [
+                    { day: "Day 1", muscle: "Upper Circuit", exercises: [{ name: "Pushups", sets: "4x15" }, { name: "Rows", sets: "4x12" }] },
+                    { day: "Day 2", muscle: "Lower Circuit", exercises: [{ name: "Squats", sets: "4x20" }, { name: "Lunges", sets: "4x12" }] },
+                    { day: "Day 3", muscle: "Post-Chain & Core", exercises: [{ name: "Deadlifts", sets: "3x12" }, { name: "Plank", sets: "3x60s" }] },
+                    { day: "Day 4", muscle: "Total Burn", exercises: [{ name: "Burpees", sets: "4x10" }, { name: "Mountain Climbers", sets: "4x45s" }] }
+                ]
+            },
+            "3": {
+                "3": [
+                    { day: "Day 1", muscle: "Full Body Circuit A", exercises: [{ name: "Squats", sets: "3x15" }, { name: "Pushups", sets: "3x15" }, { name: "Burpees", sets: "3x12" }] },
+                    { day: "Day 2", muscle: "Full Body Circuit B", exercises: [{ name: "Lunges", sets: "3x15" }, { name: "Rows", sets: "3x12" }, { name: "Mountain Climbers", sets: "3x45s" }] },
+                    { day: "Day 3", muscle: "Full Body Circuit C", exercises: [{ name: "Deadlifts", sets: "3x12" }, { name: "Overhead Press", sets: "3x12" }, { name: "Plank", sets: "3x60s" }] }
+                ]
+            }
+        }
+    }
+};
             ],
             "6": [
                 { day: "Day 1", muscle: "Metabolic PUSH", exercises: [
@@ -404,22 +246,12 @@ document.addEventListener('DOMContentLoaded', () => {
         // Selection Logic
         const goalData = workoutData[goal] || workoutData.muscle;
         
-        // Intelligent Split Selection
+        // Intelligent Split Selection (Restructured)
         let originalPlan;
         const requestedDays = days;
         
-        // If they want 1 body part (Bro Split), try to find a 5 or 6 day plan
-        if (splitPref === "1") {
-            originalPlan = goalData.plans["5"] || goalData.plans["6"];
-        } 
-        // If they want 3+ parts (Full Body), look for 3 day plans
-        else if (splitPref === "3") {
-            originalPlan = goalData.plans["3"];
-        }
-        // Default (2 parts) or fallback: use the exact day count they requested
-        else {
-            originalPlan = goalData.plans[days] || goalData.plans["4"] || goalData.plans["3"] || fallbackPlan;
-        }
+        const focusCategory = goalData.splits[splitPref] || goalData.splits["2"];
+        originalPlan = focusCategory[days] || focusCategory[Object.keys(focusCategory)[0]] || fallbackPlan;
 
         // Standardize to a 7-day week schedule (Professional Standard)
         const weeklySchedule = coach_distributeWeek(originalPlan, days);
