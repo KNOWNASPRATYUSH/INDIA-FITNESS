@@ -264,13 +264,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 const formData = new FormData(contactForm);
                 formData.append('phone', iti ? iti.getNumber() : (phoneInput ? phoneInput.value : ''));
                 
-                // Securely fetch via our own serverless proxy
-                const response = await fetch('/api/contact', {
+                // Directly calling Web3Forms for Free Plan compatibility
+                const response = await fetch('https://api.web3forms.com/submit', {
                     method: 'POST',
-                    headers: { 
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json'
-                    },
+                    headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(Object.fromEntries(formData))
                 });
 
@@ -278,17 +275,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     contactSubmitBtn.innerText = 'MESSAGE SENT ✓';
                     contactSubmitBtn.classList.add('btn-success');
                     contactForm.reset();
-                } else {
-                    let msg = 'ERROR';
-                    try {
-                        const err = await response.json();
-                        msg = (err.message || 'ERROR').toUpperCase();
-                        if (msg.includes('ACCESS_KEY')) msg = 'KEY MISSING';
-                    } catch (e) {
-                        msg = 'BAD RESPONSE';
-                    }
-                    contactSubmitBtn.innerText = msg;
                 }
+
 
 
 
