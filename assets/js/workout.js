@@ -212,6 +212,43 @@ const fallbackPlan = [
     ]}
 ];
 
+// Professional Volume Expansion Pool (Coach Grade)
+const extraExercisesPool = {
+    "chest": [
+        { name: "Dumbbell Flyes", sets: "3x12", desc: "Focus on the deep stretch." },
+        { name: "Pushups", sets: "3xMax", desc: "Finish with high volume." },
+        { name: "Pec Deck", sets: "3x15", desc: "Constant tension." }
+    ],
+    "back": [
+        { name: "Face Pulls", sets: "3x15", desc: "Rear delt and trap focus." },
+        { name: "Dumbbell Shrugs", sets: "3x12", desc: "Upper trap focus." },
+        { name: "Straight Arm Pulldowns", sets: "3x12", desc: "Lat isolation." }
+    ],
+    "legs": [
+        { name: "Leg Curls", sets: "3x12", desc: "Hamstring isolation." },
+        { name: "Leg Extension", sets: "3x15", desc: "Quad isolation." },
+        { name: "Calf Raises", sets: "4x15", desc: "Don't skip calves." }
+    ],
+    "shoulders": [
+        { name: "Lateral Raises", sets: "3x15", desc: "Side delt focus." },
+        { name: "Front Raises", sets: "3x12", desc: "Front delt focus." },
+        { name: "Reverse Flyes", sets: "3x15", desc: "Rear delt focus." }
+    ],
+    "biceps": [
+        { name: "Concentration Curls", sets: "3x12", desc: "Peak contraction focus." },
+        { name: "Hammer Curls", sets: "3x12", desc: "Brachialis focus." }
+    ],
+    "triceps": [
+        { name: "Overhead Tricep Extension", sets: "3x12", desc: "Long head focus." },
+        { name: "Dips", sets: "3xMax", desc: "Power finisher." }
+    ],
+    "abs": [
+        { name: "Leg Raises", sets: "3x15", desc: "Lower ab focus." },
+        { name: "Bicycle Crunches", sets: "3x20", desc: "Oblique focus." }
+    ]
+};
+
+
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('workoutForm');
     const resultArea = document.getElementById('workout-result');
@@ -281,12 +318,17 @@ document.addEventListener('DOMContentLoaded', () => {
         // Intelligent Split Selection (Restructured)
         let originalPlan;
         const requestedDays = days;
+        const duration = parseInt(time);
         
         const focusCategory = goalData.splits[splitPref] || goalData.splits["2"];
         originalPlan = focusCategory[days] || focusCategory[Object.keys(focusCategory)[0]] || fallbackPlan;
 
+        // Dynamic Volume Scaling (Coach Logic)
+        const expandedPlan = coach_expandVolume(originalPlan, duration);
+
         // Standardize to a 7-day week schedule (Professional Standard)
-        const weeklySchedule = coach_distributeWeek(originalPlan, days);
+        const weeklySchedule = coach_distributeWeek(expandedPlan, days);
+
 
         const inputs = { goal, days, time, equip, splitPref };
         renderPlan(weeklySchedule, goalData, inputs);
@@ -300,7 +342,47 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // Helper to intelligently inject volume based on duration
+    function coach_expandVolume(plan, duration) {
+        // Clone to avoid mutation
+        const newPlan = JSON.parse(JSON.stringify(plan));
+        
+        // Determine target exercise count per session based on duration
+        // 30m: 3-4 (Current matches base)
+        // 45-60m: 5-6 (+1 or 2)
+        // 90m: 7-8 (+3 or 4)
+        let extrasCount = 0;
+        if (duration >= 90) extrasCount = 3;
+        else if (duration >= 60) extrasCount = 2;
+        else if (duration >= 45) extrasCount = 1;
+
+        if (extrasCount === 0) return newPlan;
+
+        newPlan.forEach(day => {
+            const muscleNames = day.muscle.toLowerCase();
+            const muscleKeys = Object.keys(extraExercisesPool).filter(k => muscleNames.includes(k));
+            
+            // If no clear muscle key matches, use random selection from general pool
+            if (muscleKeys.length === 0) muscleKeys.push(Object.keys(extraExercisesPool)[Math.floor(Math.random() * 7)]);
+
+            for (let i = 0; i < extrasCount; i++) {
+                const key = muscleKeys[i % muscleKeys.length];
+                const pool = extraExercisesPool[key];
+                // Select an exercise not already in the day's list
+                const existingNames = day.exercises.map(e => e.name);
+                const candidates = pool.filter(e => !existingNames.includes(e.name));
+                
+                if (candidates.length > 0) {
+                    day.exercises.push(candidates[Math.floor(Math.random() * candidates.length)]);
+                }
+            }
+        });
+
+        return newPlan;
+    }
+
     // Helper to distribute training days across a 7-day week logically
+
     function coach_distributeWeek(trainingDays, dayCount) {
         const week = Array(7).fill(null).map((_, i) => ({ day: `Day ${i+1}`, muscle: "Rest", exercises: [] }));
         const count = parseInt(dayCount);
