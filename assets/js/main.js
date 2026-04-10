@@ -281,8 +281,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 } else {
                     const err = await response.json();
                     console.error('Submission failed:', err.message);
-                    contactSubmitBtn.innerText = 'FIX ERRORS';
+                    contactSubmitBtn.innerText = (err.message || 'FIX ERRORS').toUpperCase();
+                    // If it's too long, truncate it
+                    if (contactSubmitBtn.innerText.length > 20) {
+                        contactSubmitBtn.innerText = 'CONFIG ERROR';
+                    }
                 }
+
 
             } catch (error) {
                 console.error(error);
