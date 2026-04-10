@@ -466,11 +466,6 @@ document.addEventListener('DOMContentLoaded', () => {
         // Always build the plan DOM so it's ready when 'VIEW FULL PLAN' is clicked
         if (daysContainer) {
             planToRender.forEach((dayInfo, index) => {
-                const card = document.createElement('div');
-                card.className = 'day-card';
-                card.setAttribute('data-aos', 'fade-up');
-                card.style.animationDelay = `${index * 0.1}s`;
-
                 // In the main grid, we only show training days as cards 
                 // to match the user's requested 'days per week' count.
                 if(dayInfo.exercises.length === 0) return;
