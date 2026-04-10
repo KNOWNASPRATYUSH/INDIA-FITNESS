@@ -21,6 +21,12 @@ const exerciseAlternatives = {
     "Cable Flyes": { basic: "DB Flyes", bodyweight: "Wide Pushups" }
 };
 
+const compoundExercises = [
+    "Bench Press", "Squats", "Deadlifts", "Overhead Press", 
+    "Rows", "Leg Press", "Pull-ups", "Lat Pulldowns", 
+    "Incline Press", "Lunges", "Burpees"
+];
+
 const workoutData = {
     muscle: {
         title: "Hypertrophy Mastery Split",
@@ -411,6 +417,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function renderPlan(originalPlan, goalData, inputs, silent = false) {
+        // Deep clone the plan to avoid modifying source workoutData (fixes the "8 sets" bug)
+        const planToRender = JSON.parse(JSON.stringify(originalPlan));
+        
         const { goal, days, time, equip } = inputs;
         const duration = parseInt(time);
 
@@ -418,9 +427,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (planTitle) planTitle.innerText = goalData.title;
         
         let subTitle = goalData.desc;
-        if (duration <= 30) subTitle = "🚀 Metabolic Express: High intensity, minimal rest.";
-        else if (duration >= 90) subTitle = "🛡️ Optimized Volume: Advanced growth and hypertrophy focus.";
-        else subTitle = "⚡ Standard Performance: Balanced volume and recovery.";
+        if (duration <= 30) subTitle = "🚀 Metabolic Express: High intensity, minimal rest (30 min).";
+        else if (duration >= 90) subTitle = "🛡️ Optimized Volume: Advanced growth and hypertrophy focus (90 min).";
+        else subTitle = "⚡ Standard Performance: Balanced volume and recovery (45-60 min).";
         
         if (planDesc) planDesc.innerText = subTitle;
         
@@ -430,7 +439,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Always build the plan DOM so it's ready when 'VIEW FULL PLAN' is clicked
         if (daysContainer) {
-            originalPlan.forEach((dayInfo, index) => {
+            planToRender.forEach((dayInfo, index) => {
                 const card = document.createElement('div');
                 card.className = 'day-card';
                 card.setAttribute('data-aos', 'fade-up');
@@ -472,23 +481,35 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     }
 
-                    // Adapt volume and methods based on duration (time)
+                    // Master Scaling Logic (Coach Grade)
+                    const isCompound = compoundExercises.includes(ex.name);
+                    
                     if (duration <= 30) {
-                        // Circuit style
+                        // Efficiency Strategy: Reduce volume, maintain intensity
                         sets = sets.replace(/(\d+)x/, (match, p1) => {
-                            const s = Math.max(2, parseInt(p1) - 1);
+                            const s = isCompound ? 3 : 2; // Capping volume for 30 min
                             return s + "x";
                         });
                         method = "EXPRESS CIRCUIT";
                         if (exIndex % 2 !== 0 && exIndex > 0) method = "SUPERSET";
                     } else if (duration >= 90) {
-                        // High volume
+                        // High Volume Strategy: Add one set (max 5) or add intensity method
                         sets = sets.replace(/(\d+)x/, (match, p1) => {
-                            const s = parseInt(p1) + 1;
+                            let s = parseInt(p1);
+                            if (s < 5) s += 1; // Don't exceed 5 sets unless expert
                             return s + "x";
                         });
-                        if (exIndex === dayInfo.exercises.length - 1) method = "BURNOUT SET";
-                        else method = "TIME-UNDER-TENSION";
+                        
+                        if (isCompound) {
+                            method = "TIME-UNDER-TENSION";
+                            if (exIndex === 0) method = "CLUSTER SETS (3x3+3)";
+                        } else {
+                            method = "REST-PAUSE (RP)";
+                            if (exIndex === dayInfo.exercises.length - 1) method = "DROPSET TO FAILURE";
+                        }
+                    } else {
+                        // Standard volume (45-60m) - Use as is from DB
+                        method = isCompound ? "STRENGTH PRIORITY" : "HYPERTROPHY FOCUS";
                     }
 
                     return `
