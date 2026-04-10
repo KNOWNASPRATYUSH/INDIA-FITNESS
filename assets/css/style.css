@@ -262,13 +262,20 @@ nav {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.8);
+    background: rgba(0,0,0,0.85); /* Slightly darker for better contrast without blur */
     z-index: 1500;
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
     transition: var(--transition-fast);
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(10px); /* Only visible on high-end / desktop browsers where it doesn't lag */
+}
+
+@media (max-width: 992px) {
+    .menu-overlay {
+        backdrop-filter: none !important; /* Performance fix for mobile */
+        background: rgba(0,0,0,0.9);
+    }
 }
 
 .menu-overlay.active {

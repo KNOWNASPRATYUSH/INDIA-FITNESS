@@ -218,16 +218,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const printBtn = document.getElementById('print-plan');
     const resetBtn = document.getElementById('drawer-reset-plan');
 
-    // Load existing plan from localStorage
+    // Load existing plan from localStorage (Silent load for drawer only)
     const savedPlan = localStorage.getItem('indiaFitnessWorkoutPlan');
     if (savedPlan) {
         try {
             const data = JSON.parse(savedPlan);
-            // We need to pass the selected options to generatePlan for equipment/time adaptation
-            // or just save the final generated HTML/Data. 
-            // Better to save the raw inputs and regenerate or save the final data.
-            // Let's save the final processed plan data.
-            renderPlan(data.plan, data.goalData, data.inputs);
+            renderPlan(data.plan, data.goalData, data.inputs, true); // true = silent load (populates but stays hidden)
         } catch (e) {
             console.error("Error loading saved plan", e);
         }
@@ -290,112 +286,115 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    function renderPlan(originalPlan, goalData, inputs) {
+    function renderPlan(originalPlan, goalData, inputs, silent = false) {
         const { goal, days, time, equip } = inputs;
 
-        // UI Updates
+        // UI Updates for Main Results
         if (planTitle) planTitle.innerText = goalData.title;
         if (planDesc) planDesc.innerText = goalData.desc + ` Optimized for ${time} min per session.`;
         
-        if (daysContainer) daysContainer.innerHTML = '';
+        if (daysContainer) {
+            daysContainer.innerHTML = '';
+        }
         
-        originalPlan.forEach(dayInfo => {
-            if(dayInfo.exercises.length === 0) return;
+        // Always build the plan DOM so it's ready when 'VIEW FULL PLAN' is clicked
+        if (daysContainer) {
+            originalPlan.forEach(dayInfo => {
+                if(dayInfo.exercises.length === 0) return;
 
-            const card = document.createElement('div');
-            card.className = 'day-card';
-            card.setAttribute('data-aos', 'fade-up');
-            
-            let exercisesHTML = dayInfo.exercises.map(ex => {
-                // Adapt exercise based on equipment
-                let exerciseName = ex.name;
-                let exerciseDesc = ex.desc;
-                let sets = ex.sets;
+                const card = document.createElement('div');
+                card.className = 'day-card';
+                card.setAttribute('data-aos', 'fade-up');
+                
+                let exercisesHTML = dayInfo.exercises.map(ex => {
+                    // Adapt exercise based on equipment
+                    let exerciseName = ex.name;
+                    let exerciseDesc = ex.desc;
+                    let sets = ex.sets;
 
-                if (equip !== 'full' && exerciseAlternatives[ex.name]) {
-                    if (equip === 'bodyweight') {
-                        exerciseName = exerciseAlternatives[ex.name].bodyweight;
-                    } else if (equip === 'basic') {
-                        exerciseName = exerciseAlternatives[ex.name].basic;
+                    if (equip !== 'full' && exerciseAlternatives[ex.name]) {
+                        if (equip === 'bodyweight') {
+                            exerciseName = exerciseAlternatives[ex.name].bodyweight;
+                        } else if (equip === 'basic') {
+                            exerciseName = exerciseAlternatives[ex.name].basic;
+                        }
                     }
-                }
 
-                // Adapt volume based on time
-                if (parseInt(time) <= 30) {
-                    // Reduce sets for 30 min
-                    sets = sets.replace(/(\d+)x/, (match, p1) => {
-                        const s = Math.max(2, parseInt(p1) - 1);
-                        return s + "x";
-                    });
-                } else if (parseInt(time) >= 90) {
-                    // Increase sets for 90 min
-                    sets = sets.replace(/(\d+)x/, (match, p1) => {
-                        const s = parseInt(p1) + 1;
-                        return s + "x";
-                    });
-                }
+                    // Adapt volume based on time
+                    if (parseInt(time) <= 30) {
+                        sets = sets.replace(/(\d+)x/, (match, p1) => {
+                            const s = Math.max(2, parseInt(p1) - 1);
+                            return s + "x";
+                        });
+                    } else if (parseInt(time) >= 90) {
+                        sets = sets.replace(/(\d+)x/, (match, p1) => {
+                            const s = parseInt(p1) + 1;
+                            return s + "x";
+                        });
+                    }
 
-                return `
-                    <li class="exercise-item">
-                        <div class="ex-info">
-                            <h4>${exerciseName}</h4>
-                            <p>${exerciseDesc || 'Focus on controlled movement and tempo.'}</p>
-                        </div>
-                        <div class="ex-sets">${sets}</div>
-                    </li>
+                    return `
+                        <li class="exercise-item">
+                            <div class="ex-info">
+                                <h4>${exerciseName}</h4>
+                                <p>${exerciseDesc || 'Focus on controlled movement and tempo.'}</p>
+                            </div>
+                            <div class="ex-sets">${sets}</div>
+                        </li>
+                    `;
+                }).join('');
+
+                // Icons based on Muscle Group
+                let icon = 'dumbbell';
+                const m = dayInfo.muscle.toLowerCase();
+                if(m.includes('chest')) icon = 'shield-halved';
+                if(m.includes('back')) icon = 'arrows-up-down';
+                if(m.includes('leg')) icon = 'person-running';
+                if(m.includes('shoulder')) icon = 'up-down-left-right';
+                if(m.includes('arm')) icon = 'hand-fist';
+                if(m.includes('core') || m.includes('shred')) icon = 'fire';
+
+                card.innerHTML = `
+                    <div class="day-header">
+                        <h3><i class="fas fa-${icon}"></i> ${dayInfo.day}</h3>
+                        <span class="muscle-group">${dayInfo.muscle}</span>
+                    </div>
+                    <ul class="exercise-list">
+                        ${exercisesHTML}
+                    </ul>
                 `;
-            }).join('');
+                daysContainer.appendChild(card);
+            });
 
-            // Icons based on Muscle Group
-            let icon = 'dumbbell';
-            const m = dayInfo.muscle.toLowerCase();
-            if(m.includes('chest')) icon = 'shield-halved';
-            if(m.includes('back')) icon = 'arrows-up-down';
-            if(m.includes('leg')) icon = 'person-running';
-            if(m.includes('shoulder')) icon = 'up-down-left-right';
-            if(m.includes('arm')) icon = 'hand-fist';
-            if(m.includes('core') || m.includes('shred')) icon = 'fire';
-
-            card.innerHTML = `
-                <div class="day-header">
-                    <h3><i class="fas fa-${icon}"></i> ${dayInfo.day}</h3>
-                    <span class="muscle-group">${dayInfo.muscle}</span>
-                </div>
-                <ul class="exercise-list">
-                    ${exercisesHTML}
+            // Add Tips Card
+            const tipsCard = document.createElement('div');
+            tipsCard.className = 'tips-card';
+            tipsCard.innerHTML = `
+                <h3><i class="fas fa-lightbulb"></i> PRO TIPS FOR ${goal.toUpperCase()}</h3>
+                <ul class="tips-list">
+                    <li><i class="fas fa-glass-water"></i> Drink at least 4 liters of water daily.</li>
+                    <li><i class="fas fa-sleep"></i> Aim for 7-9 hours of quality sleep.</li>
+                    <li><i class="fas fa-check"></i> Prioritize form over heavy weights to prevent injury.</li>
+                    <li><i class="fas fa-plate-wheat"></i> Consistency in nutrition is 70% of the battle.</li>
                 </ul>
             `;
-            daysContainer.appendChild(card);
-        });
+            daysContainer.appendChild(tipsCard);
 
-        // Add Tips Card
-        const tipsCard = document.createElement('div');
-        tipsCard.className = 'tips-card';
-        tipsCard.innerHTML = `
-            <h3><i class="fas fa-lightbulb"></i> PRO TIPS FOR ${goal.toUpperCase()}</h3>
-            <ul class="tips-list">
-                <li><i class="fas fa-glass-water"></i> Drink at least 4 liters of water daily.</li>
-                <li><i class="fas fa-sleep"></i> Aim for 7-9 hours of quality sleep.</li>
-                <li><i class="fas fa-check"></i> Prioritize form over heavy weights to prevent injury.</li>
-                <li><i class="fas fa-plate-wheat"></i> Consistency in nutrition is 70% of the battle.</li>
-            </ul>
-        `;
-        daysContainer.appendChild(tipsCard);
-
-        // Add Diet CTA Card
-        const dietCard = document.createElement('div');
-        dietCard.className = 'diet-cta-card';
-        dietCard.innerHTML = `
-            <div class="diet-content">
-                <span class="diet-badge">LIMITED OFFER</span>
-                <h3>🥗 Personalized Diet Chart (₹0)</h3>
-                <p>You've generated your ${goalData.title}. Now get the nutrition plan that powers it. Join India Fitness today and get your custom diet chart for FREE!</p>
-                <div class="diet-actions">
-                    <a href="https://wa.me/918544007735?text=Hey!%20I%20just%20generated%20my%20${goalData.title}%20on%20the%20website%20and%20I%20want%20the%20FREE%20Diet%20Chart.%20How%20can%20I%20join?" target="_blank" class="btn btn-primary magnetic">CLAIM MY FREE DIET CHART</a>
+            // Add Diet CTA Card
+            const dietCard = document.createElement('div');
+            dietCard.className = 'diet-cta-card';
+            dietCard.innerHTML = `
+                <div class="diet-content">
+                    <span class="diet-badge">LIMITED OFFER</span>
+                    <h3>🥗 Personalized Diet Chart (₹0)</h3>
+                    <p>You've generated your ${goalData.title}. Now get the nutrition plan that powers it. Join India Fitness today and get your custom diet chart for FREE!</p>
+                    <div class="diet-actions">
+                        <a href="https://wa.me/918544007735?text=Hey!%20I%20just%20generated%20my%20${goalData.title}%20on%20the%20website%20and%20I%20want%20the%20FREE%20Diet%20Chart.%20How%20can%20I%20join?" target="_blank" class="btn btn-primary magnetic">CLAIM MY FREE DIET CHART</a>
+                    </div>
                 </div>
-            </div>
-        `;
-        daysContainer.appendChild(dietCard);
+            `;
+            daysContainer.appendChild(dietCard);
+        }
 
         // Update Drawer Summary
         const drawerSummaryContainer = document.getElementById('drawer-summary-container');
@@ -427,12 +426,14 @@ document.addEventListener('DOMContentLoaded', () => {
             };
         }
 
-        // Toggle visibility
-        wizard.style.display = 'none';
-        resultArea.style.display = 'block';
+        if (!silent) {
+            // Toggle visibility
+            if (wizard) wizard.style.display = 'none';
+            if (resultArea) resultArea.style.display = 'block';
 
-        // Scroll to top of result
-        window.scrollTo({ top: resultArea.offsetTop - 100, behavior: 'smooth' });
+            // Scroll to top of result
+            window.scrollTo({ top: resultArea.offsetTop - 100, behavior: 'smooth' });
+        }
     }
 
     if(printBtn) {
