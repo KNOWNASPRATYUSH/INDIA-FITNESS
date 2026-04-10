@@ -21,10 +21,18 @@ module.exports = async function handler(req, res) {
       })
     });
 
-    const result = await response.json();
+    const text = await response.text();
+    let result;
+    try {
+      result = JSON.parse(text);
+    } catch (e) {
+      return res.status(500).json({ success: false, message: 'External API error: ' + text.substring(0, 50) });
+    }
+    
     return res.status(response.status).json(result);
   } catch (error) {
     console.error('Contact Form Error:', error);
-    return res.status(500).json({ success: false, message: 'Internal Server Error' });
+    return res.status(500).json({ success: false, message: error.message });
   }
 };
+
