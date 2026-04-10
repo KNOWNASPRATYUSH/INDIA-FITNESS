@@ -22,7 +22,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/css/intlTelInput.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/finder-quiz.css">
 </head>
+
 
 <body class="dark-theme">
 
@@ -161,6 +163,110 @@
                         <i class="fas fa-hot-tub"></i>
                         <h3>Steam Bath</h3>
                         <p>Relax and recover after your workout.</p>
+                    </div>
+                </div>
+            </div>
+        <!-- Membership Finder Quiz Section -->
+        <section id="finder-quiz" class="section">
+            <div class="container quiz-container">
+                <div class="quiz-progress-wrapper" data-aos="fade-up">
+                    <span class="step-indicator">Question 1 of 4</span>
+                    <div class="quiz-progress-bar">
+                        <div class="quiz-progress-fill"></div>
+                    </div>
+                </div>
+
+                <!-- Step 1: Goal -->
+                <div class="quiz-step active" data-step="goal">
+                    <h2 class="text-center">What is your primary goal?</h2>
+                    <p class="text-center">Choose the path that drives you.</p>
+                    <div class="options-grid">
+                        <div class="option-card" data-value="muscle">
+                            <i class="fas fa-dumbbell"></i>
+                            <h3>Build Muscle</h3>
+                            <p>Strength and hyper-trophy focused training.</p>
+                        </div>
+                        <div class="option-card" data-value="fatloss">
+                            <i class="fas fa-fire"></i>
+                            <h3>Fat Loss</h3>
+                            <p>Get shredded with HIIT and cardio.</p>
+                        </div>
+                        <div class="option-card" data-value="general">
+                            <i class="fas fa-heartbeat"></i>
+                            <h3>General Fitness</h3>
+                            <p>Overall health and longevity.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2: Time -->
+                <div class="quiz-step" data-step="time">
+                    <h2 class="text-center">When do you prefer to train?</h2>
+                    <p class="text-center">Find the best time for your schedule.</p>
+                    <div class="options-grid">
+                        <div class="option-card" data-value="morning">
+                            <i class="fas fa-sun"></i>
+                            <h3>Morning</h3>
+                            <p>Start your day with energy (5 AM - 10 AM).</p>
+                        </div>
+                        <div class="option-card" data-value="afternoon">
+                            <i class="fas fa-cloud-sun"></i>
+                            <h3>Afternoon</h3>
+                            <p>Quiet hours training (10 AM - 4 PM).</p>
+                        </div>
+                        <div class="option-card" data-value="evening">
+                            <i class="fas fa-moon"></i>
+                            <h3>Evening</h3>
+                            <p>High energy environment (4 PM - 10 PM).</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3: Support -->
+                <div class="quiz-step" data-step="style">
+                    <h2 class="text-center">What is your training style?</h2>
+                    <p class="text-center">How much guidance are you looking for?</p>
+                    <div class="options-grid">
+                        <div class="option-card" data-value="solo">
+                            <i class="fas fa-user"></i>
+                            <h3>Self-Guided</h3>
+                            <p>I know my way around the gym.</p>
+                        </div>
+                        <div class="option-card" data-value="pt">
+                            <i class="fas fa-user-ninja"></i>
+                            <h3>Personal Training</h3>
+                            <p>I want expert 1-on-1 coaching.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 4: Level -->
+                <div class="quiz-step" data-step="level">
+                    <h2 class="text-center">How experienced are you?</h2>
+                    <p class="text-center">Tell us about your fitness background.</p>
+                    <div class="options-grid">
+                        <div class="option-card" data-value="beginner">
+                            <i class="fas fa-seedling"></i>
+                            <h3>Beginner</h3>
+                            <p>I'm brand new to the gym.</p>
+                        </div>
+                        <div class="option-card" data-value="intermediate">
+                            <i class="fas fa-medal"></i>
+                            <h3>Consistent</h3>
+                            <p>I've been training for a while.</p>
+                        </div>
+                        <div class="option-card" data-value="advanced">
+                            <i class="fas fa-crown"></i>
+                            <h3>Advanced</h3>
+                            <p>I'm a seasoned athlete.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 5: Result -->
+                <div class="quiz-step" data-step="result">
+                    <div id="quiz-result-node">
+                        <!-- Result injected by JS -->
                     </div>
                 </div>
             </div>
@@ -386,7 +492,9 @@
     <!-- intl-tel-input JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/intlTelInput.min.js"></script>
     <script src="assets/js/cms-loader.js"></script>
+    <script src="assets/js/finder-quiz.js"></script>
     <script src="assets/js/main.js"></script>
 </body>
+
 
 </html>
