@@ -1236,9 +1236,35 @@ textarea.form-control {
 }
 
 @media (max-width: 992px) {
-    .drawer-summary {
-        display: block; /* Show only in mobile drawer */
-        width: calc(100% - 40px);
-        margin: 20px;
     }
 }
+
+/* Dynamic Floating Animation for Plans */
+@keyframes planFloat {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+.plan-card {
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.plan-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+}
+
+.plan-card.featured {
+    animation: planFloat 4s ease-in-out infinite;
+    border: 1px solid rgba(230, 57, 70, 0.3);
+}
+
+.plan-card.black-plan {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.plan-card.black-plan:hover {
+    border-color: var(--primary-color);
+}
+
