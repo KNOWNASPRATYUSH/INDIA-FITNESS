@@ -248,11 +248,38 @@ const extraExercisesPool = {
     ]
 };
 
+const reasoningPool = {
+    beginner: [
+        "Your plan focuses on structural integrity and motor pattern mastery.",
+        "Volume is moderated to ensure central nervous system (CNS) recovery.",
+        "Primary goal: establishing a mind-muscle connection without excessive fatigue."
+    ],
+    intermediate: [
+        "This split uses optimal mechanical tension for hypertrophy.",
+        "We've targeted specific volume thresholds (10-20 sets/week) across key muscle groups.",
+        "Rest periods are designed for peak ATP resynthesis between sets."
+    ],
+    advanced: [
+        "Intensity is prioritized with RPE 9 targets for maximum fiber recruitment.",
+        "I've injected advanced stressors like Cluster Sets to bypass typical plateaus.",
+        "The plan targets deep hypertrophy by utilizing metabolic stress and time-under-tension."
+    ],
+    muscle: "Hypertrophy focus: maximizing cross-sectional muscle area through volume.",
+    strength: "Neuromuscular focus: improving motor unit recruitment for maximum force output.",
+    fatloss: "Metabolic focus: keeping heart rate in the aerobic zone while maintaining muscle tissue.",
+    short_duration: "Time-efficient protocols (Supersets) are used to maintain intensity within 30 mins.",
+    long_duration: "Extended volume and finishers are used for deep-tissue fatigue and growth."
+};
+
+
 
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('workoutForm');
     const resultArea = document.getElementById('workout-result');
+    const reasoningArea = document.getElementById('ai-reasoning');
+    const reasoningText = document.getElementById('reasoning-text');
     const wizard = document.getElementById('workout-wizard');
+
     const daysContainer = document.getElementById('days-container');
     const planTitle = document.getElementById('plan-title');
     const planDesc = document.getElementById('plan-desc');
@@ -338,6 +365,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const inputs = { goal, days, time, equip, splitPref, level };
         renderPlan(weeklySchedule, goalData, inputs);
 
+        // AI Coaching Insights
+        if (reasoningArea && reasoningText) {
+            reasoningArea.style.display = 'block';
+            coach_typeReasoning(reasoningText, coach_generateReasoning(inputs));
+        }
+
+
         if (shouldSave) {
             localStorage.setItem('indiaFitnessWorkoutPlan', JSON.stringify({
                 plan: weeklySchedule,
@@ -348,7 +382,45 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Helper to intelligently inject volume based on duration
+    // Helper to intelligently inject volume based on duration
+    function coach_generateReasoning(inputs) {
+        const { goal, level, time } = inputs;
+        const duration = parseInt(time);
+        
+        let reasoning = [];
+        
+        // Pick Level specific
+        const levelOptions = reasoningPool[level];
+        reasoning.push(levelOptions[Math.floor(Math.random() * levelOptions.length)]);
+        
+        // Pick Goal specific
+        reasoning.push(reasoningPool[goal]);
+        
+        // Pick Duration specific
+        if (duration <= 30) reasoning.push(reasoningPool.short_duration);
+        if (duration >= 90) reasoning.push(reasoningPool.long_duration);
+        
+        return reasoning.join(" ");
+    }
+
+    function coach_typeReasoning(element, text) {
+        element.innerHTML = '<span class="typing-indicator">Analyzing...</span>';
+        setTimeout(() => {
+            element.innerHTML = '';
+            let i = 0;
+            const interval = setInterval(() => {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                } else {
+                    clearInterval(interval);
+                }
+            }, 15);
+        }, 1000);
+    }
+
     function coach_expandVolume(plan, duration) {
+
         // Clone to avoid mutation
         const newPlan = JSON.parse(JSON.stringify(plan));
         

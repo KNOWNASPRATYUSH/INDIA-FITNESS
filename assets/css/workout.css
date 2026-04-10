@@ -398,11 +398,88 @@
     gap: 20px;
 }
 
+}
+
+/* AI Reasoning Card Styling */
+.ai-reasoning-card {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(230, 57, 70, 0.2);
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 40px;
+    position: relative;
+    overflow: hidden;
+    animation: fadeIn 0.8s ease-out;
+}
+
+.ai-reasoning-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(230, 57, 70, 0.05) 0%, transparent 70%);
+    z-index: 0;
+}
+
+.reasoning-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 15px;
+    position: relative;
+    z-index: 1;
+}
+
+.reasoning-header i {
+    color: var(--primary-color);
+    font-size: 1.4rem;
+    filter: drop-shadow(0 0 5px var(--primary-color));
+}
+
+.reasoning-header span {
+    font-weight: 800;
+    letter-spacing: 2px;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.reasoning-content {
+    position: relative;
+    z-index: 1;
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    color: var(--text-primary);
+    font-size: 1.05rem;
+    min-height: 3em;
+}
+
+.typing-indicator {
+    color: var(--primary-color);
+    font-style: italic;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.typing-indicator::after {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    animation: pulse 1s infinite;
+}
+
 @media (max-width: 600px) {
     .tips-list {
         grid-template-columns: 1fr;
     }
 }
+
 
 .tips-list li {
     display: flex;
