@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Workout Generator | India Fitness - Custom Plans in Patna</title>
-    <meta name="description" content="Generate your personalized 7-day gym workout plan instantly with India Fitness. Tailored for muscle gain or weight loss for members in Sipara, Kurhul, and Sampatchak, Patna.">
-    <meta name="keywords" content="Workout generator Patna, Training plan Sipara, Gym workout Kurhul, Best fitness plan Sampatchak, India Fitness Workout">
+    <title>Workout Split Generator | India Fitness - Custom Plans in Patna</title>
+    <meta name="description" content="Generate your personalized 7-day gym workout plan instantly with India Fitness. Tailored for muscle gain or weight loss for members in Sipara, Kurthaul, and Sampatchak, Patna.">
+    <meta name="keywords" content="Workout generator Patna, Training plan Sipara, Gym workout Kurthaul, Best fitness plan Sampatchak, India Fitness Workout">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
@@ -15,32 +15,26 @@
     <meta property="og:description" content="Get your custom 7-day training plan for free from Patna's most elite gym. Optimized for your specific fitness goals.">
     <meta property="og:image" content="assets/images/gallery_muscles.png">
 
-    <!-- PWA -->
-
-    <meta name="theme-color" content="#e63946">
+    <!-- Theme & Icons -->
+    <meta name="theme-color" content="#F37335">
     <link rel="apple-touch-icon" href="assets/images/logo_real_2.png">
+    <link rel="icon" type="image/png" href="assets/images/logo_real_2.png">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Inter:wght@400;500;600&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- AOS CSS -->
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="assets/images/logo_real_2.png">
-    <!-- Custom CSS -->
+    <!-- Custom CSS & FitFlex Theme -->
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/workout.css">
-
-
-
+    <link rel="stylesheet" href="assets/css/fitflex-theme.css">
 </head>
 
-<body class="dark-theme">
+<body class="fitflex-theme">
 
     <!-- Loading Screen -->
     <div id="loading-screen">
@@ -57,8 +51,7 @@
     </div>
 
     <!-- Header / Nav -->
-    <!-- Header / Nav -->
-    <header id="main-header">
+    <header id="main-header" class="scrolled">
         <nav class="container">
             <div class="logo">
                 <a href="index.html">
@@ -66,22 +59,37 @@
                     <span>INDIA FITNESS</span>
                 </a>
             </div>
+
+            <!-- Desktop Nav Links -->
+            <div class="nav-desktop-links" style="display: flex;">
+                <a href="index.html">Home</a>
+                <a href="plans.html">FlexPlans</a>
+                <a href="workout.html" class="active">Workouts</a>
+                <a href="bmi.html">BMI Calculator</a>
+                <a href="index.html#facilities">Facilities</a>
+                <a href="index.html#about">About Us</a>
+                <a href="index.html#contact">Contact</a>
+            </div>
             
             <div class="header-actions">
+                <a href="https://wa.me/918544007735?text=Hey%20India%20Fitness!%20I%20want%20to%20get%20started%20with%20a%20personal%20workout%20plan!" target="_blank" class="nav-cta-btn">
+                    <i class="fab fa-whatsapp"></i> JOIN NOW
+                </a>
                 <div class="menu-toggle">
                     <i class="fas fa-bars"></i>
                 </div>
             </div>
 
+            <!-- Mobile Drawer -->
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="workout.html">Workout Plan</a></li>
+                <li><a href="plans.html">FlexPlans</a></li>
+                <li><a href="workout.html" class="active">Workout Plan</a></li>
                 <li><a href="bmi.html">BMI Calculator</a></li>
-                <li><a href="plans.html">Membership Plans</a></li>
+                <li><a href="index.html#facilities">Facilities</a></li>
                 <li><a href="index.html#about">About Us</a></li>
                 <li><a href="index.html#contact">Contact</a></li>
                 
-                <!-- Dynamic Workout Summary inside Drawer -->
                 <li id="drawer-summary-container" style="display: none;">
                     <div class="drawer-summary">
                         <div class="summary-header">
@@ -99,151 +107,193 @@
         </nav>
     </header>
 
-
-    <main>
+    <main style="padding-top: 110px;">
         <!-- Hero Section -->
-        <section class="section workout-hero">
+        <section class="section workout-hero" style="padding: 40px 0 30px;">
             <div class="container text-center">
-                <h2 class="subheading" data-aos="fade-up">TAILORED FOR YOU</h2>
-                <h1 class="section-title" data-aos="fade-up" data-aos-delay="100">WORKOUT GENERATOR</h1>
-                <p class="section-subtitle" data-aos="fade-up" data-aos-delay="200">Get a professional workout split based on your goals, time, and equipment.</p>
+                <span class="ff-section-subtitle" data-aos="fade-up">TAILORED FOR YOU</span>
+                <h1 class="ff-heading" style="font-size: 3rem; color: #fff; margin-bottom: 12px;" data-aos="fade-up" data-aos-delay="100">
+                    WORKOUT <span class="ff-gradient-text">GENERATOR</span>
+                </h1>
+                <p style="color: var(--ff-text-muted); font-size: 1.1rem; max-width: 600px; margin: 0 auto;" data-aos="fade-up" data-aos-delay="200">
+                    Get an evidence-based workout routine customized to your body goal, available time, and fitness level.
+                </p>
             </div>
         </section>
 
         <!-- Generator Form -->
-        <section class="section bg-light-dark">
+        <section class="section" style="background: var(--ff-bg-surface); padding: 60px 0;">
             <div class="container">
-                <div id="workout-wizard" class="wizard-container" data-aos="zoom-in">
+                <div id="workout-wizard" class="wizard-container" data-aos="zoom-in" style="background: var(--ff-bg-card); border: 1px solid var(--ff-border); border-radius: var(--ff-radius-lg); padding: 40px 30px;">
                     <form id="workoutForm" class="workout-form">
                         <div class="wizard-grid">
                             <!-- Goal -->
                             <div class="form-group">
-                                <label><i class="fas fa-bullseye"></i> Your Fitness Goal</label>
+                                <label><i class="fas fa-bullseye" style="color: var(--ff-primary);"></i> Your Fitness Goal</label>
                                 <select id="goal" required>
                                     <option value="muscle">Build Muscle (Hypertrophy)</option>
-                                    <option value="strength">Increase Strength</option>
-                                    <option value="fatloss">Fat Loss / Lean Body</option>
-                                    <option value="fitness">General Fitness</option>
+                                    <option value="strength">Increase Strength & Power</option>
+                                    <option value="fatloss">Fat Loss / Shredded Lean</option>
+                                    <option value="fitness">General Health & Mobility</option>
                                 </select>
                             </div>
 
                             <!-- Frequency -->
                             <div class="form-group">
-                                <label><i class="fas fa-calendar-alt"></i> Training Days Per Week</label>
+                                <label><i class="fas fa-calendar-alt" style="color: var(--ff-primary);"></i> Training Days Per Week</label>
                                 <select id="days" required>
                                     <option value="3">3 Days (Full Body / Split)</option>
-                                    <option value="4">4 Days (Upper/Lower Split)</option>
-                                    <option value="5">5 Days (Push/Pull/Legs+)</option>
-                                    <option value="6">6 Days (PPL Split)</option>
+                                    <option value="4">4 Days (Upper / Lower Split)</option>
+                                    <option value="5">5 Days (Push / Pull / Legs+)</option>
+                                    <option value="6">6 Days (PPL Split - Intense)</option>
                                 </select>
                             </div>
 
                             <!-- Time -->
                             <div class="form-group">
-                                <label><i class="fas fa-clock"></i> Available Time (Per Session)</label>
+                                <label><i class="fas fa-clock" style="color: var(--ff-primary);"></i> Session Duration</label>
                                 <select id="time" required>
-                                    <option value="30">30 Minutes (HIIT/Focused)</option>
-                                    <option value="45">45 Minutes (Standard)</option>
-                                    <option value="60">60 Minutes (High Volume)</option>
-                                    <option value="90">90+ Minutes (Elite Training)</option>
+                                    <option value="30">30 Minutes (HIIT / Focused)</option>
+                                    <option value="45">45 Minutes (Standard Volume)</option>
+                                    <option value="60" selected>60 Minutes (Hypertrophy Opt)</option>
+                                    <option value="90">90+ Minutes (Elite Power)</option>
                                 </select>
                             </div>
 
                             <!-- Muscular Focus / Split Style -->
                             <div class="form-group">
-                                <label><i class="fas fa-bullseye"></i> Muscular Focus (Per Session)</label>
+                                <label><i class="fas fa-layer-group" style="color: var(--ff-primary);"></i> Muscular Focus Style</label>
                                 <select id="splitPreference" required>
-                                    <option value="1">Focus: 1 Body Part (Isolation/Bro Split)</option>
-                                    <option value="2" selected>Focus: 2 Body Parts (Standard/PPL split) - [RECOMMENDED]</option>
-                                    <option value="3">Focus: 3+ Body Parts (Full Body/Functional)</option>
+                                    <option value="1">Focus: 1 Body Part (Isolation Bro Split)</option>
+                                    <option value="2" selected>Focus: 2 Body Parts (Push/Pull/Legs) [RECOMMENDED]</option>
+                                    <option value="3">Focus: 3+ Body Parts (Full Body Athletic)</option>
                                 </select>
                             </div>
 
                             <!-- Fitness Level -->
                             <div class="form-group">
-                                <label><i class="fas fa-chart-line"></i> Fitness Experience Level</label>
+                                <label><i class="fas fa-chart-line" style="color: var(--ff-primary);"></i> Experience Level</label>
                                 <select id="level" required>
-                                    <option value="beginner">Beginner (New to training)</option>
-                                    <option value="intermediate" selected>Intermediate (1-2 years experience)</option>
-                                    <option value="advanced">Advanced (3+ years experience)</option>
+                                    <option value="beginner">Beginner (0 - 6 months)</option>
+                                    <option value="intermediate" selected>Intermediate (1 - 2 years)</option>
+                                    <option value="advanced">Advanced (3+ years)</option>
                                 </select>
                             </div>
 
                             <!-- Equipment -->
                             <div class="form-group">
-                                <label><i class="fas fa-dumbbell"></i> Available Equipment</label>
+                                <label><i class="fas fa-dumbbell" style="color: var(--ff-primary);"></i> Available Equipment</label>
                                 <select id="equipment" required>
-                                    <option value="full">Full Gym Access</option>
-                                    <option value="basic">Home Gym (Dumbbells/Bench)</option>
-                                    <option value="bodyweight">Bodyweight Only</option>
+                                    <option value="full" selected>Full Gym Access (India Fitness)</option>
+                                    <option value="basic">Home Gym (Dumbbells & Bench)</option>
+                                    <option value="bodyweight">Bodyweight Only (Calisthenics)</option>
                                 </select>
                             </div>
                         </div>
 
-                        <button type="submit" class="btn btn-primary w-100 magnetic">GENERATE MY PLAN</button>
+                        <button type="submit" class="nav-cta-btn w-100" style="width: 100%; justify-content: center; padding: 16px !important; font-size: 1.05rem !important; border: none; cursor: pointer; border-radius: var(--ff-radius-md) !important; margin-top: 20px;">
+                            <i class="fas fa-magic"></i> GENERATE PERSONALIZED PLAN
+                        </button>
                     </form>
                 </div>
 
                 <!-- Plan Result area -->
-                <div id="workout-result" class="result-container" style="display: none;">
-                    <div class="plan-header-result">
+                <div id="workout-result" class="result-container" style="display: none; margin-top: 40px;">
+                    <div class="plan-header-result" style="background: var(--ff-bg-card); border: 1px solid var(--ff-border); border-radius: var(--ff-radius-md); padding: 24px;">
                         <div class="plan-meta">
-                            <h2 id="plan-title">Muscle Building Split</h2>
-                            <p id="plan-desc">A high-volume split designed for maximum hypertrophy.</p>
+                            <h2 id="plan-title" class="ff-heading" style="color: #fff; font-size: 1.8rem;">Muscle Building Split</h2>
+                            <p id="plan-desc" style="color: var(--ff-text-muted);">A structured program designed for maximum hypertrophy.</p>
                         </div>
-                        <button id="print-plan" class="btn btn-outline"><i class="fas fa-print"></i> Print</button>
+                        <button id="print-plan" class="ff-btn-dark"><i class="fas fa-print"></i> Print Plan</button>
                     </div>
 
                     <!-- AI Reasoning Card -->
-                    <div id="ai-reasoning" class="ai-reasoning-card" style="display: none;">
-                        <div class="reasoning-header">
+                    <div id="ai-reasoning" class="ai-reasoning-card" style="display: none; background: rgba(253, 200, 48, 0.08); border: 1px solid rgba(253, 200, 48, 0.3); border-radius: var(--ff-radius-md); padding: 20px; margin: 24px 0;">
+                        <div class="reasoning-header" style="color: var(--ff-primary-gold); font-weight: 800; display: flex; align-items: center; gap: 8px;">
                             <i class="fas fa-microchip"></i>
                             <span>AI COACH ANALYSIS</span>
                         </div>
-                        <div id="reasoning-text" class="reasoning-content">
+                        <div id="reasoning-text" class="reasoning-content" style="color: #e2e8f0; margin-top: 10px; line-height: 1.6;">
                             <!-- Dynamically injected -->
                         </div>
                     </div>
 
-
-                    <div id="days-container" class="days-grid">
+                    <div id="days-container" class="days-grid" style="margin-top: 30px;">
                         <!-- Days will be injected here -->
                     </div>
                 </div>
-
-
             </div>
         </section>
     </main>
 
-    <!-- Footer -->
-    <footer id="main-footer">
+    <!-- FitFlex Modern Footer -->
+    <footer class="ff-footer">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <img src="assets/images/logo.png" alt="India Fitness Logo">
-                    <h3>INDIA FITNESS</h3>
+            <div class="ff-footer-grid">
+                <div class="ff-footer-brand">
+                    <div class="logo">
+                        <a href="index.html">
+                            <img src="assets/images/logo.png" alt="India Fitness">
+                            <span>INDIA FITNESS</span>
+                        </a>
+                    </div>
+                    <p>Patna's premier fitness destination offering modern machines, elite coaches, and custom day-wise workout routines.</p>
+                    <div class="ff-footer-socials">
+                        <a href="https://www.instagram.com/india__fitness__/" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/profile.php?id=61566035104339" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://wa.me/918544007735" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    </div>
                 </div>
-                <div class="social-links">
-                    <a href="https://www.facebook.com/profile.php?id=61566035104339" target="_blank"><i
-                            class="fab fa-facebook-f"></i></a>
-                    <a href="https://www.instagram.com/india__fitness__/" target="_blank"><i
-                            class="fab fa-instagram"></i></a>
-                    <a href="https://wa.me/918544007735" target="_blank"><i class="fab fa-whatsapp"></i></a>
+
+                <div>
+                    <h4 class="ff-footer-title">Navigation</h4>
+                    <ul class="ff-footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="plans.html">FlexPlans</a></li>
+                        <li><a href="workout.html">Workout Generator</a></li>
+                        <li><a href="bmi.html">BMI Calculator</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="ff-footer-title">Workout Focus</h4>
+                    <ul class="ff-footer-links">
+                        <li><a href="workout.html?goal=hypertrophy">Muscle Gain</a></li>
+                        <li><a href="workout.html?goal=fatloss">Fat Loss & HIIT</a></li>
+                        <li><a href="workout.html?goal=strength">Strength Power</a></li>
+                        <li><a href="plans.html">Membership Passes</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="ff-footer-title">Gym Address</h4>
+                    <div class="ff-footer-contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Sipara, Patna Gaya Road Near SBI Bank, Patna, Bihar 800002</span>
+                    </div>
+                    <div class="ff-footer-contact-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <span>+91 8544007735</span>
+                    </div>
+                    <div class="ff-footer-contact-item">
+                        <i class="fas fa-clock"></i>
+                        <span>5:00 AM - 10:00 PM</span>
+                    </div>
                 </div>
             </div>
-            <div class="footer-bottom">
+
+            <div class="ff-footer-bottom">
                 <p>&copy; <span id="copyright-year">2026</span> INDIA FITNESS. ALL RIGHTS RESERVED.</p>
             </div>
         </div>
     </footer>
 
     <!-- Scripts -->
-    <!-- AOS JS -->
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
-        AOS.init({ duration: 1000, once: true });
+        AOS.init({ duration: 900, once: true });
     </script>
+    <script src="assets/js/fitflex-app.js"></script>
     <script src="assets/js/main.js"></script>
     <script src="assets/js/workout.js"></script>
 </body>

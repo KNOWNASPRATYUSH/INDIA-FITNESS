@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BMI Calculator | India Fitness - Health Tools in Patna</title>
-    <meta name="description" content="Calculate your BMI for free with India Fitness Patna. Understand your health and fitness levels at our elite gym serving Sipara, Kurhul, and Sampatchak.">
-    <meta name="keywords" content="BMI calculator Patna, Fitness tools Sipara, Health checkup Kurhul, India Fitness BMI, Best gym calculators Patna">
+    <title>BMI Health Calculator | India Fitness - Patna</title>
+    <meta name="description" content="Calculate your BMI for free with India Fitness Patna. Understand your health and fitness levels at our elite gym serving Sipara, Kurthaul, and Sampatchak.">
+    <meta name="keywords" content="BMI calculator Patna, Fitness tools Sipara, Health checkup Kurthaul, India Fitness BMI, Best gym calculators Patna">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
@@ -15,26 +15,26 @@
     <meta property="og:description" content="Measure your body mass index with Patna's leading fitness hub. Start your transformation journey in Sipara today.">
     <meta property="og:image" content="assets/images/logo_real_2.png">
 
-    <!-- PWA -->
-
-    <meta name="theme-color" content="#e63946">
+    <!-- Theme & Icons -->
+    <meta name="theme-color" content="#F37335">
     <link rel="apple-touch-icon" href="assets/images/logo_real_2.png">
+    <link rel="icon" type="image/png" href="assets/images/logo_real_2.png">
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- AOS CSS -->
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    <!-- Custom CSS -->
+    <!-- Custom CSS & FitFlex Theme -->
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/bmi.css">
-
-
-
+    <link rel="stylesheet" href="assets/css/fitflex-theme.css">
 </head>
 
-<body class="dark-theme">
+<body class="fitflex-theme">
 
     <!-- Loading Screen -->
     <div id="loading-screen">
@@ -45,7 +45,7 @@
     </div>
 
     <!-- Header / Nav -->
-    <header id="main-header">
+    <header id="main-header" class="scrolled">
         <nav class="container">
             <div class="logo">
                 <a href="index.html">
@@ -53,56 +53,60 @@
                     <span>INDIA FITNESS</span>
                 </a>
             </div>
+
+            <!-- Desktop Nav Links -->
+            <div class="nav-desktop-links" style="display: flex;">
+                <a href="index.html">Home</a>
+                <a href="plans.html">FlexPlans</a>
+                <a href="workout.html">Workouts</a>
+                <a href="bmi.html" class="active">BMI Calculator</a>
+                <a href="index.html#facilities">Facilities</a>
+                <a href="index.html#about">About Us</a>
+                <a href="index.html#contact">Contact</a>
+            </div>
             
             <div class="header-actions">
+                <a href="https://wa.me/918544007735?text=Hey%20India%20Fitness!%20I%20just%20checked%20my%20BMI%20and%20want%20to%20start%20training!" target="_blank" class="nav-cta-btn">
+                    <i class="fab fa-whatsapp"></i> JOIN NOW
+                </a>
                 <div class="menu-toggle">
                     <i class="fas fa-bars"></i>
                 </div>
             </div>
 
+            <!-- Mobile Drawer -->
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
+                <li><a href="plans.html">FlexPlans</a></li>
                 <li><a href="workout.html">Workout Plan</a></li>
-                <li><a href="bmi.html">BMI Calculator</a></li>
-                <li><a href="plans.html">Membership Plans</a></li>
+                <li><a href="bmi.html" class="active">BMI Calculator</a></li>
+                <li><a href="index.html#facilities">Facilities</a></li>
                 <li><a href="index.html#about">About Us</a></li>
                 <li><a href="index.html#contact">Contact</a></li>
-                
-                <!-- Dynamic Workout Summary inside Drawer -->
-                <li id="drawer-summary-container" style="display: none;">
-                    <div class="drawer-summary">
-                        <div class="summary-header">
-                            <h4>CURRENT PLAN</h4>
-                            <span id="drawer-goal">Muscle</span>
-                        </div>
-                        <ul id="drawer-days-list"></ul>
-                        <div class="drawer-summary-actions">
-                            <button id="drawer-view-full" class="btn-summary">VIEW FULL PLAN</button>
-                            <button id="drawer-reset-plan" class="btn-summary reset">RESET PLAN</button>
-                        </div>
-                    </div>
-                </li>
             </ul>
         </nav>
     </header>
 
-
-    <main>
+    <main style="padding-top: 110px;">
         <!-- BMI Hero Section -->
-        <section id="bmi-hero" class="section">
+        <section id="bmi-hero" style="padding: 40px 0 30px;">
             <div class="container text-center">
-                <h2 class="subheading" data-aos="fade-up">HEALTH CHECK</h2>
-                <h1 class="section-title" data-aos="fade-up" data-aos-delay="100">BMI CALCULATOR</h1>
-                <p class="section-subtitle" data-aos="fade-up" data-aos-delay="200">Track your fitness journey by calculating your Body Mass Index.</p>
+                <span class="ff-section-subtitle" data-aos="fade-up">HEALTH ASSESSMENT</span>
+                <h1 class="ff-heading" style="font-size: 3rem; color: #fff; margin-bottom: 12px;" data-aos="fade-up" data-aos-delay="100">
+                    BMI <span class="ff-gradient-text">CALCULATOR</span>
+                </h1>
+                <p style="color: var(--ff-text-muted); font-size: 1.1rem; max-width: 600px; margin: 0 auto;" data-aos="fade-up" data-aos-delay="200">
+                    Track your fitness journey by calculating your Body Mass Index and getting instant customized advice.
+                </p>
             </div>
         </section>
 
         <!-- BMI Calculator Tool -->
-        <section id="bmi-tool" class="section bg-light-dark">
+        <section id="bmi-tool" class="section" style="background: var(--ff-bg-surface); padding: 60px 0;">
             <div class="container">
                 <div class="bmi-grid">
                     <!-- Calculator Form -->
-                    <div class="bmi-form-card" data-aos="fade-right">
+                    <div class="bmi-form-card" data-aos="fade-right" style="background: var(--ff-bg-card); border: 1px solid var(--ff-border); border-radius: var(--ff-radius-lg);">
                         <div class="unit-toggle">
                             <button id="metric-btn" class="active">Metric (kg/cm)</button>
                             <button id="imperial-btn">Imperial (lb/ft)</button>
@@ -131,14 +135,16 @@
                                 </select>
                             </div>
 
-                            <button type="submit" class="btn btn-primary w-100 magnetic">CALCULATE NOW</button>
+                            <button type="submit" class="nav-cta-btn w-100" style="width: 100%; justify-content: center; padding: 14px !important; font-size: 1rem !important; border: none; cursor: pointer; border-radius: var(--ff-radius-md) !important;">
+                                <i class="fas fa-calculator"></i> CALCULATE NOW
+                            </button>
                         </form>
                     </div>
 
                     <!-- Result Display -->
-                    <div class="bmi-result-card" data-aos="fade-left">
+                    <div class="bmi-result-card" data-aos="fade-left" style="background: var(--ff-bg-card); border: 1px solid var(--ff-border); border-radius: var(--ff-radius-lg);">
                         <div id="result-placeholder">
-                            <i class="fas fa-weight"></i>
+                            <i class="fas fa-weight" style="color: var(--ff-primary-gold);"></i>
                             <h3>Your Result will appear here</h3>
                             <p>Enter your details to calculate your BMI and see health tips.</p>
                         </div>
@@ -173,11 +179,12 @@
         <section id="bmi-info" class="section">
             <div class="container grid-two">
                 <div class="info-text" data-aos="fade-up">
-                    <h2 class="section-title">What is BMI?</h2>
-                    <p>Body Mass Index (BMI) is a measurement of a person's leanness or corpulence based on their height and weight, and is intended to quantify tissue mass. It is widely used as a general indicator of whether a person has a healthy body weight for their height.</p>
-                    <p>Specifically, the value obtained from the calculation of BMI is used to categorize whether a person is underweight, normal weight, overweight, or obese depending on what range the value falls between.</p>
+                    <span class="ff-section-subtitle">UNDERSTANDING YOUR SCORE</span>
+                    <h2 class="ff-heading" style="font-size: 2.2rem; color: #fff; margin-bottom: 16px;">What is BMI?</h2>
+                    <p style="color: var(--ff-text-muted); margin-bottom: 14px;">Body Mass Index (BMI) is a clinical measurement of body composition based on your height and weight. It serves as an essential benchmark for setting realistic body transformation targets.</p>
+                    <p style="color: var(--ff-text-muted);">Our certified coaches at India Fitness use BMI along with body fat percentage to create custom nutrition and workout regimens tailored to your metabolic rate.</p>
                 </div>
-                <div class="info-table" data-aos="fade-up" data-aos-delay="200">
+                <div class="info-table" data-aos="fade-up" data-aos-delay="200" style="background: var(--ff-bg-card); border: 1px solid var(--ff-border); border-radius: var(--ff-radius-md); padding: 20px;">
                     <table>
                         <thead>
                             <tr>
@@ -209,34 +216,74 @@
         </section>
     </main>
 
-    <!-- Footer -->
-    <footer id="main-footer">
+    <!-- FitFlex Modern Footer -->
+    <footer class="ff-footer">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <img src="assets/images/logo.png" alt="India Fitness Logo">
-                    <h3>INDIA FITNESS</h3>
+            <div class="ff-footer-grid">
+                <div class="ff-footer-brand">
+                    <div class="logo">
+                        <a href="index.html">
+                            <img src="assets/images/logo.png" alt="India Fitness">
+                            <span>INDIA FITNESS</span>
+                        </a>
+                    </div>
+                    <p>Patna's premier fitness destination offering modern machines, elite coaches, and custom day-wise workout routines.</p>
+                    <div class="ff-footer-socials">
+                        <a href="https://www.instagram.com/india__fitness__/" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/profile.php?id=61566035104339" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://wa.me/918544007735" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    </div>
                 </div>
-                <div class="social-links">
-                    <a href="https://www.facebook.com/profile.php?id=61566035104339" target="_blank"><i
-                            class="fab fa-facebook-f"></i></a>
-                    <a href="https://www.instagram.com/india__fitness__/" target="_blank"><i
-                            class="fab fa-instagram"></i></a>
-                    <a href="https://wa.me/918544007735" target="_blank"><i class="fab fa-whatsapp"></i></a>
+
+                <div>
+                    <h4 class="ff-footer-title">Navigation</h4>
+                    <ul class="ff-footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="plans.html">FlexPlans</a></li>
+                        <li><a href="workout.html">Workout Generator</a></li>
+                        <li><a href="bmi.html">BMI Calculator</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="ff-footer-title">Workout Focus</h4>
+                    <ul class="ff-footer-links">
+                        <li><a href="workout.html?goal=hypertrophy">Muscle Gain</a></li>
+                        <li><a href="workout.html?goal=fatloss">Fat Loss & HIIT</a></li>
+                        <li><a href="workout.html?goal=strength">Strength Power</a></li>
+                        <li><a href="plans.html">Membership Passes</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="ff-footer-title">Gym Address</h4>
+                    <div class="ff-footer-contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Sipara, Patna Gaya Road Near SBI Bank, Patna, Bihar 800002</span>
+                    </div>
+                    <div class="ff-footer-contact-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <span>+91 8544007735</span>
+                    </div>
+                    <div class="ff-footer-contact-item">
+                        <i class="fas fa-clock"></i>
+                        <span>5:00 AM - 10:00 PM</span>
+                    </div>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; <span id="copyright-year">2026</span> INDIA FITNESS. ALL RIGHTS RESERVED. DESIGNED BY <a href="https://github.com/KNOWNASPRATYUSH" target="_blank" style="color: var(--accent); text-decoration: none; font-weight: bold;">KNOWNASPRATYUSH</a>.</p>
+
+            <div class="ff-footer-bottom">
+                <p>&copy; <span id="copyright-year">2026</span> INDIA FITNESS. ALL RIGHTS RESERVED.</p>
             </div>
         </div>
     </footer>
 
     <!-- Scripts -->
-    <!-- AOS JS -->
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
-        AOS.init({ duration: 1000, once: true });
+        AOS.init({ duration: 900, once: true });
     </script>
+    <script src="assets/js/fitflex-app.js"></script>
     <script src="assets/js/main.js"></script>
     <script src="assets/js/bmi.js"></script>
 </body>
