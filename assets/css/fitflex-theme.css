@@ -1,53 +1,35 @@
 /* ==========================================================================
-   FITFLEX DESIGN SYSTEM FOR INDIA FITNESS
-   Matches https://fitflex-react.vercel.app/
+   FITFLEX OFFICIAL DESIGN SYSTEM
+   Exact clone of https://fitflex-react.vercel.app/
    ========================================================================== */
 
 :root {
-  --ff-bg-dark: #0b0d12;
-  --ff-bg-surface: #131722;
-  --ff-bg-card: rgba(22, 27, 38, 0.75);
-  --ff-bg-card-hover: rgba(28, 34, 48, 0.9);
-  
-  --ff-gradient-primary: linear-gradient(135deg, #FDC830 0%, #F37335 100%);
-  --ff-gradient-hero: linear-gradient(45deg, #FDC830 0%, #F37335 100%);
-  --ff-gradient-dark: linear-gradient(180deg, rgba(11, 13, 18, 0.3) 0%, rgba(11, 13, 18, 0.95) 100%);
-  --ff-gradient-glow: linear-gradient(90deg, #FDC830, #F37335, #FF4B2B);
-
-  --ff-primary: #F37335;
-  --ff-primary-gold: #FDC830;
-  --ff-accent: #FF4B2B;
-  
-  --ff-text-main: #ffffff;
-  --ff-text-muted: #9ba1b0;
-  --ff-text-dim: #6c7280;
-  
-  --ff-border: rgba(255, 255, 255, 0.08);
-  --ff-border-hover: rgba(243, 115, 53, 0.4);
-  
-  --ff-shadow-card: 0 10px 30px rgba(0, 0, 0, 0.35);
-  --ff-shadow-glow: 0 10px 25px rgba(243, 115, 53, 0.35);
-  --ff-shadow-glow-lg: 0 15px 40px rgba(243, 115, 53, 0.45);
-  
-  --ff-radius-sm: 8px;
-  --ff-radius-md: 14px;
-  --ff-radius-lg: 20px;
-  --ff-radius-full: 9999px;
-  
-  --ff-transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  --accent-color: #f2fd84;
+  --heading-color: #ffffff;
+  --body-color: #b0b0b0;
+  --body-dim: #777777;
+  --black-color: #0d0e12;
+  --bg-dark: #0b0c0e;
+  --bg-surface: #121316;
+  --bg-card: rgba(255, 255, 255, 0.04);
+  --border-glass: rgba(255, 255, 255, 0.15);
+  --primary-font: 'Inter', sans-serif;
+  --heading-font: 'Montserrat', sans-serif;
 }
 
-/* Reset / Global Enhancements */
+/* Global Reset & Base */
 body.fitflex-theme,
 body {
-  background-color: var(--ff-bg-dark) !important;
-  color: var(--ff-text-main) !important;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: var(--bg-dark) !important;
+  color: var(--body-color) !important;
+  font-family: var(--primary-font);
+  margin: 0;
+  padding: 0;
   overflow-x: hidden;
 }
 
 /* ==========================================================================
-   LOADING SCREEN (Preserved & Enhanced with FitFlex Glow)
+   LOADING SCREEN (Preserved)
    ========================================================================== */
 #loading-screen {
   position: fixed !important;
@@ -55,7 +37,7 @@ body {
   left: 0 !important;
   width: 100vw !important;
   height: 100vh !important;
-  background: #0b0d12 !important;
+  background: var(--bg-dark) !important;
   display: flex !important;
   justify-content: center !important;
   align-items: center !important;
@@ -71,11 +53,11 @@ body {
 }
 
 #loader-logo {
-  width: 130px !important;
+  width: 120px !important;
   height: auto !important;
   position: relative !important;
   z-index: 2 !important;
-  filter: drop-shadow(0 0 30px rgba(243, 115, 53, 0.7)) !important;
+  filter: drop-shadow(0 0 25px rgba(242, 253, 132, 0.5)) !important;
 }
 
 .loader-glow {
@@ -83,730 +65,431 @@ body {
   top: 50% !important;
   left: 50% !important;
   transform: translate(-50%, -50%) !important;
-  width: 200px !important;
-  height: 200px !important;
+  width: 180px !important;
+  height: 180px !important;
   border-radius: 50% !important;
-  background: radial-gradient(circle, rgba(253, 200, 48, 0.6) 0%, rgba(243, 115, 53, 0.5) 45%, transparent 70%) !important;
-  filter: blur(35px) !important;
+  background: radial-gradient(circle, rgba(242, 253, 132, 0.4) 0%, transparent 70%) !important;
+  filter: blur(30px) !important;
   z-index: 1 !important;
 }
 
-/* Typography matching FitFlex */
-.ff-heading {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 800;
-  letter-spacing: -0.5px;
-}
-
-.ff-gradient-text {
-  background: var(--ff-gradient-primary);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  display: inline-block;
-}
-
 /* ==========================================================================
-   FITFLEX MODERN FLOATING NAVBAR
+   HEADER / NAVBAR (Exact Match: Logo + Nav + Boxed Contact Button)
    ========================================================================== */
 #main-header {
-  background: rgba(11, 13, 18, 0.75) !important;
-  backdrop-filter: blur(16px) !important;
-  -webkit-backdrop-filter: blur(16px) !important;
-  border-bottom: 1px solid var(--ff-border);
-  padding: 14px 0 !important;
-  transition: var(--ff-transition);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background: transparent !important;
+  padding: 24px 0 !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.3s ease;
 }
 
 #main-header.scrolled {
-  background: rgba(11, 13, 18, 0.95) !important;
-  border-bottom: 1px solid rgba(243, 115, 53, 0.25);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+  position: fixed;
+  background: rgba(11, 12, 14, 0.95) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  padding: 16px 0 !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
 }
 
-.logo a {
+.cs-header-inner {
   display: flex;
   align-items: center;
-  gap: 12px;
+  justify-content: space-between;
+  width: 100%;
 }
 
-.logo img {
-  height: 42px;
-  filter: drop-shadow(0 2px 8px rgba(243, 115, 53, 0.4));
-}
-
-.logo span {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 900;
-  font-size: 1.35rem;
-  letter-spacing: 1.5px;
-  background: linear-gradient(90deg, #FFFFFF 60%, #FDC830 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.nav-desktop-links {
+.cs-brand-logo {
   display: flex;
-  align-items: center;
-  gap: 24px;
-}
-
-.nav-desktop-links a {
-  color: #c4c8d4;
-  font-size: 0.95rem;
-  font-weight: 600;
-  padding: 8px 14px;
-  border-radius: var(--ff-radius-sm);
-  transition: var(--ff-transition);
-  position: relative;
-}
-
-.nav-desktop-links a:hover,
-.nav-desktop-links a.active {
-  color: #fff;
-  background: rgba(255, 255, 255, 0.05);
-}
-
-.nav-desktop-links a.active::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 14px;
-  right: 14px;
-  height: 2px;
-  background: var(--ff-gradient-primary);
-  border-radius: 2px;
-}
-
-.nav-cta-btn {
-  background: var(--ff-gradient-primary) !important;
-  color: #fff !important;
-  font-weight: 700 !important;
-  font-size: 0.85rem !important;
-  letter-spacing: 1px !important;
-  padding: 10px 22px !important;
-  border-radius: var(--ff-radius-full) !important;
-  box-shadow: var(--ff-shadow-glow) !important;
-  display: inline-flex;
   align-items: center;
   gap: 8px;
-  transition: var(--ff-transition) !important;
+  text-decoration: none;
 }
 
-.nav-cta-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--ff-shadow-glow-lg) !important;
+.cs-brand-logo img {
+  height: 24px;
+}
+
+.cs-nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.cs-nav-menu a {
+  color: var(--heading-color);
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.cs-nav-menu a:hover,
+.cs-nav-menu a.active {
+  color: var(--accent-color);
+}
+
+.cs-header-contact-btn {
+  border: 1px solid rgba(255, 255, 255, 0.8) !important;
+  color: var(--heading-color) !important;
+  background: transparent !important;
+  padding: 9px 24px !important;
+  font-size: 0.88rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 1px !important;
+  text-transform: uppercase !important;
+  text-decoration: none !important;
+  border-radius: 2px !important;
+  transition: all 0.3s ease !important;
+}
+
+.cs-header-contact-btn:hover {
+  background: var(--accent-color) !important;
+  color: var(--black-color) !important;
+  border-color: var(--accent-color) !important;
 }
 
 /* ==========================================================================
-   FITFLEX SIGNATURE SPLIT HERO SECTION
-   Left: High-Energy Amber/Orange Showcase
-   Right: Dynamic Image Showcase with Frosted Badges
+   FITFLEX HERO SECTION (Exact Match from User Screenshot)
    ========================================================================== */
-.ff-hero {
-  min-height: 100vh;
-  display: flex;
-  align-items: stretch;
-  padding-top: 75px;
+.cs_hero_section {
   position: relative;
-  overflow: hidden;
-  background-color: var(--ff-bg-dark);
-}
-
-.ff-hero-split {
-  display: grid;
-  grid-template-columns: 45% 55%;
-  width: 100%;
-  min-height: calc(100vh - 75px);
-}
-
-/* Left Hero Banner */
-.ff-hero-left {
-  background: var(--ff-gradient-hero);
-  padding: 60px 50px;
+  min-height: 100vh;
+  background: url('../images/Hero_BG.jpg') no-repeat right center / cover;
+  background-color: var(--black-color);
   display: flex;
   flex-direction: column;
   justify-content: center;
-  position: relative;
-  z-index: 2;
-  box-shadow: 10px 0 40px rgba(0, 0, 0, 0.3);
+  padding-top: 130px;
+  padding-bottom: 50px;
+  overflow: hidden;
 }
 
-.ff-hero-left::after {
+.cs_hero_section::before {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.2), transparent 70%);
-  pointer-events: none;
-}
-
-.ff-badge-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: rgba(0, 0, 0, 0.25);
-  backdrop-filter: blur(8px);
-  color: #fff;
-  font-size: 0.82rem;
-  font-weight: 700;
-  padding: 6px 14px;
-  border-radius: var(--ff-radius-full);
-  margin-bottom: 24px;
-  width: fit-content;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.ff-hero-welcome {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 2.2rem;
-  font-weight: 800;
-  color: #ffffff;
-  line-height: 1.1;
-  text-transform: uppercase;
-  margin-bottom: 4px;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-}
-
-.ff-hero-brand {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 4.5rem;
-  font-weight: 900;
-  color: #ffffff;
-  line-height: 0.95;
-  text-transform: uppercase;
-  letter-spacing: -1px;
-  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
-}
-
-.ff-hero-zone {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 3.5rem;
-  font-weight: 800;
-  color: #ffffff;
-  line-height: 1;
-  text-transform: uppercase;
-  margin-bottom: 18px;
-  opacity: 0.95;
-}
-
-.ff-hero-tagline {
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: rgba(255, 255, 255, 0.95);
-  line-height: 1.4;
-  margin-bottom: 34px;
-  max-width: 440px;
-}
-
-.ff-hero-btns {
-  display: flex;
-  gap: 16px;
-  flex-wrap: wrap;
-}
-
-.ff-btn-dark {
-  background: #0b0d12 !important;
-  color: #ffffff !important;
-  padding: 14px 28px;
-  border-radius: var(--ff-radius-full);
-  font-weight: 700;
-  font-size: 0.95rem;
-  letter-spacing: 0.5px;
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
-  transition: var(--ff-transition);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-}
-
-.ff-btn-dark:hover {
-  transform: translateY(-3px);
-  background: #171b24 !important;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
-}
-
-.ff-btn-glass {
-  background: rgba(255, 255, 255, 0.2) !important;
-  backdrop-filter: blur(10px);
-  color: #ffffff !important;
-  padding: 14px 28px;
-  border-radius: var(--ff-radius-full);
-  font-weight: 700;
-  font-size: 0.95rem;
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  transition: var(--ff-transition);
-}
-
-.ff-btn-glass:hover {
-  background: rgba(255, 255, 255, 0.35) !important;
-  transform: translateY(-3px);
-}
-
-/* Right Hero Showcase Slider */
-.ff-hero-right {
-  position: relative;
-  background-color: #000;
-  overflow: hidden;
-  display: flex;
-  align-items: flex-end;
-  justify-content: flex-start;
-  padding: 50px;
-}
-
-.ff-slider-bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center;
-  transition: opacity 1s ease-in-out, transform 10s ease;
-  transform: scale(1.05);
-}
-
-.ff-slider-bg.active {
-  opacity: 1;
-  transform: scale(1);
-}
-
-.ff-slider-bg.inactive {
-  opacity: 0;
-}
-
-.ff-slider-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(180deg, rgba(11, 13, 18, 0.2) 0%, rgba(11, 13, 18, 0.85) 100%);
+  background: linear-gradient(90deg, rgba(13, 14, 18, 0.95) 0%, rgba(13, 14, 18, 0.75) 45%, rgba(13, 14, 18, 0.2) 100%);
   z-index: 1;
 }
 
-.ff-slider-card {
+.cs_hero_container {
   position: relative;
   z-index: 2;
-  background: rgba(11, 13, 18, 0.65);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: var(--ff-radius-lg);
-  padding: 30px;
-  max-width: 580px;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
-  animation: fadeIn 0.8s ease-out;
+  width: 100%;
 }
 
-.ff-slider-title {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 2rem;
-  font-weight: 800;
-  color: #fff;
-  line-height: 1.2;
-  margin-bottom: 12px;
+.cs_hero_left_content {
+  max-width: 680px;
+  margin-bottom: 70px;
 }
 
-.ff-slider-desc {
-  font-size: 1rem;
-  color: #d1d5db;
-  line-height: 1.5;
-  margin-bottom: 20px;
+/* Hollow Outline Text Stroke */
+.cs_text_stroke {
+  font-family: var(--heading-font);
+  font-size: 4.2rem;
+  font-weight: 900;
+  line-height: 1.08;
+  color: var(--heading-color);
+  text-transform: uppercase;
+  margin-bottom: 24px;
+  letter-spacing: -0.5px;
 }
 
-.ff-slider-indicators {
-  display: flex;
-  gap: 8px;
+.cs_text_stroke span {
+  -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.85);
+  color: transparent;
+  display: inline-block;
+  margin-right: 12px;
 }
 
-.ff-indicator-dot {
-  width: 32px;
-  height: 4px;
-  border-radius: 2px;
-  background: rgba(255, 255, 255, 0.25);
-  cursor: pointer;
-  transition: var(--ff-transition);
-}
-
-.ff-indicator-dot.active {
-  background: var(--ff-gradient-primary);
-  width: 50px;
-}
-
-/* Floating Stats Badge on Hero */
-.ff-hero-floating-badge {
-  position: absolute;
-  top: 30px;
-  right: 30px;
-  z-index: 3;
-  background: rgba(11, 13, 18, 0.7);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: var(--ff-radius-md);
-  padding: 12px 20px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-}
-
-.ff-badge-icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: var(--ff-gradient-primary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
+.cs_hero_desc {
   font-size: 1.1rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.75);
+  margin-bottom: 36px;
+  max-width: 520px;
 }
 
-/* ==========================================================================
-   FITFLEX STATS & COUNTERS STRIP
-   ========================================================================== */
-.ff-stats-section {
-  padding: 40px 0;
-  background: var(--ff-bg-surface);
-  border-bottom: 1px solid var(--ff-border);
-  position: relative;
-  z-index: 10;
-}
-
-.ff-stats-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
-}
-
-.ff-stat-card {
-  background: var(--ff-bg-card);
-  backdrop-filter: blur(10px);
-  border: 1px solid var(--ff-border);
-  border-radius: var(--ff-radius-md);
-  padding: 24px 20px;
+/* Action Buttons */
+.cs_hero_btns {
   display: flex;
   align-items: center;
   gap: 18px;
-  transition: var(--ff-transition);
+  flex-wrap: wrap;
 }
 
-.ff-stat-card:hover {
-  transform: translateY(-5px);
-  border-color: var(--ff-border-hover);
-  box-shadow: var(--ff-shadow-glow);
-}
-
-.ff-stat-icon-wrap {
-  width: 56px;
-  height: 56px;
-  border-radius: var(--ff-radius-md);
-  background: linear-gradient(135deg, rgba(253, 200, 48, 0.15) 0%, rgba(243, 115, 53, 0.25) 100%);
-  border: 1px solid rgba(243, 115, 53, 0.3);
-  display: flex;
+.cs_btn_primary {
+  background-color: var(--accent-color);
+  color: var(--black-color);
+  font-family: var(--primary-font);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 13px 34px;
+  border: 1px solid var(--accent-color);
+  border-radius: 2px;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: var(--ff-primary);
-  font-size: 1.5rem;
-  flex-shrink: 0;
+  transition: all 0.3s ease;
+  cursor: pointer;
 }
 
-.ff-stat-number {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 2.2rem;
-  font-weight: 800;
-  color: #ffffff;
-  line-height: 1;
-  margin-bottom: 4px;
+.cs_btn_primary:hover {
+  background-color: transparent;
+  color: var(--heading-color);
+  border-color: var(--heading-color);
 }
 
-.ff-stat-label {
-  font-size: 0.9rem;
-  color: var(--ff-text-muted);
-  font-weight: 500;
+.cs_btn_outline {
+  background-color: transparent;
+  color: var(--heading-color);
+  font-family: var(--primary-font);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 13px 34px;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 2px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.cs_btn_outline:hover {
+  background-color: var(--accent-color);
+  color: var(--black-color);
+  border-color: var(--accent-color);
 }
 
 /* ==========================================================================
-   FITFLEX WORKOUT & PLAN CARDS (Matching PlansCard.jsx in FitFlex)
+   FITFLEX FLOATING GLASS STATS BAR (Exact Match from User Screenshot)
    ========================================================================== */
-.ff-plans-section {
-  padding: 90px 0;
-  background: var(--ff-bg-dark);
+.cs_stats_bar {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 4px;
+  padding: 30px 40px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
 }
 
-.ff-section-header {
+.cs_stat_item {
+  position: relative;
+}
+
+.cs_stat_item:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: -15px;
+  top: 15%;
+  height: 70%;
+  width: 1px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.cs_stat_number {
+  font-family: var(--heading-font);
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--heading-color);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.cs_stat_title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--heading-color);
+  margin-bottom: 4px;
+}
+
+.cs_stat_subtitle {
+  font-size: 0.85rem;
+  color: var(--body-dim);
+  margin: 0;
+}
+
+/* ==========================================================================
+   FITFLEX SECTIONS & CARDS (Clean Dark + Lime Accent)
+   ========================================================================== */
+.cs_section {
+  padding: 100px 0;
+  background: var(--bg-dark);
+}
+
+.cs_section_alt {
+  background: var(--bg-surface);
+}
+
+.cs_section_title_wrap {
   text-align: center;
   margin-bottom: 60px;
 }
 
-.ff-section-subtitle {
-  font-size: 0.9rem;
+.cs_section_subtitle {
+  color: var(--accent-color);
+  font-size: 0.88rem;
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: var(--ff-primary);
   margin-bottom: 10px;
 }
 
-.ff-section-title {
-  font-family: 'Montserrat', sans-serif;
+.cs_section_title {
+  font-family: var(--heading-font);
   font-size: 2.8rem;
   font-weight: 900;
-  color: #fff;
+  color: var(--heading-color);
   text-transform: uppercase;
-  letter-spacing: -0.5px;
 }
 
-.ff-plans-container {
+.cs_section_title span {
+  -webkit-text-stroke: 1.5px var(--accent-color);
+  color: transparent;
+}
+
+/* Facility & Trainer Cards */
+.cs_card_grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 28px;
 }
 
-/* Exact FitFlex PlansCard Component */
-.ff-workout-card {
-  background: var(--ff-bg-card);
-  border-radius: 17px;
-  overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-  cursor: pointer;
-  position: relative;
-  border: 1px solid var(--ff-border);
-  display: flex;
-  flex-direction: column;
-}
-
-.ff-workout-card:hover {
-  transform: translateY(-8px);
-  border-color: rgba(243, 115, 53, 0.4);
-  box-shadow: 0 20px 40px -10px rgba(243, 115, 53, 0.3);
-}
-
-.ff-workout-media {
-  height: 175px;
-  position: relative;
-  overflow: hidden;
-}
-
-.ff-workout-media img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.5s ease;
-}
-
-.ff-workout-card:hover .ff-workout-media img {
-  transform: scale(1.08);
-}
-
-.ff-workout-title-bar {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  padding: 8px 16px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.ff-workout-title-bar h4 {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 1.05rem;
-  font-weight: 800;
-  color: #ffffff;
-  margin: 0;
-  text-transform: uppercase;
-}
-
-.ff-workout-title-bar span {
-  font-size: 0.78rem;
-  color: #d1d5db;
-}
-
-.ff-workout-content {
-  padding: 18px 20px;
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-}
-
-.ff-workout-metrics {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 14px;
-}
-
-.ff-metric-box {
-  display: flex;
-  flex-direction: column;
-}
-
-.ff-metric-num {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 1.45rem;
-  font-weight: 800;
-  color: #ffffff;
-  line-height: 1;
-}
-
-.ff-metric-label {
-  font-size: 0.75rem;
-  color: var(--ff-text-dim);
-  text-transform: uppercase;
-  font-weight: 600;
-  margin-top: 2px;
-}
-
-.ff-level-easy { color: #10b981; }
-.ff-level-medium { color: #f59e0b; }
-.ff-level-hard { color: #ef4444; }
-
-.ff-progress-wrapper {
-  margin-top: auto;
-}
-
-.ff-progress-info {
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.78rem;
-  font-weight: 600;
-  color: var(--ff-text-muted);
-  margin-bottom: 6px;
-}
-
-.ff-progress-track {
-  height: 8px;
-  background: rgba(255, 255, 255, 0.1);
+.cs_glass_card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-glass);
   border-radius: 4px;
-  overflow: hidden;
-  position: relative;
+  padding: 35px 28px;
+  transition: all 0.35s ease;
 }
 
-.ff-progress-fill {
-  height: 100%;
-  background: var(--ff-gradient-primary);
-  border-radius: 4px;
-  transition: width 1s ease;
+.cs_glass_card:hover {
+  border-color: var(--accent-color);
+  transform: translateY(-6px);
+  box-shadow: 0 15px 35px rgba(242, 253, 132, 0.1);
 }
 
-/* ==========================================================================
-   FITFLEX MEMBERSHIP PRICING CARDS
-   ========================================================================== */
-.ff-pricing-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-  gap: 28px;
-}
-
-.ff-pricing-card {
-  background: var(--ff-bg-card);
-  backdrop-filter: blur(14px);
-  border-radius: var(--ff-radius-lg);
-  border: 1px solid var(--ff-border);
-  padding: 36px 28px;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  transition: var(--ff-transition);
-}
-
-.ff-pricing-card:hover {
-  transform: translateY(-8px);
-  border-color: rgba(243, 115, 53, 0.5);
-  box-shadow: var(--ff-shadow-glow);
-}
-
-.ff-pricing-card.featured {
-  background: linear-gradient(180deg, rgba(32, 39, 54, 0.85) 0%, rgba(20, 24, 34, 0.95) 100%);
-  border: 2px solid var(--ff-primary);
-  box-shadow: var(--ff-shadow-glow);
-  transform: scale(1.03);
-}
-
-.ff-pricing-card.featured:hover {
-  transform: scale(1.03) translateY(-8px);
-}
-
-.ff-popular-pill {
-  position: absolute;
-  top: -14px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: var(--ff-gradient-primary);
-  color: #fff;
-  font-size: 0.75rem;
-  font-weight: 800;
-  letter-spacing: 1px;
-  padding: 4px 18px;
-  border-radius: var(--ff-radius-full);
-  text-transform: uppercase;
-  box-shadow: 0 4px 15px rgba(243, 115, 53, 0.4);
-}
-
-.ff-plan-title {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 1.5rem;
-  font-weight: 800;
-  color: #fff;
-  margin-bottom: 6px;
-}
-
-.ff-plan-tag {
-  color: var(--ff-primary-gold);
-  font-size: 0.85rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+.cs_card_icon {
+  font-size: 2.2rem;
+  color: var(--accent-color);
   margin-bottom: 20px;
 }
 
-.ff-plan-cost {
-  display: flex;
-  align-items: baseline;
-  gap: 4px;
+.cs_glass_card h3 {
+  font-family: var(--heading-font);
+  font-size: 1.3rem;
+  color: var(--heading-color);
   margin-bottom: 12px;
 }
 
-.ff-plan-price {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 3rem;
-  font-weight: 900;
-  color: #fff;
-  line-height: 1;
-}
-
-.ff-plan-duration {
+.cs_glass_card p {
+  color: var(--body-color);
   font-size: 0.95rem;
-  color: var(--ff-text-muted);
+  line-height: 1.6;
 }
 
-.ff-plan-bonus {
-  background: rgba(253, 200, 48, 0.15);
-  border: 1px dashed rgba(253, 200, 48, 0.4);
-  color: var(--ff-primary-gold);
-  font-size: 0.82rem;
-  font-weight: 700;
-  padding: 6px 12px;
-  border-radius: var(--ff-radius-sm);
-  display: inline-block;
+/* ==========================================================================
+   PLANS & PRICING (FitFlex Clean Aesthetic)
+   ========================================================================== */
+.cs_pricing_grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+.cs_pricing_card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-glass);
+  border-radius: 4px;
+  padding: 40px 30px;
+  position: relative;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.cs_pricing_card:hover,
+.cs_pricing_card.featured {
+  border-color: var(--accent-color);
+}
+
+.cs_pricing_card.featured {
+  background: rgba(242, 253, 132, 0.03);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+}
+
+.cs_featured_badge {
+  position: absolute;
+  top: -13px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--accent-color);
+  color: var(--black-color);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  padding: 4px 16px;
+  text-transform: uppercase;
+  border-radius: 2px;
+}
+
+.cs_plan_name {
+  font-family: var(--heading-font);
+  font-size: 1.4rem;
+  color: var(--heading-color);
+  margin-bottom: 6px;
+}
+
+.cs_plan_price {
+  font-family: var(--heading-font);
+  font-size: 2.8rem;
+  font-weight: 900;
+  color: var(--accent-color);
+  line-height: 1;
+  margin: 18px 0 6px;
+}
+
+.cs_plan_duration {
+  font-size: 0.88rem;
+  color: var(--body-dim);
   margin-bottom: 24px;
 }
 
-.ff-plan-features {
+.cs_plan_features {
   list-style: none;
   padding: 0;
   margin: 0 0 32px 0;
   flex-grow: 1;
 }
 
-.ff-plan-features li {
+.cs_plan_features li {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -815,231 +498,173 @@ body {
   margin-bottom: 14px;
 }
 
-.ff-plan-features li i {
-  color: var(--ff-primary);
-  font-size: 0.9rem;
-}
-
-.ff-plan-features li i.fa-star {
-  color: var(--ff-primary-gold);
-}
-
-.ff-btn-plan {
-  width: 100%;
-  padding: 14px;
-  border-radius: var(--ff-radius-md);
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  text-align: center;
-  transition: var(--ff-transition);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-}
-
-.ff-btn-plan-primary {
-  background: var(--ff-gradient-primary);
-  color: #fff;
-  box-shadow: var(--ff-shadow-glow);
-}
-
-.ff-btn-plan-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--ff-shadow-glow-lg);
-}
-
-.ff-btn-plan-outline {
-  background: transparent;
-  color: #fff;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.ff-btn-plan-outline:hover {
-  border-color: var(--ff-primary);
-  background: rgba(243, 115, 53, 0.1);
-  color: var(--ff-primary-gold);
+.cs_plan_features li i {
+  color: var(--accent-color);
+  font-size: 0.85rem;
 }
 
 /* ==========================================================================
    FITFLEX FOOTER
    ========================================================================== */
-.ff-footer {
-  background: #07090d;
-  border-top: 1px solid var(--ff-border);
+.cs_footer {
+  background: #08090a;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
   padding: 70px 0 30px;
 }
 
-.ff-footer-grid {
+.cs_footer_grid {
   display: grid;
   grid-template-columns: 2fr 1fr 1fr 1.5fr;
   gap: 40px;
   margin-bottom: 50px;
 }
 
-.ff-footer-brand p {
-  color: var(--ff-text-muted);
+.cs_footer_brand p {
+  color: var(--body-dim);
   font-size: 0.95rem;
   line-height: 1.6;
   margin-top: 16px;
   max-width: 320px;
 }
 
-.ff-footer-socials {
+.cs_footer_socials {
   display: flex;
   gap: 12px;
   margin-top: 20px;
 }
 
-.ff-footer-socials a {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: var(--ff-bg-surface);
-  border: 1px solid var(--ff-border);
+.cs_footer_socials a {
+  width: 38px;
+  height: 38px;
+  border-radius: 2px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-glass);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #fff;
-  transition: var(--ff-transition);
+  color: var(--heading-color);
+  text-decoration: none;
+  transition: all 0.3s ease;
 }
 
-.ff-footer-socials a:hover {
-  background: var(--ff-gradient-primary);
-  border-color: transparent;
-  transform: translateY(-3px);
+.cs_footer_socials a:hover {
+  background: var(--accent-color);
+  color: var(--black-color);
+  border-color: var(--accent-color);
 }
 
-.ff-footer-title {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 1.1rem;
-  font-weight: 800;
-  color: #fff;
+.cs_footer_title {
+  font-family: var(--heading-font);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--heading-color);
   text-transform: uppercase;
   margin-bottom: 20px;
   position: relative;
 }
 
-.ff-footer-title::after {
+.cs_footer_title::after {
   content: '';
   position: absolute;
   bottom: -6px;
   left: 0;
-  width: 30px;
+  width: 25px;
   height: 2px;
-  background: var(--ff-gradient-primary);
+  background: var(--accent-color);
 }
 
-.ff-footer-links {
+.cs_footer_links {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.ff-footer-links li {
+.cs_footer_links li {
   margin-bottom: 12px;
 }
 
-.ff-footer-links a {
-  color: var(--ff-text-muted);
+.cs_footer_links a {
+  color: var(--body-dim);
   font-size: 0.92rem;
-  transition: var(--ff-transition);
+  text-decoration: none;
+  transition: color 0.3s ease;
 }
 
-.ff-footer-links a:hover {
-  color: var(--ff-primary-gold);
-  padding-left: 5px;
+.cs_footer_links a:hover {
+  color: var(--accent-color);
 }
 
-.ff-footer-contact-item {
+.cs_footer_contact_item {
   display: flex;
   align-items: flex-start;
   gap: 12px;
-  color: var(--ff-text-muted);
+  color: var(--body-dim);
   font-size: 0.92rem;
   margin-bottom: 14px;
 }
 
-.ff-footer-contact-item i {
-  color: var(--ff-primary);
+.cs_footer_contact_item i {
+  color: var(--accent-color);
   margin-top: 4px;
 }
 
-.ff-footer-bottom {
+.cs_footer_bottom {
   text-align: center;
   padding-top: 30px;
   border-top: 1px solid rgba(255, 255, 255, 0.05);
-  color: var(--ff-text-dim);
+  color: var(--body-dim);
   font-size: 0.88rem;
 }
 
-@media (min-width: 1025px) {
-  .menu-toggle {
-    display: none !important;
-  }
-}
-
 /* ==========================================================================
-   RESPONSIVE DESIGN (Mobile & Tablet)
+   RESPONSIVE DESIGN
    ========================================================================== */
 @media (max-width: 1024px) {
-  .nav-desktop-links {
+  .cs-nav-menu {
     display: none !important;
   }
   
   .menu-toggle {
     display: flex !important;
   }
-
-  .ff-hero-split {
-    grid-template-columns: 1fr;
+  
+  .cs_text_stroke {
+    font-size: 3.2rem;
   }
   
-  .ff-hero-left {
-    padding: 50px 30px;
-  }
-  
-  .ff-hero-brand {
-    font-size: 3.5rem;
-  }
-  
-  .ff-hero-zone {
-    font-size: 2.5rem;
-  }
-  
-  .ff-hero-right {
-    min-height: 500px;
-    padding: 30px;
-  }
-  
-  .ff-stats-grid {
+  .cs_stats_bar {
     grid-template-columns: repeat(2, 1fr);
   }
   
-  .ff-footer-grid {
+  .cs_stat_item:nth-child(2)::after {
+    display: none;
+  }
+  
+  .cs_footer_grid {
     grid-template-columns: 1fr 1fr;
   }
 }
 
 @media (max-width: 768px) {
-  .ff-hero-brand {
-    font-size: 2.8rem;
+  .cs_hero_section {
+    padding-top: 100px;
+    background-position: 70% center;
   }
   
-  .ff-hero-zone {
-    font-size: 2rem;
+  .cs_text_stroke {
+    font-size: 2.4rem;
   }
   
-  .ff-hero-tagline {
-    font-size: 1.05rem;
-  }
-  
-  .ff-stats-grid {
+  .cs_stats_bar {
     grid-template-columns: 1fr;
+    padding: 24px;
   }
   
-  .ff-footer-grid {
+  .cs_stat_item::after {
+    display: none !important;
+  }
+  
+  .cs_footer_grid {
     grid-template-columns: 1fr;
     gap: 30px;
   }
