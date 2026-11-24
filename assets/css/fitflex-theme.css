@@ -81,7 +81,7 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 1000;
+  z-index: 3000;
   background: transparent !important;
   padding: 24px 0 !important;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
@@ -108,12 +108,14 @@ body {
 .cs-brand-logo {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 12px;
   text-decoration: none;
 }
 
 .cs-brand-logo img {
-  height: 24px;
+  height: 46px;
+  width: auto;
+  border-radius: 50%;
 }
 
 .cs-nav-menu {
@@ -617,8 +619,68 @@ body {
 }
 
 /* ==========================================================================
-   RESPONSIVE DESIGN
+   RESPONSIVE DESIGN & MOBILE DRAWER
    ========================================================================== */
+@media (min-width: 1025px) {
+  .menu-toggle {
+    display: none !important;
+  }
+  .nav-links {
+    display: none !important;
+  }
+  .menu-overlay {
+    display: none !important;
+  }
+}
+
+/* Mobile Drawer Styling */
+.nav-links {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 300px;
+  max-width: 85vw;
+  height: 100vh;
+  background: #14171d !important;
+  border-left: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: -15px 0 40px rgba(0, 0, 0, 0.85) !important;
+  display: flex !important;
+  flex-direction: column;
+  padding: 85px 30px 40px;
+  gap: 8px;
+  z-index: 3200 !important;
+  transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  margin: 0;
+  list-style: none;
+}
+
+.nav-links.active {
+  right: 0 !important;
+}
+
+.nav-links li {
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links a {
+  display: block;
+  color: #ffffff !important;
+  font-size: 1.15rem;
+  font-weight: 700;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  text-decoration: none;
+  transition: color 0.25s ease, padding-left 0.25s ease;
+  letter-spacing: 0.5px;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--accent-color) !important;
+  padding-left: 8px;
+}
+
 @media (max-width: 1024px) {
   .cs-nav-menu {
     display: none !important;
