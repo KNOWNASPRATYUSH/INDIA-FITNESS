@@ -4,43 +4,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FlexPlans & Memberships | India Fitness - Top Gym in Sipara, Patna</title>
-    <meta name="description"
-        content="Explore structured workout plans and flexible gym membership packages for India Fitness in Sipara, Kurthaul, and Sampatchak, Patna. Transform your body today.">
-    <meta name="keywords"
-        content="Gym plans Patna, India Fitness Pricing, Gym Sipara price, Membership Kurthaul, Workout plans, Fitness Sampatchak">
+    <title>Membership Plans & Pricing | India Fitness - Patna</title>
+    <meta name="description" content="Explore membership packages and structured workout plans for India Fitness in Sipara, Kurthaul, and Sampatchak, Patna. Transform your body today.">
+    <meta name="keywords" content="Gym plans Patna, India Fitness Pricing, Gym Sipara price, Membership Kurthaul, Workout plans, Fitness Sampatchak">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://indiafitnesspatna.com/plans.html">
-    <meta property="og:title" content="FlexPlans & Memberships | India Fitness Patna">
-    <meta property="og:description"
-        content="Join Patna's elite gym with structured workout routines and affordable memberships.">
-    <meta property="og:image" content="assets/images/weight_training.jpg">
+    <meta property="og:title" content="Membership Plans & Pricing | India Fitness Patna">
+    <meta property="og:description" content="Patna's premier gym membership packages with steam bath, diet charts, and certified coaching.">
+    <meta property="og:image" content="assets/images/Hero_BG.jpg">
 
-    <!-- PWA -->
-    <meta name="theme-color" content="#F37335">
+    <!-- Theme & Icons -->
+    <meta name="theme-color" content="#f2fd84">
     <link rel="apple-touch-icon" href="assets/images/logo_real_2.png">
+    <link rel="icon" type="image/svg+xml" href="assets/images/dumbbell_icon.svg">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- AOS CSS -->
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    <!-- Custom CSS -->
+    <!-- Custom CSS & FitFlex Theme -->
     <link rel="stylesheet" href="assets/css/style.css">
-    <!-- FitFlex Theme CSS -->
     <link rel="stylesheet" href="assets/css/fitflex-theme.css">
 </head>
 
 <body class="fitflex-theme">
 
-    <!-- Loading Screen -->
+    <!-- Loading Screen (Preserved) -->
     <div id="loading-screen">
         <div class="logo-loader">
             <img src="assets/images/logo.png" alt="India Fitness Loading" id="loader-logo">
@@ -52,17 +47,21 @@
     <header id="main-header" class="scrolled">
         <div class="container">
             <div class="cs-header-inner">
+                <!-- India Fitness Logo with Yellow Dumbbell -->
                 <a href="index.html" class="cs-brand-logo">
-                    <img src="assets/images/fitflex_logo.svg" alt="FitFlex Logo" style="height: 26px;">
+                    <img src="assets/images/dumbbell_icon.svg" alt="India Fitness Dumbbell" style="height: 22px;">
+                    <span style="font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 1.25rem; letter-spacing: 1px; color: #fff;">
+                        INDIA <span style="color: var(--accent-color);">FITNESS</span>
+                    </span>
                 </a>
 
                 <ul class="cs-nav-menu">
                     <li><a href="index.html">Home</a></li>
                     <li><a href="index.html#about">About Us</a></li>
-                    <li><a href="plans.html" class="active">Classes <i class="fas fa-chevron-down" style="font-size: 0.7rem; margin-left: 2px;"></i></a></li>
-                    <li><a href="workout.html">Workouts <i class="fas fa-chevron-down" style="font-size: 0.7rem; margin-left: 2px;"></i></a></li>
+                    <li><a href="index.html#facilities">Facilities</a></li>
+                    <li><a href="plans.html" class="active">Membership Plans</a></li>
+                    <li><a href="workout.html">Workouts</a></li>
                     <li><a href="bmi.html">BMI Calculator</a></li>
-                    <li><a href="plans.html">Timetable</a></li>
                 </ul>
 
                 <div style="display: flex; align-items: center; gap: 16px;">
@@ -77,270 +76,102 @@
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="index.html#about">About Us</a></li>
-                <li><a href="plans.html" class="active">Classes / Plans</a></li>
-                <li><a href="workout.html">Workouts</a></li>
+                <li><a href="index.html#facilities">Facilities</a></li>
+                <li><a href="plans.html" class="active">Membership Plans</a></li>
+                <li><a href="workout.html">Workout Generator</a></li>
                 <li><a href="bmi.html">BMI Calculator</a></li>
                 <li><a href="index.html#contact">Contact</a></li>
             </ul>
         </div>
     </header>
 
-    <main style="padding-top: 110px;">
-        <!-- FitFlex Plans Hero Banner -->
-        <section style="padding: 40px 0 30px;">
-            <div class="container">
-                <div style="margin-bottom: 40px;" data-aos="fade-down">
-                    <p style="color: var(--ff-primary-gold); font-size: 0.95rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px;">
-                        WELCOME TO
-                    </p>
-                    <h1 class="ff-heading" style="font-size: 3.2rem; color: #fff; line-height: 1.1; margin-bottom: 12px;">
-                        Flex<span class="ff-gradient-text">Plans</span>
-                    </h1>
-                    <p style="color: var(--ff-text-muted); font-size: 1.1rem; max-width: 650px;">
-                        Structured day-wise workout routines and all-inclusive gym membership tiers designed for guaranteed progress in Patna.
-                    </p>
-                </div>
+    <main style="padding-top: 120px;">
+        <!-- Header Banner -->
+        <section style="padding: 40px 0 20px;">
+            <div class="container text-center" data-aos="fade-down">
+                <div class="cs_section_subtitle">AFFORDABLE EXCELLENCE</div>
+                <h1 class="cs_section_title" style="font-size: 3.2rem; margin-bottom: 12px;">
+                    MEMBERSHIP <span>PACKAGES</span>
+                </h1>
+                <p style="color: var(--body-dim); font-size: 1.1rem; max-width: 650px; margin: 0 auto;">
+                    Transparent pricing with zero hidden fees. Join Patna's most elite fitness club in Sipara, Kurthaul & Sampatchak today.
+                </p>
             </div>
         </section>
 
-        <!-- Section 1: Active Target Workout Plans (Exact FitFlex PlansCard Component) -->
-        <section class="ff-plans-section" style="padding-top: 10px; padding-bottom: 70px;">
+        <!-- Membership Plans Grid (FitFlex Card Style) -->
+        <section class="cs_section" style="padding-top: 30px; padding-bottom: 70px;">
             <div class="container">
-                <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 30px; border-bottom: 1px solid var(--ff-border); padding-bottom: 15px;">
-                    <div>
-                        <span class="ff-section-subtitle">GOAL-BASED ROUTINES</span>
-                        <h2 class="ff-heading" style="font-size: 2rem; color: #fff;">Popular Workout Programs</h2>
-                    </div>
-                    <a href="workout.html" style="color: var(--ff-primary); font-weight: 700; font-size: 0.95rem; display: flex; align-items: center; gap: 6px;">
-                        View All Routines <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-
-                <div class="ff-plans-container">
-                    <!-- FitFlex Card 1: Biceps Special -->
-                    <div class="ff-workout-card" data-aos="fade-up" onclick="window.location.href='workout.html?goal=hypertrophy'">
-                        <div class="ff-workout-media">
-                            <img src="assets/images/fitflex-exercise/arms/biceps.jpeg" alt="Biceps Special">
-                            <div class="ff-workout-title-bar">
-                                <h4>Biceps Special</h4>
-                                <span>Super Peak & Thickness Routine</span>
-                            </div>
-                        </div>
-                        <div class="ff-workout-content">
-                            <div class="ff-workout-metrics">
-                                <div class="ff-metric-box">
-                                    <span class="ff-metric-num">30</span>
-                                    <span class="ff-metric-label">Days</span>
-                                </div>
-                                <div class="ff-metric-box" style="text-align: right;">
-                                    <span class="ff-metric-num ff-level-easy">Easy</span>
-                                    <span class="ff-metric-label">Level</span>
-                                </div>
-                            </div>
-                            <div class="ff-progress-wrapper">
-                                <div class="ff-progress-info">
-                                    <span>Progress</span>
-                                    <span>20% completed</span>
-                                </div>
-                                <div class="ff-progress-track">
-                                    <div class="ff-progress-fill" style="width: 20%;"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- FitFlex Card 2: Chest & Triceps -->
-                    <div class="ff-workout-card" data-aos="fade-up" data-aos-delay="100" onclick="window.location.href='workout.html?goal=strength'">
-                        <div class="ff-workout-media">
-                            <img src="assets/images/fitflex-exercise/upper body/chest.jpeg" alt="Chest & Triceps Blast">
-                            <div class="ff-workout-title-bar">
-                                <h4>Chest & Triceps</h4>
-                                <span>Upper Body Hypertrophy</span>
-                            </div>
-                        </div>
-                        <div class="ff-workout-content">
-                            <div class="ff-workout-metrics">
-                                <div class="ff-metric-box">
-                                    <span class="ff-metric-num">30</span>
-                                    <span class="ff-metric-label">Days</span>
-                                </div>
-                                <div class="ff-metric-box" style="text-align: right;">
-                                    <span class="ff-metric-num ff-level-medium">Medium</span>
-                                    <span class="ff-metric-label">Level</span>
-                                </div>
-                            </div>
-                            <div class="ff-progress-wrapper">
-                                <div class="ff-progress-info">
-                                    <span>Progress</span>
-                                    <span>35% completed</span>
-                                </div>
-                                <div class="ff-progress-track">
-                                    <div class="ff-progress-fill" style="width: 35%;"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- FitFlex Card 3: Six Pack Abs & Core -->
-                    <div class="ff-workout-card" data-aos="fade-up" data-aos-delay="200" onclick="window.location.href='workout.html?goal=fatloss'">
-                        <div class="ff-workout-media">
-                            <img src="assets/images/fitflex-exercise/upper body/abs.jpeg" alt="Core Shred">
-                            <div class="ff-workout-title-bar">
-                                <h4>Core & Abs Shred</h4>
-                                <span>Total Midsection Definition</span>
-                            </div>
-                        </div>
-                        <div class="ff-workout-content">
-                            <div class="ff-workout-metrics">
-                                <div class="ff-metric-box">
-                                    <span class="ff-metric-num">45</span>
-                                    <span class="ff-metric-label">Days</span>
-                                </div>
-                                <div class="ff-metric-box" style="text-align: right;">
-                                    <span class="ff-metric-num ff-level-hard">Hard</span>
-                                    <span class="ff-metric-label">Level</span>
-                                </div>
-                            </div>
-                            <div class="ff-progress-wrapper">
-                                <div class="ff-progress-info">
-                                    <span>Progress</span>
-                                    <span>15% completed</span>
-                                </div>
-                                <div class="ff-progress-track">
-                                    <div class="ff-progress-fill" style="width: 15%;"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- FitFlex Card 4: Quads & Lower Body -->
-                    <div class="ff-workout-card" data-aos="fade-up" data-aos-delay="300" onclick="window.location.href='workout.html?goal=strength'">
-                        <div class="ff-workout-media">
-                            <img src="assets/images/fitflex-exercise/lower body/quads.jpeg" alt="Lower Body Power">
-                            <div class="ff-workout-title-bar">
-                                <h4>Quads & Glutes</h4>
-                                <span>Lower Body Foundation</span>
-                            </div>
-                        </div>
-                        <div class="ff-workout-content">
-                            <div class="ff-workout-metrics">
-                                <div class="ff-metric-box">
-                                    <span class="ff-metric-num">30</span>
-                                    <span class="ff-metric-label">Days</span>
-                                </div>
-                                <div class="ff-metric-box" style="text-align: right;">
-                                    <span class="ff-metric-num ff-level-medium">Medium</span>
-                                    <span class="ff-metric-label">Level</span>
-                                </div>
-                            </div>
-                            <div class="ff-progress-wrapper">
-                                <div class="ff-progress-info">
-                                    <span>Progress</span>
-                                    <span>10% completed</span>
-                                </div>
-                                <div class="ff-progress-track">
-                                    <div class="ff-progress-fill" style="width: 10%;"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Section 2: Gym Membership Packages (FitFlex Style) -->
-        <section class="ff-plans-section" style="background: var(--ff-bg-surface); padding: 80px 0;">
-            <div class="container">
-                <div class="ff-section-header" data-aos="fade-up">
-                    <span class="ff-section-subtitle">MEMBERSHIP TIERS</span>
-                    <h2 class="ff-section-title">CHOOSE YOUR <span class="ff-gradient-text">MEMBERSHIP</span></h2>
-                    <p style="color: var(--ff-text-muted); max-width: 600px; margin: 15px auto 0;">
-                        Patna's best value gym plans with state-of-the-art equipment, steam bath, diet consultations & expert trainers.
-                    </p>
-                </div>
-
-                <div class="ff-pricing-grid">
+                <div class="cs_pricing_grid">
                     <!-- Monthly -->
-                    <div class="ff-pricing-card" data-aos="fade-up">
-                        <h3 class="ff-plan-title">Monthly Plan</h3>
-                        <p class="ff-plan-tag">Basic Membership</p>
-                        <div class="ff-plan-cost">
-                            <span class="ff-plan-price">₹1,100</span>
-                            <span class="ff-plan-duration">/ month</span>
-                        </div>
-                        <div class="ff-plan-bonus" style="visibility: hidden;">Flexible</div>
-                        <ul class="ff-plan-features">
-                            <li><i class="fas fa-check"></i> Gym access + all equipment</li>
-                            <li><i class="fas fa-check"></i> Steam Bath access</li>
-                            <li><i class="fas fa-check"></i> BMI & Health Check</li>
+                    <div class="cs_pricing_card" data-aos="fade-up">
+                        <div class="cs_plan_name">Monthly Plan</div>
+                        <div style="color: var(--body-dim); font-size: 0.85rem;">Basic Membership</div>
+                        <div class="cs_plan_price">₹1,100</div>
+                        <div class="cs_plan_duration">/ month</div>
+                        <ul class="cs_plan_features">
+                            <li><i class="fas fa-check"></i> Gym Access & All Equipment</li>
+                            <li><i class="fas fa-check"></i> Steam Bath Included</li>
+                            <li><i class="fas fa-check"></i> BMI & Health Assessment</li>
                             <li><i class="fas fa-check"></i> Personalized Diet Chart</li>
                         </ul>
-                        <a href="https://wa.me/918544007735?text=Hey!%20I%20want%20to%20join%20the%20Monthly%20Plan%20(₹1100)." target="_blank" class="ff-btn-plan ff-btn-plan-outline">
-                            <i class="fab fa-whatsapp"></i> JOIN NOW
+                        <a href="https://wa.me/918544007735?text=Hey!%20I%20want%20to%20join%20the%20Monthly%20Plan%20(₹1100)." target="_blank" class="cs_btn_outline" style="text-align: center; width: 100%;">
+                            JOIN ON WHATSAPP
                         </a>
                     </div>
 
                     <!-- Quarterly (Featured) -->
-                    <div class="ff-pricing-card featured" data-aos="fade-up" data-aos-delay="100">
-                        <div class="ff-popular-pill">MOST POPULAR</div>
-                        <h3 class="ff-plan-title">Quarterly Plan</h3>
-                        <p class="ff-plan-tag">Standard Membership</p>
-                        <div class="ff-plan-cost">
-                            <span class="ff-plan-price">₹3,500</span>
-                            <span class="ff-plan-duration">/ 3 months</span>
-                        </div>
-                        <div class="ff-plan-bonus">+15 Days Free Bonus</div>
-                        <ul class="ff-plan-features">
-                            <li><i class="fas fa-star"></i> <strong>Includes +15 Days Free</strong></li>
-                            <li><i class="fas fa-check"></i> Steam Bath unlimited</li>
-                            <li><i class="fas fa-check"></i> Routine BMI tracking</li>
+                    <div class="cs_pricing_card featured" data-aos="fade-up" data-aos-delay="100">
+                        <div class="cs_featured_badge">MOST POPULAR</div>
+                        <div class="cs_plan_name">Quarterly Plan</div>
+                        <div style="color: var(--accent-color); font-size: 0.85rem; font-weight: 700;">Standard (+15 Days Free)</div>
+                        <div class="cs_plan_price">₹3,500</div>
+                        <div class="cs_plan_duration">/ 3 months + 15 days</div>
+                        <ul class="cs_plan_features">
+                            <li><i class="fas fa-star" style="color: var(--accent-color);"></i> <strong>Includes +15 Days Free Bonus</strong></li>
+                            <li><i class="fas fa-check"></i> Unlimited Steam Bath</li>
+                            <li><i class="fas fa-check"></i> Monthly BMI Tracking</li>
                             <li><i class="fas fa-check"></i> Custom Nutrition Diet Chart</li>
                             <li><i class="fas fa-check"></i> Free Gym Starter Kit</li>
                         </ul>
-                        <a href="https://wa.me/918544007735?text=Hey!%20I%20want%20to%20join%20the%20Quarterly%20Plan%20(₹3500%20+%2015%20Days%20Free)." target="_blank" class="ff-btn-plan ff-btn-plan-primary">
-                            <i class="fab fa-whatsapp"></i> JOIN NOW
+                        <a href="https://wa.me/918544007735?text=Hey!%20I%20want%20to%20join%20the%20Quarterly%20Plan%20(₹3500%20+%2015%20Days%20Free)." target="_blank" class="cs_btn_primary" style="text-align: center; width: 100%;">
+                            JOIN ON WHATSAPP
                         </a>
                     </div>
 
                     <!-- Half-Yearly -->
-                    <div class="ff-pricing-card" data-aos="fade-up" data-aos-delay="200">
-                        <h3 class="ff-plan-title">Half-Yearly</h3>
-                        <p class="ff-plan-tag">Premium Membership</p>
-                        <div class="ff-plan-cost">
-                            <span class="ff-plan-price">₹6,000</span>
-                            <span class="ff-plan-duration">/ 6 months</span>
-                        </div>
-                        <div class="ff-plan-bonus">+20 Days Free Bonus</div>
-                        <ul class="ff-plan-features">
-                            <li><i class="fas fa-check"></i> <strong>+20 Days Extra Bonus</strong></li>
-                            <li><i class="fas fa-check"></i> Steam Bath & Recovery</li>
-                            <li><i class="fas fa-check"></i> Monthly Body Analysis</li>
-                            <li><i class="fas fa-check"></i> Nutrition & Supplement Guide</li>
-                            <li><i class="fas fa-check"></i> Free Premium Shaker & Kit</li>
+                    <div class="cs_pricing_card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="cs_plan_name">Half-Yearly</div>
+                        <div style="color: var(--body-dim); font-size: 0.85rem;">Premium (+20 Days Free)</div>
+                        <div class="cs_plan_price">₹6,000</div>
+                        <div class="cs_plan_duration">/ 6 months + 20 days</div>
+                        <ul class="cs_plan_features">
+                            <li><i class="fas fa-check"></i> <strong>+20 Days Extra Free</strong></li>
+                            <li><i class="fas fa-check"></i> Steam Bath Recovery</li>
+                            <li><i class="fas fa-check"></i> Periodic Body Composition Check</li>
+                            <li><i class="fas fa-check"></i> Nutrition & Supplement Guidance</li>
+                            <li><i class="fas fa-check"></i> Free Shaker & Gym Kit</li>
                         </ul>
-                        <a href="https://wa.me/918544007735?text=Hey!%20I%20want%20to%20join%20the%20Half-Yearly%20Plan%20(₹6000)." target="_blank" class="ff-btn-plan ff-btn-plan-outline">
-                            <i class="fab fa-whatsapp"></i> JOIN NOW
+                        <a href="https://wa.me/918544007735?text=Hey!%20I%20want%20to%20join%20the%20Half-Yearly%20Plan%20(₹6000)." target="_blank" class="cs_btn_outline" style="text-align: center; width: 100%;">
+                            JOIN ON WHATSAPP
                         </a>
                     </div>
 
                     <!-- Yearly Black VIP -->
-                    <div class="ff-pricing-card" data-aos="fade-up" data-aos-delay="300" style="border-color: rgba(253, 200, 48, 0.4);">
-                        <h3 class="ff-plan-title">Yearly VIP</h3>
-                        <p class="ff-plan-tag" style="color: gold;">Black Elite Pass</p>
-                        <div class="ff-plan-cost">
-                            <span class="ff-plan-price">₹11,000</span>
-                            <span class="ff-plan-duration">/ year</span>
-                        </div>
-                        <div class="ff-plan-bonus" style="background: rgba(255, 215, 0, 0.15); color: gold; border-color: gold;">+1 Month Free Bonus</div>
-                        <ul class="ff-plan-features">
-                            <li><i class="fas fa-star" style="color: gold;"></i> <strong>+1 Full Month Free Bonus</strong></li>
-                            <li><i class="fas fa-star" style="color: gold;"></i> VIP Locker & Recovery Lounge</li>
+                    <div class="cs_pricing_card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="cs_plan_name">Yearly VIP</div>
+                        <div style="color: var(--accent-color); font-size: 0.85rem; font-weight: 700;">Black Elite Pass (+1 Month Free)</div>
+                        <div class="cs_plan_price">₹11,000</div>
+                        <div class="cs_plan_duration">/ 12 months + 1 month free</div>
+                        <ul class="cs_plan_features">
+                            <li><i class="fas fa-star" style="color: var(--accent-color);"></i> <strong>+1 Full Month Free Bonus</strong></li>
+                            <li><i class="fas fa-check"></i> Full VIP Treatment & Locker</li>
                             <li><i class="fas fa-check"></i> Unlimited Steam Bath</li>
-                            <li><i class="fas fa-check"></i> Dedicated Personal Coach Assist</li>
-                            <li><i class="fas fa-check"></i> Full Athlete Nutrition Plan</li>
+                            <li><i class="fas fa-check"></i> Dedicated Coach Consultation</li>
+                            <li><i class="fas fa-check"></i> Complete Athlete Transformation Kit</li>
                         </ul>
-                        <a href="https://wa.me/918544007735?text=Hey!%20I%20want%20to%20join%20the%20Yearly%20Black%20VIP%20Plan%20(₹11000)." target="_blank" class="ff-btn-plan ff-btn-plan-primary" style="background: linear-gradient(135deg, #111 0%, #222 100%); border: 1px solid gold; color: gold;">
-                            <i class="fab fa-whatsapp"></i> CLAIM VIP ACCESS
+                        <a href="https://wa.me/918544007735?text=Hey!%20I%20want%20to%20join%20the%20Yearly%20Black%20VIP%20Plan%20(₹11000)." target="_blank" class="cs_btn_outline" style="text-align: center; width: 100%;">
+                            CLAIM VIP PASS
                         </a>
                     </div>
                 </div>
@@ -348,15 +179,16 @@
         </section>
 
         <!-- Consultation CTA Section -->
-        <section style="padding: 80px 0; background: var(--ff-bg-dark); text-align: center;">
+        <section class="cs_section cs_section_alt" style="padding: 70px 0; text-align: center;">
             <div class="container" data-aos="zoom-in">
-                <div style="background: linear-gradient(135deg, rgba(253, 200, 48, 0.1) 0%, rgba(243, 115, 53, 0.15) 100%); border: 1px solid var(--ff-border-hover); border-radius: var(--ff-radius-lg); padding: 50px 30px; max-width: 800px; margin: 0 auto;">
-                    <h2 class="ff-heading" style="font-size: 2.2rem; color: #fff; margin-bottom: 12px;">NOT SURE WHICH PLAN SUITS YOU?</h2>
-                    <p style="color: var(--ff-text-muted); font-size: 1.05rem; margin-bottom: 28px; max-width: 550px; margin-left: auto; margin-right: auto;">
-                        Chat directly with our head coach on WhatsApp for a personalized assessment and trial pass.
+                <div class="cs_glass_card" style="max-width: 800px; margin: 0 auto; padding: 50px 30px;">
+                    <div class="cs_section_subtitle">FREE CONSULTATION</div>
+                    <h2 class="cs_section_title" style="font-size: 2.2rem; margin-bottom: 12px;">NOT SURE WHICH PLAN TO CHOOSE?</h2>
+                    <p style="color: var(--body-dim); font-size: 1.05rem; margin-bottom: 28px; max-width: 550px; margin-left: auto; margin-right: auto;">
+                        Chat directly with Head Coach Vivek Raj on WhatsApp for a personalized routine recommendation and gym tour.
                     </p>
-                    <a href="https://wa.me/918544007735?text=Hey%20Coach!%20I%20am%20confused%20about%20which%20plan%20to%20choose.%20Can%20you%20help%20me?" target="_blank" class="nav-cta-btn" style="padding: 16px 36px !important; font-size: 1rem !important;">
-                        <i class="fab fa-whatsapp" style="font-size: 1.2rem;"></i> CHAT WITH HEAD COACH
+                    <a href="https://wa.me/918544007735?text=Hey%20Coach!%20I%20am%20confused%20about%20which%20plan%20to%20choose.%20Can%20you%20help%20me?" target="_blank" class="cs_btn_primary" style="padding: 14px 36px;">
+                        <i class="fab fa-whatsapp" style="margin-right: 8px;"></i> CHAT WITH HEAD COACH
                     </a>
                 </div>
             </div>
@@ -364,18 +196,18 @@
     </main>
 
     <!-- FitFlex Modern Footer -->
-    <footer class="ff-footer">
+    <footer class="cs_footer">
         <div class="container">
-            <div class="ff-footer-grid">
-                <div class="ff-footer-brand">
-                    <div class="logo">
-                        <a href="index.html">
-                            <img src="assets/images/logo.png" alt="India Fitness">
-                            <span>INDIA FITNESS</span>
-                        </a>
-                    </div>
-                    <p>Patna's premier fitness destination offering state-of-the-art machines, certified coaches, and structured workout programs.</p>
-                    <div class="ff-footer-socials">
+            <div class="cs_footer_grid">
+                <div class="cs_footer_brand">
+                    <a href="index.html" class="cs-brand-logo">
+                        <img src="assets/images/dumbbell_icon.svg" alt="India Fitness Dumbbell" style="height: 22px;">
+                        <span style="font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 1.25rem; letter-spacing: 1px; color: #fff;">
+                            INDIA <span style="color: var(--accent-color);">FITNESS</span>
+                        </span>
+                    </a>
+                    <p>Patna's premier fitness destination in Sipara, Kurthaul & Sampatchak offering modern machines, elite coaches, and custom day-wise workout routines.</p>
+                    <div class="cs_footer_socials">
                         <a href="https://www.instagram.com/india__fitness__/" target="_blank"><i class="fab fa-instagram"></i></a>
                         <a href="https://www.facebook.com/profile.php?id=61566035104339" target="_blank"><i class="fab fa-facebook-f"></i></a>
                         <a href="https://wa.me/918544007735" target="_blank"><i class="fab fa-whatsapp"></i></a>
@@ -383,19 +215,19 @@
                 </div>
 
                 <div>
-                    <h4 class="ff-footer-title">Quick Links</h4>
-                    <ul class="ff-footer-links">
+                    <h4 class="cs_footer_title">Navigation</h4>
+                    <ul class="cs_footer_links">
                         <li><a href="index.html">Home</a></li>
-                        <li><a href="plans.html">FlexPlans</a></li>
+                        <li><a href="plans.html">Membership Plans</a></li>
                         <li><a href="workout.html">Workout Generator</a></li>
                         <li><a href="bmi.html">BMI Calculator</a></li>
                     </ul>
                 </div>
 
                 <div>
-                    <h4 class="ff-footer-title">Programs</h4>
-                    <ul class="ff-footer-links">
-                        <li><a href="workout.html?goal=hypertrophy">Muscle Gain</a></li>
+                    <h4 class="cs_footer_title">Workout Focus</h4>
+                    <ul class="cs_footer_links">
+                        <li><a href="workout.html?goal=muscle">Muscle Hypertrophy</a></li>
                         <li><a href="workout.html?goal=fatloss">Fat Loss & HIIT</a></li>
                         <li><a href="workout.html?goal=strength">Strength Power</a></li>
                         <li><a href="plans.html">VIP Yearly Pass</a></li>
@@ -403,34 +235,33 @@
                 </div>
 
                 <div>
-                    <h4 class="ff-footer-title">Visit Us</h4>
-                    <div class="ff-footer-contact-item">
+                    <h4 class="cs_footer_title">Gym Address</h4>
+                    <div class="cs_footer_contact_item">
                         <i class="fas fa-map-marker-alt"></i>
                         <span>Sipara, Patna Gaya Road Near SBI Bank, Patna, Bihar 800002</span>
                     </div>
-                    <div class="ff-footer-contact-item">
+                    <div class="cs_footer_contact_item">
                         <i class="fas fa-phone-alt"></i>
                         <span>+91 8544007735</span>
                     </div>
-                    <div class="ff-footer-contact-item">
+                    <div class="cs_footer_contact_item">
                         <i class="fas fa-clock"></i>
                         <span>Mon - Sat: 5:00 AM - 10:00 PM</span>
                     </div>
                 </div>
             </div>
 
-            <div class="ff-footer-bottom">
-                <p>&copy; <span id="copyright-year">2026</span> INDIA FITNESS. ALL RIGHTS RESERVED.</p>
+            <div class="cs_footer_bottom">
+                <p>&copy; <span id="copyright-year">2026</span> INDIA FITNESS. ALL RIGHTS RESERVED. SERVING SIPARA, KURTHAUL & SAMPATCHAK.</p>
             </div>
         </div>
     </footer>
 
-    <!-- AOS JS -->
+    <!-- Scripts -->
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
         AOS.init({ duration: 900, once: true });
     </script>
-    <script src="assets/js/fitflex-app.js"></script>
     <script src="assets/js/main.js"></script>
 </body>
 
