@@ -65,32 +65,54 @@ document.addEventListener('DOMContentLoaded', () => {
             document.body.appendChild(overlay);
         }
         
-        const toggleMenu = () => {
-            navLinks.classList.toggle('active');
-            overlay.classList.toggle('active');
-            body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : 'visible';
-            
+        const openMenu = () => {
+            navLinks.classList.add('active');
+            overlay.classList.add('active');
+            body.style.overflow = 'hidden';
             const icon = menuToggle.querySelector('i');
-            if (icon) {
-                if (navLinks.classList.contains('active')) {
-                    icon.classList.replace('fa-bars', 'fa-times');
-                } else {
-                    icon.classList.replace('fa-times', 'fa-bars');
-                }
+            if (icon) icon.classList.replace('fa-bars', 'fa-times');
+        };
+
+        const closeMenu = () => {
+            navLinks.classList.remove('active');
+            overlay.classList.remove('active');
+            body.style.overflow = 'visible';
+            const icon = menuToggle.querySelector('i');
+            if (icon) icon.classList.replace('fa-times', 'fa-bars');
+        };
+
+        const toggleMenu = () => {
+            if (navLinks.classList.contains('active')) {
+                closeMenu();
+            } else {
+                openMenu();
             }
         };
 
         menuToggle.addEventListener('click', toggleMenu);
-        overlay.addEventListener('click', toggleMenu);
+        overlay.addEventListener('click', closeMenu);
+
+        // Close button inside drawer
+        const drawerCloseBtns = document.querySelectorAll('.drawer-close-btn');
+        drawerCloseBtns.forEach(btn => {
+            btn.addEventListener('click', closeMenu);
+        });
+
+        // Close on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && navLinks.classList.contains('active')) {
+                closeMenu();
+            }
+        });
         
         // Link behavior in drawer
         const links = navLinks.querySelectorAll('a');
         links.forEach(link => {
             link.addEventListener('click', (e) => {
                 const targetId = link.getAttribute('href');
-                if (targetId.startsWith('#')) {
+                if (targetId && targetId.startsWith('#')) {
                     e.preventDefault();
-                    if (navLinks.classList.contains('active')) toggleMenu();
+                    closeMenu();
                     const targetElement = document.querySelector(targetId);
                     if (targetElement) {
                         window.scrollTo({
@@ -98,8 +120,8 @@ document.addEventListener('DOMContentLoaded', () => {
                             behavior: 'smooth'
                         });
                     }
-                } else if (navLinks.classList.contains('active')) {
-                    toggleMenu();
+                } else {
+                    closeMenu();
                 }
             });
         });

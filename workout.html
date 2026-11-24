@@ -78,15 +78,50 @@
                 </div>
             </div>
 
-            <!-- Mobile Drawer -->
+            <!-- Side Drawer Navigation -->
             <ul class="nav-links">
+                <li class="drawer-header-item">
+                    <div class="drawer-brand">
+                        <img src="assets/images/logo.png" alt="India Fitness" style="height: 38px; width: 38px; border-radius: 50%;">
+                        <span>INDIA <span style="color: var(--accent-color);">FITNESS</span></span>
+                    </div>
+                    <button type="button" class="drawer-close-btn" aria-label="Close menu">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </li>
                 <li><a href="index.html">Home</a></li>
-                <li><a href="index.html#about">About Us</a></li>
-                <li><a href="index.html#facilities">Facilities</a></li>
-                <li><a href="plans.html">Membership Plans</a></li>
-                <li><a href="workout.html" class="active">Workout Generator</a></li>
+                <li><a href="workout.html" class="active">Workout Plan</a></li>
                 <li><a href="bmi.html">BMI Calculator</a></li>
+                <li><a href="plans.html">Membership Plans</a></li>
+                <li><a href="index.html#facilities">Facilities</a></li>
+                <li><a href="index.html#about">About Us</a></li>
                 <li><a href="index.html#contact">Contact</a></li>
+
+                <!-- Dynamic Workout Summary inside Drawer -->
+                <li id="drawer-summary-container" style="display: none;">
+                    <div class="drawer-summary">
+                        <div class="summary-header">
+                            <h4>CURRENT PLAN</h4>
+                            <span id="drawer-goal">Muscle</span>
+                        </div>
+                        <ul id="drawer-days-list"></ul>
+                        <div class="drawer-summary-actions">
+                            <button id="drawer-view-full" class="btn-summary">VIEW FULL PLAN</button>
+                            <button id="drawer-reset-plan" class="btn-summary reset">RESET PLAN</button>
+                        </div>
+                    </div>
+                </li>
+
+                <!-- Quick Contact Info in Drawer -->
+                <li class="drawer-contact-info">
+                    <p><i class="fas fa-map-marker-alt"></i> Sipara, Patna Gaya Road Near SBI Bank</p>
+                    <p><i class="fas fa-phone-alt"></i> <a href="tel:8544007735" style="color: inherit; text-decoration: none; padding: 0; border: none; font-size: inherit;">+91 8544007735</a></p>
+                    <div class="drawer-socials">
+                        <a href="https://www.instagram.com/india__fitness__/" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/profile.php?id=61566035104339" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://wa.me/918544007735" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </li>
             </ul>
         </div>
     </header>
