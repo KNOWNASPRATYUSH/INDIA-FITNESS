@@ -108,14 +108,15 @@ body {
 .cs-brand-logo {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   text-decoration: none;
 }
 
 .cs-brand-logo img {
-  height: 46px;
-  width: auto;
+  height: 32px;
+  width: 32px;
   border-radius: 50%;
+  object-fit: cover;
 }
 
 .cs-nav-menu {
@@ -625,22 +626,19 @@ body {
   display: flex !important;
   align-items: center;
   justify-content: center;
-  font-size: 1.4rem;
+  font-size: 1.25rem;
   color: #ffffff;
   cursor: pointer;
-  padding: 9px 12px;
-  border-radius: 6px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.16);
+  padding: 6px 8px;
+  background: transparent;
+  border: none;
   z-index: 3100;
   transition: all 0.25s ease;
 }
 
 .menu-toggle:hover {
   color: var(--accent-color);
-  border-color: var(--accent-color);
-  background: rgba(242, 253, 132, 0.14);
-  transform: translateY(-1px);
+  transform: scale(1.1);
 }
 
 /* Side Drawer Overlay */
